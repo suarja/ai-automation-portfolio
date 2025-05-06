@@ -23,7 +23,7 @@ export default function Home() {
               description="Découvre comment on peut travailler ensemble"
               icon="/images/icons/safebox.png"
               buttonText="Appel 1-1"
-              buttonLink="#"
+              buttonLink="https://cal.com/jasonsuarez/booking"
             />
 
             <LinkCard
@@ -40,7 +40,7 @@ export default function Home() {
               description="Toutes mes vidéos pour apprendre l'automatisation"
               icon="/images/icons/flash-sale.png"
               buttonText="Regarder"
-              buttonLink="#"
+              buttonLink="https://youtube.com/@swarecito"
             />
           </div>
         </section>
@@ -51,16 +51,28 @@ export default function Home() {
 
           <Tabs defaultValue="tous" className="mb-6">
             <TabsList className="bg-[#151515] rounded-full p-1 border border-[#222] w-auto inline-flex">
-              <TabsTrigger value="tous" className="rounded-full px-4 py-1.5 text-sm">
+              <TabsTrigger
+                value="tous"
+                className="rounded-full px-4 py-1.5 text-sm"
+              >
                 Tous
               </TabsTrigger>
-              <TabsTrigger value="ia" className="rounded-full px-4 py-1.5 text-sm">
+              <TabsTrigger
+                value="ia"
+                className="rounded-full px-4 py-1.5 text-sm"
+              >
                 IA
               </TabsTrigger>
-              <TabsTrigger value="n8n" className="rounded-full px-4 py-1.5 text-sm">
+              <TabsTrigger
+                value="n8n"
+                className="rounded-full px-4 py-1.5 text-sm"
+              >
                 N8N
               </TabsTrigger>
-              <TabsTrigger value="freelance" className="rounded-full px-4 py-1.5 text-sm">
+              <TabsTrigger
+                value="freelance"
+                className="rounded-full px-4 py-1.5 text-sm"
+              >
                 Freelance
               </TabsTrigger>
             </TabsList>
@@ -173,13 +185,16 @@ export default function Home() {
 
           <div className="bg-[#111] p-8 rounded-3xl border border-[#222] backdrop-blur-sm shadow-xl">
             <p className="text-gray-300 mb-4">
-              Développeur indépendant spécialisé dans l'automatisation, les backends modulaires, et l'orchestration de
-              workflows. Mon objectif est de créer des systèmes intelligents, simples et sur-mesure qui vous font gagner
-              du temps et de l'argent.
+              Développeur indépendant spécialisé dans l'automatisation, les
+              backends modulaires, et l'orchestration de workflows. Mon objectif
+              est de créer des systèmes intelligents, simples et sur-mesure qui
+              vous font gagner du temps et de l'argent.
             </p>
             <p className="text-gray-300 mb-4">
-              Je travaille principalement avec des artisans, indépendants et petites structures pour résoudre des
-              problèmes concrets : prise de rendez-vous, gestion de leads, automatisation de tâches répétitives.
+              Je travaille principalement avec des artisans, indépendants et
+              petites structures pour résoudre des problèmes concrets : prise de
+              rendez-vous, gestion de leads, automatisation de tâches
+              répétitives.
             </p>
             <h3 className="text-xl font-bold mt-6 mb-3">Ce que je propose :</h3>
             <ul className="list-disc list-inside text-gray-300 space-y-2">
@@ -198,5 +213,5 @@ export default function Home() {
         </footer>
       </div>
     </main>
-  )
+  );
 }
