@@ -11,7 +11,7 @@ interface ResourcePageProps {
 }
 
 export default function ResourcePage({ params }: ResourcePageProps) {
-  // Dans une application réelle, vous récupéreriez ces données depuis une API ou un CMS
+  // Dans une application réelle,d vous récupéreriez ces données depuis une API ou un CMS
   const resources = {
     templates: {
       title: "Mes Templates",
