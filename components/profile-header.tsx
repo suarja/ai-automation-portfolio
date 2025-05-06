@@ -14,7 +14,7 @@ export default function ProfileHeader() {
         />
       </div>
 
-      <h1 className="mt-4 text-3xl font-bold">Votre Nom</h1>
+      <h1 className="mt-4 text-3xl font-bold">Jason Suárez</h1>
 
       <p className="mt-2 text-gray-400 max-w-md">
         Le temps, c'est de l'argent. Automatise les deux.
