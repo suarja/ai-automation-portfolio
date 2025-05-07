@@ -1,10 +1,10 @@
-import ProfileHeader from "@/components/profile-header"
-import LinkCard from "@/components/link-card"
-import ResourceCard from "@/components/resource-card"
-import ProjectCard from "@/components/project-card"
-import CallToAction from "@/components/call-to-action"
-import SectionHeader from "@/components/section-header"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import ProfileHeader from "@/components/profile-header";
+import LinkCard from "@/components/link-card";
+import ResourceCard from "@/components/resource-card";
+import ProjectCard from "@/components/project-card";
+import CallToAction from "@/components/call-to-action";
+import SectionHeader from "@/components/section-header";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Home() {
   return (
@@ -185,24 +185,47 @@ export default function Home() {
 
           <div className="bg-[#111] p-8 rounded-3xl border border-[#222] backdrop-blur-sm shadow-xl">
             <p className="text-gray-300 mb-4">
-              Développeur indépendant spécialisé dans l'automatisation, les
-              backends modulaires, et l'orchestration de workflows. Mon objectif
-              est de créer des systèmes intelligents, simples et sur-mesure qui
-              vous font gagner du temps et de l'argent.
+              🚀{" "}
+              <strong>
+                J’aide les indépendants, artisans et petites équipes à gagner du
+                temps, automatiser leurs tâches et faire plus avec moins.
+              </strong>
             </p>
             <p className="text-gray-300 mb-4">
-              Je travaille principalement avec des artisans, indépendants et
-              petites structures pour résoudre des problèmes concrets : prise de
-              rendez-vous, gestion de leads, automatisation de tâches
-              répétitives.
+              Spécialisé en <strong>automatisation</strong>,{" "}
+              <strong>intégration d’IA</strong> et{" "}
+              <strong>développement backend modulaire</strong>, je conçois des
+              systèmes sur-mesure qui transforment vos opérations en leviers de
+              croissance concrets.
             </p>
-            <h3 className="text-xl font-bold mt-6 mb-3">Ce que je propose :</h3>
+            <p className="text-gray-300 mb-4">
+              Mon objectif :{" "}
+              <strong>maximiser votre retour sur investissement</strong> en
+              éliminant les frictions, en réduisant les tâches manuelles et en
+              créant des workflows simples, robustes et évolutifs.
+            </p>
+            <h3 className="text-xl font-bold mt-6 mb-3">
+              🎯 Ce que je vous apporte :
+            </h3>
             <ul className="list-disc list-inside text-gray-300 space-y-2">
-              <li>Automatisation de processus métier</li>
-              <li>Intégration d'IA dans vos workflows</li>
-              <li>Développement modulaire et évolutif</li>
-              <li>Consulting en optimisation de processus</li>
-              <li>Formation et accompagnement</li>
+              <li>
+                <strong>Automatisation sur-mesure</strong> pour vos processus
+                métiers
+              </li>
+              <li>
+                <strong>IA intégrée</strong> dans vos outils existants
+                (formulaires, CRM, e-mails...)
+              </li>
+              <li>
+                <strong>Backends modulaires</strong> adaptés à votre croissance
+              </li>
+              <li>
+                <strong>Audit & optimisation</strong> de vos systèmes existants
+              </li>
+              <li>
+                <strong>Formation et transfert de compétence</strong> pour
+                garder le contrôle
+              </li>
             </ul>
           </div>
         </section>
