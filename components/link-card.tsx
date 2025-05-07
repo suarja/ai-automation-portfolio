@@ -1,18 +1,30 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { sendFeatureRequest } from "@/lib/constants/feature-request";
 
 interface LinkCardProps {
-  title: string
-  description: string
-  icon: string
-  buttonText: string
-  buttonLink: string
-  gradient?: string
+  title: string;
+  description: string;
+  icon: string;
+  buttonText: string;
+  buttonLink: string;
+  gradient?: string;
+  featureRequest?: boolean;
 }
 
-export default function LinkCard({ title, description, icon, buttonText, buttonLink, gradient }: LinkCardProps) {
-  const bgGradient = gradient || "from-[#1a1a1a] to-[#1a1a1a]"
+export default function LinkCard({
+  title,
+  description,
+  icon,
+  buttonText,
+  buttonLink,
+  gradient,
+  featureRequest,
+}: LinkCardProps) {
+  const bgGradient = gradient || "from-[#1a1a1a] to-[#1a1a1a]";
 
   return (
     <div
@@ -31,12 +43,29 @@ export default function LinkCard({ title, description, icon, buttonText, buttonL
           </div>
           <h3 className="text-xl font-bold mb-2">{title}</h3>
           <p className="text-gray-400 mb-6">{description}</p>
-          <Button asChild variant="outline" className="rounded-full border-[#333] bg-[#111] hover:bg-[#222] shadow-md">
-            <Link href={buttonLink}>{buttonText}</Link>
-          </Button>
+          {featureRequest ? (
+            <Button
+              onClick={() => {
+                sendFeatureRequest(title, description);
+                alert("Je suis en train de travailler sur ça !");
+              }}
+              variant="outline"
+              className="rounded-full border-[#333] bg-[#111] hover:bg-[#222] shadow-md"
+            >
+              {buttonText}
+            </Button>
+          ) : (
+            <Button
+              asChild
+              variant="outline"
+              className="rounded-full border-[#333] bg-[#111] hover:bg-[#222] shadow-md"
+            >
+              <Link href={buttonLink}>{buttonText}</Link>
+            </Button>
+          )}
         </div>
       </div>
       <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
     </div>
-  )
+  );
 }

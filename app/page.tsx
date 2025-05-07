@@ -27,6 +27,7 @@ export default function Home() {
             />
 
             <LinkCard
+            featureRequest
               title="Ma Communauté"
               description="Rejoins ma commu sur l'automatisation & l'IA"
               icon="/images/icons/star-badge.png"
