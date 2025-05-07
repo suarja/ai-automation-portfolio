@@ -1,6 +1,6 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function CallToAction() {
   return (
@@ -19,19 +19,21 @@ export default function CallToAction() {
           </div>
           <h2 className="text-2xl font-bold mb-2">Travaille avec moi</h2>
           <p className="text-gray-200 mb-6 max-w-lg mx-auto">
-            Prêt à automatiser tes processus et gagner du temps ? Réserve un appel découverte pour discuter de ton
-            projet.
+            Prêt à automatiser tes processus et gagner du temps ? Réserve un
+            appel découverte pour discuter de ton projet.
           </p>
           <Button
             asChild
             size="lg"
             className="rounded-full bg-white text-purple-900 hover:bg-gray-200 shadow-[0_5px_20px_rgba(255,255,255,0.3)]"
           >
-            <Link href="https://calendly.com/username">Réserver un appel</Link>
+            <Link href="https://cal.com/jasonsuarez/booking">
+              Réserver un appel
+            </Link>
           </Button>
         </div>
       </div>
       <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
     </div>
-  )
+  );
 }
