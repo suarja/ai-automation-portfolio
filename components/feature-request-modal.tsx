@@ -7,6 +7,7 @@ import { X, Bell, BellOff, CheckCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { sendFeatureRequestV1 } from "@/lib/feature-request";
+import { useFingerprint } from "@/hooks/use-fingerprint";
 interface FeatureRequestModalProps {
   isOpen: boolean;
   onClose: (cb: () => void) => void;
@@ -27,6 +28,7 @@ export default function FeatureRequestModal({
 
   // Animation states
   const [showAnimation, setShowAnimation] = useState(false);
+  const { visitorId, hasConsent } = useFingerprint();
 
   useEffect(() => {
     setMounted(true);
@@ -58,20 +60,30 @@ export default function FeatureRequestModal({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Simulate submission
-    setTimeout(() => {
-      setIsSubmitted(true);
+    setIsSubmitted(true);
 
-      // Close modal after showing success message
-      setTimeout(() => {
-        onClose(() => {});
-      }, 3000);
-    }, 1000);
+    sendFeatureRequestV1({
+      title: featureTitle,
+      description: featureDescription,
+      fingerprint: visitorId,
+      hasConsent,
+      notification: isNotifyChecked,
+      data: { email },
+    });
   };
 
   const handleClose = () => {
     setShowAnimation(false);
-    onClose(() => sendFeatureRequestV1(featureTitle, featureDescription));
+    onClose(() =>
+      sendFeatureRequestV1({
+        title: featureTitle,
+        description: featureDescription,
+        fingerprint: visitorId,
+        hasConsent,
+        notification: isNotifyChecked,
+        data: { email },
+      })
+    );
   };
 
   return (

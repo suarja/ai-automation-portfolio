@@ -1,11 +1,21 @@
 const FEATURE_REQUEST_WEBHOOK_URL =
   process.env.NEXT_PUBLIC_FEATURE_REQUEST_WEBHOOK_URL ?? "";
 
-export async function sendFeatureRequestV1(
-  title: string,
-  description: string,
-  data?: any
-) {
+export async function sendFeatureRequestV1({
+  title,
+  description,
+  hasConsent,
+  fingerprint,
+  notification,
+  data,
+}: {
+  title: string;
+  description: string;
+  hasConsent: boolean | null;
+  fingerprint: string | null;
+  notification?: boolean;
+  data?: any;
+}) {
   console.log("Sending feature request");
   console.log(
     title,
@@ -26,6 +36,10 @@ export async function sendFeatureRequestV1(
     body: JSON.stringify({
       name: title,
       description,
+      hasConsent,
+      fingerprint,
+      notification,
+      data,
     }),
   })
     .then(async (res) => {
