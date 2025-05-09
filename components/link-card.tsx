@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { sendFeatureRequest } from "@/lib/constants/feature-request";
+import { useCallback } from "react";
+import { useFeatureRequest } from "@/contexts/feature-requests-context";
 
 interface LinkCardProps {
   title: string;
@@ -25,6 +26,11 @@ export default function LinkCard({
   featureRequest,
 }: LinkCardProps) {
   const bgGradient = gradient || "from-[#1a1a1a] to-[#1a1a1a]";
+  const { openFeatureRequestModal } = useFeatureRequest();
+
+  const handleFeatureRequest = useCallback(() => {
+    openFeatureRequestModal(title, description);
+  }, [openFeatureRequestModal, title, description]);
 
   return (
     <div
@@ -45,10 +51,7 @@ export default function LinkCard({
           <p className="text-gray-400 mb-6">{description}</p>
           {featureRequest ? (
             <Button
-              onClick={() => {
-                sendFeatureRequest(title, description);
-                alert("Je suis en train de travailler sur ça !");
-              }}
+              onClick={handleFeatureRequest}
               variant="outline"
               className="rounded-full border-[#333] bg-[#111] hover:bg-[#222] shadow-md"
             >

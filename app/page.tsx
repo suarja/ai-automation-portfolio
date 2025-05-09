@@ -6,7 +6,6 @@ import ProjectCard from "@/components/project-card";
 import CallToAction from "@/components/call-to-action";
 import SectionHeader from "@/components/section-header";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useFingerprint } from "@/hooks/use-fingerprint";
 import SiteFooter from "@/components/site-footer";
 export default function Home() {
   return (
@@ -83,6 +82,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <ResourceCard
+              featureRequest
               title="Mes Templates"
               description="Récupère toutes mes templates et ressources pour automatiser ton business"
               image="/images/icons/folder.png"
@@ -92,6 +92,7 @@ export default function Home() {
             />
 
             <ResourceCard
+              featureRequest
               title="TON GHOST WRITER LINKEDIN"
               description="Automatise la rédaction de tes posts LinkedIn"
               image="/images/icons/card.png"
@@ -102,6 +103,7 @@ export default function Home() {
             />
 
             <ResourceCard
+              featureRequest
               title="Ton Assistant Personnel IA"
               description="Ton assistant IA pour tes tâches de liste"
               image="/images/icons/cloud-download.png"
@@ -112,6 +114,7 @@ export default function Home() {
             />
 
             <ResourceCard
+              featureRequest
               title="Workflow Automatisé Client"
               description="Automatise l'onboarding de tes clients"
               image="/images/icons/grow-coin.png"
@@ -121,6 +124,7 @@ export default function Home() {
             />
 
             <ResourceCard
+              featureRequest
               title="Dashboard Freelance"
               description="Template de dashboard pour suivre ton activité"
               image="/images/icons/folder.png"
@@ -130,6 +134,7 @@ export default function Home() {
             />
 
             <ResourceCard
+              featureRequest
               title="Connecteur API Universel"
               description="Connecte n'importe quelle API à tes outils"
               image="/images/icons/card.png"
