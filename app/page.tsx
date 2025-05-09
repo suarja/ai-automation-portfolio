@@ -1,3 +1,4 @@
+"use client";
 import ProfileHeader from "@/components/profile-header";
 import LinkCard from "@/components/link-card";
 import ResourceCard from "@/components/resource-card";
@@ -5,8 +6,12 @@ import ProjectCard from "@/components/project-card";
 import CallToAction from "@/components/call-to-action";
 import SectionHeader from "@/components/section-header";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useFingerprint } from "@/hooks/use-fingerprint";
 
 export default function Home() {
+  const { visitorId, loading, error } = useFingerprint();
+  console.log("Visitor ID:", visitorId);
+
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
@@ -27,7 +32,7 @@ export default function Home() {
             />
 
             <LinkCard
-            featureRequest
+              featureRequest
               title="Ma Communauté"
               description="Rejoins ma commu sur l'automatisation & l'IA"
               icon="/images/icons/star-badge.png"
@@ -186,46 +191,48 @@ export default function Home() {
 
           <div className="bg-[#111] p-8 rounded-3xl border border-[#222] backdrop-blur-sm shadow-xl">
             <p className="text-gray-300 mb-4">
-              🚀{" "}
+              🧠{" "}
               <strong>
-                J’aide les indépendants, artisans et petites équipes à gagner du
-                temps, automatiser leurs tâches et faire plus avec moins.
+                J’aide les indépendants, artisans et petites équipes ambitieuses
+                à reprendre le contrôle sur leur temps, leurs outils, et leur
+                croissance.
               </strong>
             </p>
             <p className="text-gray-300 mb-4">
-              Spécialisé en <strong>automatisation</strong>,{" "}
-              <strong>intégration d’IA</strong> et{" "}
-              <strong>développement backend modulaire</strong>, je conçois des
-              systèmes sur-mesure qui transforment vos opérations en leviers de
-              croissance concrets.
+              En combinant <strong>automatisation stratégique</strong>,{" "}
+              <strong>intelligence artificielle intégrée</strong> et{" "}
+              <strong>systèmes backend sur-mesure</strong>, je conçois des
+              agents et des workflows qui travaillent pour vous — même quand
+              vous dormez.
             </p>
             <p className="text-gray-300 mb-4">
-              Mon objectif :{" "}
-              <strong>maximiser votre retour sur investissement</strong> en
-              éliminant les frictions, en réduisant les tâches manuelles et en
-              créant des workflows simples, robustes et évolutifs.
+              🎯 Mon objectif : vous permettre de vous concentrer sur ce qui
+              crée réellement de la valeur — pendant que je m’occupe du reste.
             </p>
+
             <h3 className="text-xl font-bold mt-6 mb-3">
-              🎯 Ce que je vous apporte :
+              🚀 Ce que je vous apporte :
             </h3>
             <ul className="list-disc list-inside text-gray-300 space-y-2">
               <li>
-                <strong>Automatisation sur-mesure</strong> pour vos processus
-                métiers
+                <strong>Workflows IA & automation</strong> sur-mesure, conçus
+                autour de vos vrais besoins métier
               </li>
               <li>
-                <strong>IA intégrée</strong> dans vos outils existants
-                (formulaires, CRM, e-mails...)
+                <strong>Intégration fluide d’agents IA</strong> dans vos outils
+                existants (formulaires, CRM, e-mail…)
               </li>
               <li>
-                <strong>Backends modulaires</strong> adaptés à votre croissance
+                <strong>Backends modulaires</strong> qui grandissent avec vous
+                (Airtable, Notion, n8n…)
               </li>
               <li>
-                <strong>Audit & optimisation</strong> de vos systèmes existants
+                <strong>Optimisation & refonte</strong> de vos systèmes pour
+                éliminer les frictions invisibles
               </li>
               <li>
-                <strong>Formation et transfert de compétence</strong> pour
-                garder le contrôle
+                <strong>Accompagnement sur-mesure</strong> pour garder la main
+                sans vous noyer dans la technique
               </li>
             </ul>
           </div>
