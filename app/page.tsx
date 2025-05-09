@@ -7,11 +7,8 @@ import CallToAction from "@/components/call-to-action";
 import SectionHeader from "@/components/section-header";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useFingerprint } from "@/hooks/use-fingerprint";
-
+import SiteFooter from "@/components/site-footer";
 export default function Home() {
-  const { visitorId, loading, error } = useFingerprint();
-  console.log("Visitor ID:", visitorId);
-
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
@@ -238,10 +235,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="mt-16 py-6 text-center text-gray-500 border-t border-gray-800">
-          <p>© 2025 – Tous droits réservés</p>
-        </footer>
+        <SiteFooter />
       </div>
     </main>
   );

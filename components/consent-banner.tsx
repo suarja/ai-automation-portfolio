@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import ConsentModal from "./consent-modal";
 
 const CONSENT_KEY = "fingerprint_consent";
 const CONSENT_EXPIRY_KEY = "fingerprint_consent_expiry";
@@ -9,6 +10,7 @@ const CONSENT_DURATION_MS = 6 * 30 * 24 * 60 * 60 * 1000; // 6 mois
 
 export default function ConsentBanner() {
   const [showBanner, setShowBanner] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     // Vérifier si le consentement existe et n'est pas expiré
@@ -23,6 +25,24 @@ export default function ConsentBanner() {
   }, []);
 
   const handleConsent = (accepted: boolean) => {
+    if (!accepted) {
+      // Si l'utilisateur refuse, afficher la modal explicative
+      setShowModal(true);
+      return;
+    }
+
+    // Stocker le consentement
+    saveConsent(true);
+  };
+
+  const handleFinalDecision = (accepted: boolean) => {
+    // Stocker la décision finale
+    saveConsent(accepted);
+    // Fermer la modal
+    setShowModal(false);
+  };
+
+  const saveConsent = (accepted: boolean) => {
     // Stocker le consentement
     localStorage.setItem(CONSENT_KEY, accepted ? "true" : "false");
 
@@ -39,35 +59,44 @@ export default function ConsentBanner() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-[#111] border-t border-[#222] shadow-lg">
-      <div className="container mx-auto max-w-5xl">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-gray-300 text-sm">
-            <p>
-              Nous utilisons des technologies de suivi pour améliorer votre
-              expérience. Acceptez-vous que nous collections votre empreinte
-              numérique via FingerprintJS ?
-            </p>
-          </div>
-          <div className="flex gap-3">
-            <Button
-              variant="outline"
-              size="sm"
-              className="bg-transparent border-[#333] hover:bg-[#222] text-gray-300"
-              onClick={() => handleConsent(false)}
-            >
-              Refuser
-            </Button>
-            <Button
-              size="sm"
-              className="bg-[#333] hover:bg-[#444] text-white"
-              onClick={() => handleConsent(true)}
-            >
-              Accepter
-            </Button>
+    <>
+      <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-[#111] border-t border-[#222] shadow-lg">
+        <div className="container mx-auto max-w-5xl">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-gray-300 text-sm">
+              <p>
+                Nous utilisons des technologies de suivi pour améliorer votre
+                expérience. Acceptez-vous que nous collections votre empreinte
+                numérique via FingerprintJS ?
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-transparent border-[#333] hover:bg-[#222] text-gray-300"
+                onClick={() => handleConsent(false)}
+              >
+                Refuser
+              </Button>
+              <Button
+                size="sm"
+                className="bg-purple-700 hover:bg-purple-600 text-white"
+                onClick={() => handleConsent(true)}
+              >
+                Accepter
+              </Button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <ConsentModal
+        isOpen={showModal}
+        onAccept={() => handleFinalDecision(true)}
+        onDecline={() => handleFinalDecision(false)}
+        onClose={() => setShowModal(false)}
+      />
+    </>
   );
 }
