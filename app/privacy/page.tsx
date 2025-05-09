@@ -4,7 +4,7 @@ import { useFingerprint } from "@/hooks/use-fingerprint";
 import { Button } from "@/components/ui/button";
 
 export default function PrivacyPage() {
-  const { resetConsent } = useFingerprint();
+  const { resetConsent, consent } = useFingerprint();
 
   return (
     <main className="container mx-auto py-8 px-4 max-w-5xl">
@@ -29,9 +29,13 @@ export default function PrivacyPage() {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">Vos choix</h2>
         <p className="mb-4">
-          Vous avez accepté ou refusé la collecte de votre empreinte numérique
-          lors de votre première visite sur notre site. Vous pouvez modifier
-          votre choix à tout moment en utilisant le bouton ci-dessous.
+          Vous avez{" "}
+          <strong className={consent ? "text-green-500" : "text-red-500"}>
+            {consent ? "accepté" : "refusé"}
+          </strong>{" "}
+          la collecte de votre lors de votre première visite sur notre site.
+          Vous pouvez modifier votre choix à tout moment en utilisant le bouton
+          ci-dessous.
         </p>
 
         <div className="mt-6">
@@ -48,7 +52,8 @@ export default function PrivacyPage() {
         <h2 className="text-2xl font-semibold mb-4">Contact</h2>
         <p>
           Pour toute question concernant notre politique de confidentialité,
-          veuillez nous contacter à l'adresse suivante : privacy@example.com
+          veuillez nous contacter à l'adresse suivante :
+          jason.h.suarez@gmail.com
         </p>
       </section>
     </main>

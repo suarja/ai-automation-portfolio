@@ -1,5 +1,6 @@
 "use client";
 
+import { set } from "date-fns";
 import { useState, useEffect } from "react";
 
 // Définir les types pour FingerprintJS
@@ -18,6 +19,7 @@ export function useFingerprint() {
   const [visitorId, setVisitorId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [consent, setConsent] = useState(false);
 
   useEffect(() => {
     const initializeFingerprint = async () => {
@@ -25,10 +27,15 @@ export function useFingerprint() {
         // Vérifier si l'utilisateur a donné son consentement
         const consent = localStorage.getItem(CONSENT_KEY);
 
+        
+
         if (consent !== "true") {
           setLoading(false);
+          setConsent(false);
           return;
         }
+
+        setConsent(true);
 
         // Charger FingerprintJS uniquement si le consentement est donné
         const FingerprintJS = await import("@fingerprintjs/fingerprintjs");
@@ -67,5 +74,5 @@ export function useFingerprint() {
     }
   };
 
-  return { visitorId, loading, error, resetConsent };
+  return { visitorId, loading, error, consent, resetConsent };
 }
