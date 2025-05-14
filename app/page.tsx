@@ -153,7 +153,6 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ProjectCard
-            
               title="Système de prise de RDV pour artisan"
               result="Gain de 5h/semaine sur la gestion des rendez-vous"
               tags={["N8N", "Airtable", "Frontend"]}
@@ -162,6 +161,7 @@ export default function Home() {
             />
 
             <ProjectCard
+              featureRequest
               title="Automatisation de leads pour coach"
               result="Augmentation de 40% du taux de conversion"
               tags={["IA", "N8N", "API"]}
@@ -170,6 +170,7 @@ export default function Home() {
             />
 
             <ProjectCard
+              featureRequest
               title="Système de facturation automatisé"
               result="Réduction de 80% du temps de facturation"
               tags={["N8N", "Airtable", "API"]}
@@ -178,6 +179,7 @@ export default function Home() {
             />
 
             <ProjectCard
+              featureRequest
               title="Assistant IA pour rédaction de contenu"
               result="Production de contenu x3 plus rapide"
               tags={["IA", "API", "Frontend"]}

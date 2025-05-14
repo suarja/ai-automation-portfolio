@@ -1,17 +1,36 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ChevronRight } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import Link from "next/link";
+import Image from "next/image";
+import { ChevronRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { useFeatureRequest } from "@/contexts/feature-requests-context";
+import { useFingerprint } from "@/hooks/use-fingerprint";
+import { useRouter } from "next/router";
+import { sendFeatureRequestV1 } from "@/lib/feature-request";
+import { Button } from "./ui/button";
 
 interface ProjectCardProps {
-  title: string
-  result: string
-  tags: string[]
-  image: string
-  link: string
+  title: string;
+  result: string;
+  tags: string[];
+  image: string;
+  link: string;
+  featureRequest?: boolean;
 }
 
-export default function ProjectCard({ title, result, tags, image, link }: ProjectCardProps) {
+export default function ProjectCard({
+  title,
+  result,
+  tags,
+  image,
+  link,
+  featureRequest,
+}: ProjectCardProps) {
+  const { openFeatureRequestModal } = useFeatureRequest();
+
+  const handleFeatureRequest = () => {
+    openFeatureRequestModal(title, result);
+  };
+
   return (
     <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111]">
       <div className="grid grid-cols-3 gap-4 p-6">
@@ -20,17 +39,30 @@ export default function ProjectCard({ title, result, tags, image, link }: Projec
           <p className="text-green-400 font-medium mb-3">{result}</p>
           <div className="flex flex-wrap gap-2 mb-3">
             {tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="bg-[#222] border border-[#333] rounded-full text-xs px-3">
+              <Badge
+                key={tag}
+                variant="secondary"
+                className="bg-[#222] border border-[#333] rounded-full text-xs px-3"
+              >
                 {tag}
               </Badge>
             ))}
           </div>
-          <Link
-            href={link}
-            className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-purple-300 mt-2"
-          >
-            Lire le cas d'étude <ChevronRight className="ml-1 h-4 w-4" />
-          </Link>
+          {featureRequest ? (
+            <Button
+              onClick={handleFeatureRequest}
+              className="inline-flex items-center hover:bg-transparent bg-transparent text-sm font-medium text-purple-400 hover:text-purple-300 mt-2"
+            >
+              Lire le cas d'étude <ChevronRight className="ml-1 h-4 w-4" />
+            </Button>
+          ) : (
+            <Link
+              href={link}
+              className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-purple-300 mt-2"
+            >
+              Lire le cas d'étude <ChevronRight className="ml-1 h-4 w-4" />
+            </Link>
+          )}
         </div>
         <div className="flex items-center justify-center">
           <div className="w-20 h-20 relative flex items-center justify-center">
@@ -46,5 +78,5 @@ export default function ProjectCard({ title, result, tags, image, link }: Projec
       </div>
       <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
     </div>
-  )
+  );
 }
