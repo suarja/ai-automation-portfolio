@@ -76,7 +76,9 @@ export default function ResourceCard({
             asChild
             className="w-full rounded-full bg-[#222] hover:bg-[#333] shadow-md"
           >
-            <Link href={buttonLink}>{buttonText}</Link>
+            <Link target="_blank" href={buttonLink}>
+              {buttonText}
+            </Link>
           </Button>
         )}
       </div>

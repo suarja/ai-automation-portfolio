@@ -1,0 +1,3 @@
+export const CONSTANTS = {
+  FORM_URL_AI_ASSISTANT: process.env.NEXT_PUBLIC_LMF_URL_ASSISTANT_IA,
+};

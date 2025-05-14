@@ -7,6 +7,7 @@ import CallToAction from "@/components/call-to-action";
 import SectionHeader from "@/components/section-header";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SiteFooter from "@/components/site-footer";
+import { CONSTANTS } from "@/lib/constants/constants";
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white">
@@ -90,6 +91,15 @@ export default function Home() {
               buttonText="Je les veux !"
               buttonLink="/resources/templates"
             />
+            <ResourceCard
+              title="Ton Assistant Personnel IA"
+              description="Ton assistant IA pour tes tâches de liste"
+              image="/images/icons/cloud-download.png"
+              tags={["IA", "Productivité"]}
+              buttonText="Télécharger"
+              buttonLink={CONSTANTS.FORM_URL_AI_ASSISTANT!}
+              gradient="from-purple-900 to-indigo-800"
+            />
 
             <ResourceCard
               featureRequest
@@ -99,17 +109,6 @@ export default function Home() {
               tags={["IA", "LinkedIn"]}
               buttonText="Télécharger"
               buttonLink="/resources/ghost-writer"
-              gradient="from-purple-900 to-indigo-800"
-            />
-
-            <ResourceCard
-              featureRequest
-              title="Ton Assistant Personnel IA"
-              description="Ton assistant IA pour tes tâches de liste"
-              image="/images/icons/cloud-download.png"
-              tags={["IA", "Productivité"]}
-              buttonText="Télécharger"
-              buttonLink="/resources/assistant-ia"
               gradient="from-purple-900 to-indigo-800"
             />
 
