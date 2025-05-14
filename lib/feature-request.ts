@@ -7,7 +7,7 @@ export async function sendFeatureRequestV1({
   hasConsent,
   fingerprint,
   notification,
-  data,
+  data = {},
 }: {
   title: string;
   description: string;
@@ -16,14 +16,6 @@ export async function sendFeatureRequestV1({
   notification?: boolean;
   data?: any;
 }) {
-  console.log("Sending feature request");
-  console.log(
-    title,
-    description,
-    data,
-    "FEATURE_REQUEST_WEBHOOK_URL",
-    FEATURE_REQUEST_WEBHOOK_URL
-  );
   if (!FEATURE_REQUEST_WEBHOOK_URL) {
     console.error("Feature request webhook URL not set");
     return;

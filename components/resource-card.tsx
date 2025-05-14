@@ -5,6 +5,9 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useFeatureRequest } from "@/contexts/feature-requests-context";
+import { useRouter } from "next/navigation";
+import { sendFeatureRequestV1 } from "@/lib/feature-request";
+import { useFingerprint } from "@/hooks/use-fingerprint";
 
 interface ResourceCardProps {
   title: string;
@@ -29,9 +32,22 @@ export default function ResourceCard({
 }: ResourceCardProps) {
   const bgGradient = gradient || "from-[#151515] to-[#111]";
   const { openFeatureRequestModal } = useFeatureRequest();
+  const { hasConsent, visitorId } = useFingerprint();
+
+  const router = useRouter();
 
   const handleFeatureRequest = () => {
     openFeatureRequestModal(title, description);
+  };
+
+  const handleRedirectToLeadMagnetForm = async () => {
+    await sendFeatureRequestV1({
+      title,
+      description,
+      hasConsent,
+      fingerprint: visitorId,
+    });
+    router.push(buttonLink);
   };
 
   return (
@@ -73,12 +89,10 @@ export default function ResourceCard({
           </Button>
         ) : (
           <Button
-            asChild
+            onClick={handleRedirectToLeadMagnetForm}
             className="w-full rounded-full bg-[#222] hover:bg-[#333] shadow-md"
           >
-            <Link target="_blank" href={buttonLink}>
-              {buttonText}
-            </Link>
+            {buttonText}
           </Button>
         )}
       </div>
