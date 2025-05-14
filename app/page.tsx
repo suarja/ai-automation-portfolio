@@ -153,6 +153,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ProjectCard
+            
               title="Système de prise de RDV pour artisan"
               result="Gain de 5h/semaine sur la gestion des rendez-vous"
               tags={["N8N", "Airtable", "Frontend"]}

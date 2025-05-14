@@ -1,17 +1,21 @@
-import Image from "next/image"
-import Link from "next/link"
-import { ChevronLeft, ExternalLink } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { ChevronLeft, ExternalLink } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { use } from "react";
+import { useFeatureRequest } from "@/contexts/feature-requests-context";
 
 interface ProjectPageProps {
-  params: {
-    slug: string
-  }
+  params: Promise<{
+    slug: string;
+    hostedVideo?: boolean;
+  }>;
 }
 
 export default function ProjectPage({ params }: ProjectPageProps) {
-  // Dans une application réelle, vous récupéreriez ces données depuis une API ou un CMS
   const projects = {
     "rdv-artisan": {
       title: "Système de prise de RDV pour artisan",
@@ -26,7 +30,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       challenge:
         "Gestion manuelle des rendez-vous client qui prenait 5h par semaine, avec de nombreux oublis et annulations de dernière minute.",
       solution: {
-        description: "Système automatisé de prise de rendez-vous avec synchronisation calendrier et notifications",
+        description:
+          "Système automatisé de prise de rendez-vous avec synchronisation calendrier et notifications",
         tools: ["N8N", "Airtable", "React", "Twilio"],
         features: [
           "Formulaire de prise de RDV intégré au site web",
@@ -34,8 +39,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           "SMS de confirmation et de rappel 24h avant le RDV",
           "Interface admin pour visualiser et gérer les RDV",
         ],
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Remplacer par une vraie URL
-        screenshots: ["/placeholder.svg?height=300&width=600", "/placeholder.svg?height=300&width=600"],
+        videoUrl:
+          "https://imagekit.io/player/embed/montresor/automation/carrestyle_form_yt_480.mov/ik-video.mp4?updatedAt=1747221487733&thumbnail=https%3A%2F%2Fik.imagekit.io%2Fmontresor%2Fautomation%2Fcarrestyle_form_yt_480.mov%2Fik-video.mp4%2Fik-thumbnail.jpg%3FupdatedAt%3D1747221487733&updatedAt=1747221487733", // Remplacer par une vraie URL
+        screenshots: [
+          "https://ik.imagekit.io/montresor/automation/carrestyle_form.png?updatedAt=1747223019235",
+          "https://ik.imagekit.io/montresor/automation/carrestyle_form_workflow.png?updatedAt=1747223019318",
+        ],
         demoLink: "https://demo-rdv-artisan.vercel.app",
       },
       description:
@@ -73,7 +82,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       challenge:
         "Difficulté à suivre et qualifier les leads entrants via différents canaux (site web, réseaux sociaux, webinaires). Temps considérable passé à envoyer des emails manuellement.",
       solution: {
-        description: "Système centralisé de capture et qualification de leads avec suivi automatisé",
+        description:
+          "Système centralisé de capture et qualification de leads avec suivi automatisé",
         tools: ["N8N", "OpenAI", "Make.com", "Google Sheets"],
         features: [
           "Centralisation des leads de toutes sources dans une base unique",
@@ -82,7 +92,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           "Tableau de bord de suivi des conversions",
         ],
         videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Remplacer par une vraie URL
-        screenshots: ["/placeholder.svg?height=300&width=600", "/placeholder.svg?height=300&width=600"],
+        screenshots: [
+          "/placeholder.svg?height=300&width=600",
+          "/placeholder.svg?height=300&width=600",
+        ],
         demoLink: "https://demo-leads-coach.vercel.app",
       },
       description:
@@ -108,9 +121,14 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       },
     },
     // Ajoutez d'autres projets ici
-  }
+  };
+  const { openFeatureRequestModal } = useFeatureRequest();
+  const paramsSync = use(params);
+  const project = projects[paramsSync.slug as keyof typeof projects];
 
-  const project = projects[params.slug as keyof typeof projects]
+  const handleFeatureRequest = (title: string, description: string) => {
+    openFeatureRequestModal(title, description);
+  };
 
   if (!project) {
     return (
@@ -122,13 +140,16 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
-        <Link href="/" className="inline-flex items-center text-gray-400 hover:text-white mb-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-gray-400 hover:text-white mb-8"
+        >
           <ChevronLeft className="mr-1 h-4 w-4" />
           Retour à l'accueil
         </Link>
@@ -157,8 +178,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   </Badge>
                 ))}
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold mb-2">{project.title}</h1>
-              <p className="text-xl text-green-400 font-medium">{project.result}</p>
+              <h1 className="text-3xl md:text-4xl font-bold mb-2">
+                {project.title}
+              </h1>
+              <p className="text-xl text-green-400 font-medium">
+                {project.result}
+              </p>
             </div>
           </div>
         </div>
@@ -166,9 +191,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         {/* Vidéo de présentation */}
         <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6 mb-8">
           <h2 className="text-2xl font-bold mb-4">Présentation du projet</h2>
-          <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl mb-4">
+          <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl mb-4 mx-auto">
             <iframe
-              src={project.solution.videoUrl}
+              src="https://imagekit.io/player/embed/montresor/automation/carrestyle_form_yt_480.mov/ik-video.mp4?updatedAt=1747221487733&thumbnail=https%3A%2F%2Fik.imagekit.io%2Fmontresor%2Fautomation%2Fcarrestyle_form_yt_480.mov%2Fik-video.mp4%2Fik-thumbnail.jpg%3FupdatedAt%3D1747221487733&updatedAt=1747221487733"
               className="absolute top-0 left-0 w-full h-full border-0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -176,7 +201,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             ></iframe>
           </div>
           <div className="flex justify-end">
-            <Button asChild variant="outline" size="sm" className="rounded-full">
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="rounded-full"
+            >
               <Link
                 href={project.solution.demoLink}
                 target="_blank"
@@ -196,13 +226,16 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <h2 className="text-xl font-bold mb-4">Le client</h2>
             <div className="space-y-2 mb-6">
               <p className="text-gray-300">
-                <span className="text-gray-500">Type:</span> {project.client.type}
+                <span className="text-gray-500">Type:</span>{" "}
+                {project.client.type}
               </p>
               <p className="text-gray-300">
-                <span className="text-gray-500">Taille:</span> {project.client.size}
+                <span className="text-gray-500">Taille:</span>{" "}
+                {project.client.size}
               </p>
               <p className="text-gray-300">
-                <span className="text-gray-500">Objectif:</span> {project.client.objective}
+                <span className="text-gray-500">Objectif:</span>{" "}
+                {project.client.objective}
               </p>
             </div>
 
@@ -221,10 +254,16 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               ))}
             </ul>
 
-            <h3 className="text-lg font-semibold mb-2">Technologies utilisées</h3>
+            <h3 className="text-lg font-semibold mb-2">
+              Technologies utilisées
+            </h3>
             <div className="flex flex-wrap gap-2">
               {project.solution.tools.map((tech) => (
-                <Badge key={tech} variant="outline" className="border-[#333] rounded-full">
+                <Badge
+                  key={tech}
+                  variant="outline"
+                  className="border-[#333] rounded-full"
+                >
                   {tech}
                 </Badge>
               ))}
@@ -237,7 +276,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           <h2 className="text-2xl font-bold mb-4">Aperçu du projet</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {project.solution.screenshots.map((screenshot, index) => (
-              <div key={index} className="relative h-64 rounded-xl overflow-hidden border border-[#333]">
+              <div
+                key={index}
+                className="relative h-64 rounded-xl overflow-hidden border border-[#333]"
+              >
                 <Image
                   src={screenshot || "/placeholder.svg"}
                   alt={`Screenshot ${index + 1}`}
@@ -274,8 +316,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     />
                   </div>
                   <div>
-                    <blockquote className="text-gray-100 italic mb-4">"{project.testimonial.text}"</blockquote>
-                    <p className="text-right text-gray-300 font-medium">— {project.testimonial.author}</p>
+                    <blockquote className="text-gray-100 italic mb-4">
+                      "{project.testimonial.text}"
+                    </blockquote>
+                    <p className="text-right text-gray-300 font-medium">
+                      — {project.testimonial.author}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -291,11 +337,19 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <p className="text-gray-100 mb-6">{project.insight.text}</p>
             <div className="flex justify-center">
               <Button
-                asChild
+                // asChild
+                onClick={() =>
+                  handleFeatureRequest(
+                    project.insight.resourceLink.text,
+                    project.insight.text
+                  )
+                }
                 variant="secondary"
                 className="rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20"
               >
-                <Link href={project.insight.resourceLink.url}>{project.insight.resourceLink.text}</Link>
+                {/* <Link href={project.insight.resourceLink.url}> */}
+                {project.insight.resourceLink.text}
+                {/* </Link> */}
               </Button>
             </div>
           </div>
@@ -303,9 +357,11 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
         {/* CTA */}
         <div className="text-center mt-12">
-          <h2 className="text-2xl font-bold mb-6">Vous avez un projet similaire ?</h2>
+          <h2 className="text-2xl font-bold mb-6">
+            Vous avez un projet similaire ?
+          </h2>
           <Link
-            href="https://calendly.com/username"
+            href="https://cal.com/jasonsuarez/booking"
             className="inline-flex h-12 items-center justify-center rounded-full bg-purple-700 px-8 text-lg font-medium text-white shadow-[0_5px_20px_rgba(138,43,226,0.3)] hover:bg-purple-600 transition-colors"
           >
             Réserver un appel découverte
@@ -313,5 +369,5 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </div>
     </main>
-  )
+  );
 }
