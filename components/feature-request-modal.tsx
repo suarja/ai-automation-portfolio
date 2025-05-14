@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { sendFeatureRequestV1 } from "@/lib/feature-request";
 import { useFingerprint } from "@/hooks/use-fingerprint";
+import { on } from "events";
 interface FeatureRequestModalProps {
   isOpen: boolean;
   onClose: (cb: () => void) => void;
@@ -74,6 +75,10 @@ export default function FeatureRequestModal({
 
   const handleClose = () => {
     setShowAnimation(false);
+    if (isSubmitted) {
+      onClose(() => {});
+      return;
+    }
     onClose(() =>
       sendFeatureRequestV1({
         title: featureTitle,
