@@ -47,8 +47,9 @@ export default function AuditAutomationPage() {
                 className="rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-[0_5px_20px_rgba(138,43,226,0.3)] text-lg px-8"
               >
                 <Link
-                  href="https://calendly.com/username/audit-automation"
+                  href="https://cal.com/jasonsuarez/audit-automatisation"
                   className="flex items-center"
+                  target="_blank"
                 >
                   <Calendar className="mr-2 h-5 w-5" />
                   Réserve ton audit gratuit
@@ -58,9 +59,9 @@ export default function AuditAutomationPage() {
             </div>
             <div className="md:w-2/5">
               <div className="relative rounded-2xl overflow-hidden border border-[#333] shadow-xl">
-                <div className="aspect-video">
+                <div className="aspect-square">
                   <iframe
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    src="https://imagekit.io/player/embed/montresor/automation/offre_free_auto_1.mov/ik-video.mp4?updatedAt=1747559663297&thumbnail=https%3A%2F%2Fik.imagekit.io%2Fmontresor%2Fautomation%2Foffre_free_auto_1.mov%2Fik-video.mp4%2Fik-thumbnail.jpg%3FupdatedAt%3D1747559663297&updatedAt=1747559663297"
                     className="absolute top-0 left-0 w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -225,9 +226,9 @@ export default function AuditAutomationPage() {
                   solutions complexes, juste des résultats concrets.
                 </p>
                 <p className="text-gray-300">
-                  Après avoir accompagné plus de 50 freelances dans leur
-                  parcours d'automatisation, j'ai développé une méthode qui
-                  fonctionne, même pour les moins technophiles.
+                  Après avoir accompagné d'autres freelances dans leur parcours
+                  d'automatisation, j'ai développé une méthode qui fonctionne,
+                  même pour les moins technophiles.
                 </p>
               </div>
             </div>
@@ -245,7 +246,6 @@ export default function AuditAutomationPage() {
         {/* CTA Final */}
         <section className="mb-16">
           <div className="relative overflow-hidden rounded-3xl border border-[#333] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-purple-900 to-indigo-900 p-8 md:p-12 text-center">
-            <div className="absolute inset-0 bg-[url('/images/grid.png')] opacity-10"></div>
             <h2 className="text-3xl font-bold mb-4">
               Prêt à libérer 3h+ par semaine dès maintenant ?
             </h2>
@@ -259,8 +259,9 @@ export default function AuditAutomationPage() {
               className="rounded-full bg-white text-purple-900 hover:bg-gray-200 shadow-[0_5px_20px_rgba(255,255,255,0.3)] text-lg px-8"
             >
               <Link
-                href="https://calendly.com/username/audit-automation"
-                className="flex items-center"
+                href="https://cal.com/jasonsuarez/audit-automatisation"
+                className="flex items-center "
+                target="_blank"
               >
                 <Calendar className="mr-2 h-5 w-5" />
                 Réserve ton audit gratuit
