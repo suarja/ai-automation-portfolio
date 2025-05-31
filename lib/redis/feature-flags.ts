@@ -80,10 +80,30 @@ export class FeatureFlagService {
       const storedFlags = await client.get(this.FLAGS_KEY);
 
       if (storedFlags) {
-        this.flagsCache = {
-          ...DEFAULT_FLAGS,
-          ...JSON.parse(storedFlags as string),
-        };
+        // Ensure we have a string before parsing
+        let flagsString: string;
+        if (typeof storedFlags === "string") {
+          flagsString = storedFlags;
+        } else {
+          // If it's an object, stringify it first
+          flagsString = JSON.stringify(storedFlags);
+        }
+
+        try {
+          const parsedFlags = JSON.parse(flagsString);
+          this.flagsCache = {
+            ...DEFAULT_FLAGS,
+            ...parsedFlags,
+          };
+        } catch (parseError) {
+          console.error(
+            "Failed to parse stored flags, using defaults:",
+            parseError
+          );
+          this.flagsCache = DEFAULT_FLAGS;
+          // Re-save the default flags
+          await this.saveFlags(this.flagsCache);
+        }
       } else {
         // Initialize with default flags
         this.flagsCache = DEFAULT_FLAGS;
