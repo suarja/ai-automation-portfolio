@@ -1,0 +1,112 @@
+[
+  {
+    "id": "rdv-artisan",
+    "title": "Système de prise de RDV pour artisan",
+    "result": "Gain de 5h/semaine sur la gestion des rendez-vous",
+    "tags": ["N8N", "Airtable", "Frontend"],
+    "image": "/images/icons/safebox.png",
+    "client": {
+      "type": "Artisan menuisier",
+      "size": "Indépendant, 2 employés",
+      "objective": "Réduire le temps passé à gérer les rendez-vous clients"
+    },
+    "challenge": "Gestion manuelle des rendez-vous client qui prenait 5h par semaine, avec de nombreux oublis et annulations de dernière minute.",
+    "solution": {
+      "description": "Système automatisé de prise de rendez-vous avec synchronisation calendrier et notifications",
+      "tools": ["N8N", "Airtable", "React", "Twilio"],
+      "features": [
+        "Formulaire de prise de RDV intégré au site web",
+        "Synchronisation automatique avec Google Calendar",
+        "SMS de confirmation et de rappel 24h avant le RDV",
+        "Interface admin pour visualiser et gérer les RDV"
+      ],
+      "videoUrl": "https://imagekit.io/player/embed/montresor/automation/carrestyle_form_yt_480.mov/ik-video.mp4?updatedAt=1747221487733&thumbnail=https%3A%2F%2Fik.imagekit.io%2Fmontresor%2Fautomation%2Fcarrestyle_form_yt_480.mov%2Fik-video.mp4%2Fik-thumbnail.jpg%3FupdatedAt%3D1747221487733&updatedAt=1747221487733",
+      "screenshots": [
+        "https://ik.imagekit.io/montresor/automation/carrestyle_form.png?updatedAt=1747223019235",
+        "https://ik.imagekit.io/montresor/automation/carrestyle_form_workflow.png?updatedAt=1747223019318"
+      ],
+      "demoLink": "https://demo-rdv-artisan.vercel.app"
+    },
+    "description": "Ce projet a permis à un artisan menuisier de libérer un temps précieux en automatisant complètement sa prise de rendez-vous. Le système synchronise automatiquement son calendrier, envoie des confirmations et rappels aux clients, et lui permet de visualiser sa semaine en un coup d'œil.",
+    "testimonial": {
+      "text": "Grâce à ce système, je peux me concentrer sur mon métier plutôt que sur l'administratif. Un vrai gain de temps et d'efficacité ! Les rappels automatiques ont réduit de 90% les rendez-vous manqués.",
+      "author": "Jean D., Menuisier",
+      "avatar": "/placeholder.svg?height=80&width=80"
+    },
+    "results": [
+      "Gain de 5h par semaine sur la gestion administrative",
+      "Réduction de 90% des rendez-vous manqués",
+      "Satisfaction client améliorée grâce aux rappels automatiques",
+      "Meilleure organisation des journées de travail"
+    ],
+    "insight": {
+      "title": "Ce que ce projet démontre",
+      "text": "Ce projet illustre comment l'automatisation peut transformer radicalement la gestion administrative d'un artisan. En combinant un formulaire simple avec des automatisations puissantes, nous avons pu créer un système qui fonctionne 24/7 sans intervention humaine.",
+      "resourceLink": {
+        "text": "Découvrir mon guide sur l'automatisation pour artisans",
+        "url": "/resources/guide-automatisation-artisans"
+      }
+    },
+    "metadata": {
+      "createdAt": "2025-01-20T00:00:00.000Z",
+      "updatedAt": "2025-01-20T00:00:00.000Z",
+      "featured": true,
+      "status": "published"
+    }
+  },
+  {
+    "id": "leads-coach",
+    "title": "Automatisation de leads pour coach",
+    "result": "Augmentation de 40% du taux de conversion",
+    "tags": ["IA", "N8N", "API"],
+    "image": "/images/icons/star-badge.png",
+    "client": {
+      "type": "Coach en développement personnel",
+      "size": "Entrepreneur solo",
+      "objective": "Améliorer la qualification et le suivi des prospects"
+    },
+    "challenge": "Difficulté à suivre et qualifier les leads entrants via différents canaux (site web, réseaux sociaux, webinaires). Temps considérable passé à envoyer des emails manuellement.",
+    "solution": {
+      "description": "Système centralisé de capture et qualification de leads avec suivi automatisé",
+      "tools": ["N8N", "OpenAI", "Make.com", "Google Sheets"],
+      "features": [
+        "Centralisation des leads de toutes sources dans une base unique",
+        "Qualification automatique par IA selon critères prédéfinis",
+        "Séquences d'emails personnalisés selon le profil",
+        "Tableau de bord de suivi des conversions"
+      ],
+      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "screenshots": [
+        "/placeholder.svg?height=300&width=600",
+        "/placeholder.svg?height=300&width=600"
+      ],
+      "demoLink": "https://demo-leads-coach.vercel.app"
+    },
+    "description": "J'ai développé pour ce coach un système complet qui capture les leads depuis son site web, ses réseaux sociaux et ses webinaires. Le système utilise l'IA pour qualifier automatiquement les leads, envoyer des séquences d'emails personnalisées, et programmer des suivis au moment optimal.",
+    "testimonial": {
+      "text": "Mon taux de conversion a augmenté de 40% depuis que j'utilise ce système. Je peux me concentrer sur mes clients plutôt que sur la prospection. L'IA qualifie mes leads avec une précision impressionnante !",
+      "author": "Marie L., Coach",
+      "avatar": "/placeholder.svg?height=80&width=80"
+    },
+    "results": [
+      "Augmentation de 40% du taux de conversion",
+      "Réduction de 70% du temps passé sur la gestion des leads",
+      "Meilleure qualification des prospects",
+      "Augmentation du chiffre d'affaires de 25%"
+    ],
+    "insight": {
+      "title": "L'IA au service de la qualification de leads",
+      "text": "Ce projet démontre comment l'IA peut être utilisée pour qualifier automatiquement des leads et personnaliser le suivi. La combinaison de l'automatisation et de l'intelligence artificielle permet de créer des systèmes qui s'adaptent au comportement des utilisateurs.",
+      "resourceLink": {
+        "text": "Télécharger mon guide sur l'IA pour coaches",
+        "url": "/resources/guide-ia-coaches"
+      }
+    },
+    "metadata": {
+      "createdAt": "2025-01-15T00:00:00.000Z",
+      "updatedAt": "2025-01-20T00:00:00.000Z",
+      "featured": true,
+      "status": "published"
+    }
+  }
+]

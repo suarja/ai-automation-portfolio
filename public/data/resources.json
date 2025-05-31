@@ -1,0 +1,66 @@
+[
+  {
+    "id": "templates",
+    "title": "Mes Templates",
+    "description": "Récupère toutes mes templates et ressources pour automatiser ton business",
+    "longDescription": "Une collection complète de templates et de ressources pour automatiser ton business. Ces templates sont conçus pour t'aider à gagner du temps et à optimiser tes processus. Ils sont faciles à utiliser et à adapter à tes besoins spécifiques.",
+    "image": "/images/icons/folder.png",
+    "tags": ["N8N", "Airtable", "Notion"],
+    "price": "Gratuit",
+    "downloadLink": "https://gumroad.com/username/templates",
+    "gallery": [
+      "/placeholder.svg?height=200&width=300",
+      "/placeholder.svg?height=200&width=300",
+      "/placeholder.svg?height=200&width=300"
+    ],
+    "metadata": {
+      "createdAt": "2025-01-10T00:00:00.000Z",
+      "updatedAt": "2025-01-20T00:00:00.000Z",
+      "featured": true,
+      "status": "published",
+      "downloadCount": 245
+    }
+  },
+  {
+    "id": "ghost-writer",
+    "title": "TON GHOST WRITER LINKEDIN",
+    "description": "Automatise la rédaction de tes posts LinkedIn",
+    "longDescription": "Un outil puissant qui utilise l'IA pour automatiser la rédaction de tes posts LinkedIn. Il te permet de créer du contenu engageant et professionnel en quelques clics. Plus besoin de passer des heures à réfléchir à quoi écrire, laisse l'IA faire le travail pour toi.",
+    "image": "/images/icons/card.png",
+    "tags": ["IA", "LinkedIn"],
+    "price": "29€",
+    "downloadLink": "https://gumroad.com/username/ghost-writer",
+    "gallery": [
+      "/placeholder.svg?height=200&width=300",
+      "/placeholder.svg?height=200&width=300"
+    ],
+    "metadata": {
+      "createdAt": "2025-01-12T00:00:00.000Z",
+      "updatedAt": "2025-01-20T00:00:00.000Z",
+      "featured": true,
+      "status": "published",
+      "downloadCount": 89
+    }
+  },
+  {
+    "id": "assistant-ia",
+    "title": "Ton Assistant Personnel IA",
+    "description": "Ton assistant IA pour tes tâches de liste",
+    "longDescription": "Un assistant IA personnel qui t'aide à gérer tes tâches quotidiennes. Il te permet de créer des listes de tâches, de les organiser et de les prioriser. Il peut également te rappeler les échéances importantes et te suggérer des actions à entreprendre.",
+    "image": "/images/icons/cloud-download.png",
+    "tags": ["IA", "Productivité"],
+    "price": "19€",
+    "downloadLink": "https://gumroad.com/username/assistant-ia",
+    "gallery": [
+      "/placeholder.svg?height=200&width=300",
+      "/placeholder.svg?height=200&width=300"
+    ],
+    "metadata": {
+      "createdAt": "2025-01-08T00:00:00.000Z",
+      "updatedAt": "2025-01-20T00:00:00.000Z",
+      "featured": false,
+      "status": "published",
+      "downloadCount": 156
+    }
+  }
+]
