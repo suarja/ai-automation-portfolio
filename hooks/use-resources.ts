@@ -34,7 +34,7 @@ export function useResources(): UseResourcesReturn {
         ...resource,
         featureRequest: false,
       }));
-      const allResources = [...apiResources, ...FEATURE_REQUEST_RESOURCES];
+      const allResources = [...apiResources];
 
       // Sort: featured first, then by creation date (newest first)
       allResources.sort((a, b) => {

@@ -34,7 +34,7 @@ export function useProjects(): UseProjectsReturn {
         ...project,
         featureRequest: false,
       }));
-      const allProjects = [...apiProjects, ...FEATURE_REQUEST_PROJECTS];
+      const allProjects = [...apiProjects];
 
       // Sort: featured first, then by creation date (newest first)
       allProjects.sort((a, b) => {
