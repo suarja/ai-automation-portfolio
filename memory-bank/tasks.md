@@ -1,242 +1,220 @@
 # TASKS - CURRENT PROGRESS
 
-## CURRENT TASK: PLAN Mode - Comprehensive Feature Planning
+## CURRENT TASK: CREATIVE Mode - Architecture & Algorithm Design
 
-### PLAN MODE STATUS
+### CREATIVE MODE STATUS
 
-- **Previous Phase**: ✅ VAN Mode Complete
-- **Current Phase**: 🔄 PLAN Mode (Level 3 Comprehensive Planning)
+- **Previous Phase**: ✅ PLAN Mode Complete (with corrections needed)
+- **Current Phase**: ✅ CREATIVE Mode Complete
 - **Complexity Level**: 3 (Intermediate Feature)
-- **Focus**: Data schemas, API architecture, MCP server design, technology validation
+- **Focus**: Architecture redesign with Vercel MCP adapter + Algorithm design for file operations
 
 ---
 
-## LEVEL 3 PLANNING CHECKLIST
+## 🎨 CREATIVE PHASE COMPLETED
 
-### ✅ VAN PHASE COMPLETED
+### ARCHITECTURE DECISION: Vercel MCP Adapter Integration
 
-- [x] Platform detection and Memory Bank setup
-- [x] Current codebase analysis (Next.js 15 + hardcoded data)
-- [x] Complexity assessment (Level 3 confirmed)
-- [x] Technical requirements identified
-- [x] Git commit with comprehensive documentation
-
-### 🔄 PLAN PHASE IN PROGRESS
-
-#### 1. Requirements Analysis
-
-- [x] **Core Requirements Identified**:
-
-  - [x] MCP server integration for remote access
-  - [x] API layer refactoring (hardcoded → JSON + REST endpoints)
-  - [x] Data migration with zero UX disruption
-  - [x] Authentication for write operations
-  - [x] Audit trail for demonstration purposes
-
-- [x] **Technical Constraints Documented**:
-  - [x] No database requirement (JSON files only)
-  - [x] Preserve current UI/UX completely
-  - [x] Maintain TypeScript type safety
-  - [x] Support multiple MCP clients (Claude, etc.)
-
-#### 2. Data Schema Design ✅ COMPLETED
-
-**Project Schema** (extracted from `/app/projects/[slug]/page.tsx`):
+**CORRECTED ARCHITECTURE** (based on @vercel/mcp-adapter):
 
 ```typescript
-interface Project {
-  id: string; // Unique identifier (slug)
-  title: string; // Project title
-  result: string; // Main achievement/result
-  tags: string[]; // Technology tags
-  image: string; // Icon/image path
-  client: {
-    type: string; // Client type/industry
-    size: string; // Client size
-    objective: string; // Client's objective
-  };
-  challenge: string; // Problem description
-  solution: {
-    description: string; // Solution overview
-    tools: string[]; // Tools used
-    features: string[]; // Key features list
-    videoUrl?: string; // Demo video URL
-    screenshots: string[]; // Screenshot URLs
-    demoLink?: string; // Live demo URL
-  };
-  description: string; // Detailed description
-  testimonial: {
-    text: string; // Client testimonial
-    author: string; // Client name
-    avatar: string; // Avatar image
-  };
-  results: string[]; // Key results achieved
-  insight: {
-    title: string; // Insight section title
-    text: string; // Insight content
-    resourceLink?: {
-      text: string; // Link text
-      url: string; // Link URL
-    };
-  };
-  metadata: {
-    createdAt: string; // Creation timestamp
-    updatedAt: string; // Last update timestamp
-    featured: boolean; // Featured project flag
-    status: "published" | "draft" | "archived";
-  };
+// app/api/mcp/route.ts
+import { createMcpHandler } from "@vercel/mcp-adapter";
+import { ProjectService, ResourceService } from "@/lib/services";
+
+const handler = createMcpHandler(
+  (server) => {
+    // Project tools
+    server.tool("list_projects", "Get all projects", {}, async () => {
+      const projects = await ProjectService.listProjects();
+      return {
+        content: [{ type: "text", text: JSON.stringify(projects, null, 2) }],
+      };
+    });
+
+    server.tool(
+      "get_project",
+      "Get single project",
+      { id: z.string() },
+      async ({ id }) => {
+        const project = await ProjectService.getProject(id);
+        return {
+          content: [{ type: "text", text: JSON.stringify(project, null, 2) }],
+        };
+      }
+    );
+
+    server.tool(
+      "update_project",
+      "Update project",
+      { id: z.string(), data: ProjectSchema },
+      async ({ id, data }) => {
+        const project = await ProjectService.updateProject(id, data);
+        return {
+          content: [{ type: "text", text: JSON.stringify(project, null, 2) }],
+        };
+      }
+    );
+
+    // Resource tools (similar pattern)
+    server.tool("list_resources", "...", {}, async () => {});
+    server.tool(
+      "get_resource",
+      "...",
+      { id: z.string() },
+      async ({ id }) => {}
+    );
+    server.tool(
+      "update_resource",
+      "...",
+      { id: z.string(), data: ResourceSchema },
+      async ({ id, data }) => {}
+    );
+  },
+  {}, // Server options
+  {
+    basePath: "/api",
+    maxDuration: 60,
+    verboseLogs: true,
+  }
+);
+
+export { handler as GET, handler as POST };
+```
+
+**ARCHITECTURE BENEFITS**:
+
+- ✅ **Simplified**: No separate Express.js server needed
+- ✅ **Native Integration**: Uses Next.js API routes directly
+- ✅ **Transport Handling**: Vercel adapter handles WebSocket/HTTP automatically
+- ✅ **Type Safety**: Full TypeScript integration with Zod validation
+- ✅ **Deployment Ready**: Works with Vercel out of the box
+
+### ALGORITHM DECISION: Copy-on-Write with Checksums
+
+**ATOMIC FILE OPERATIONS**:
+
+```typescript
+// lib/utils/fileOperations.ts
+export class FileOperations {
+  static async atomicWrite(filePath: string, data: any): Promise<void> {
+    // Read current data and compute checksum
+    const currentData = await this.safeRead(filePath);
+    const currentChecksum = this.computeChecksum(JSON.stringify(currentData));
+
+    // Prepare new data
+    const newDataString = JSON.stringify(data, null, 2);
+    const newChecksum = this.computeChecksum(newDataString);
+
+    // Create timestamped copy
+    const timestamp = Date.now();
+    const copyPath = `${filePath}.${timestamp}`;
+
+    try {
+      // Write new version
+      await fs.writeFile(copyPath, newDataString);
+
+      // Verify integrity
+      const verification = await fs.readFile(copyPath, "utf8");
+      if (this.computeChecksum(verification) !== newChecksum) {
+        throw new Error("Data integrity check failed");
+      }
+
+      // Atomic move (rename)
+      await fs.rename(copyPath, filePath);
+
+      // Log the change
+      await this.auditLog(filePath, {
+        action: "update",
+        oldChecksum: currentChecksum,
+        newChecksum: newChecksum,
+        timestamp: new Date().toISOString(),
+      });
+    } catch (error) {
+      // Clean up on error
+      await fs.unlink(copyPath).catch(() => {});
+      throw error;
+    }
+  }
+
+  static async atomicUpdate(
+    filePath: string,
+    updateFn: (data: any) => any
+  ): Promise<any> {
+    const currentData = await this.safeRead(filePath);
+    const newData = updateFn(currentData);
+    await this.atomicWrite(filePath, newData);
+    return newData;
+  }
+
+  private static computeChecksum(data: string): string {
+    return crypto.createHash("sha256").update(data).digest("hex");
+  }
 }
 ```
 
-**Resource Schema** (extracted from `/app/resources/[slug]/page.tsx`):
+**ALGORITHM BENEFITS**:
 
-```typescript
-interface Resource {
-  id: string; // Unique identifier (slug)
-  title: string; // Resource title
-  description: string; // Short description
-  longDescription: string; // Detailed description
-  image: string; // Icon/image path
-  tags: string[]; // Category tags
-  price: string; // Price (or "Gratuit")
-  downloadLink: string; // Download/purchase URL
-  gallery: string[]; // Gallery images
-  metadata: {
-    createdAt: string; // Creation timestamp
-    updatedAt: string; // Last update timestamp
-    featured: boolean; // Featured resource flag
-    status: "published" | "draft" | "archived";
-    downloadCount?: number; // Download tracking
-  };
-}
-```
+- ✅ **Atomicity**: File system rename guarantees
+- ✅ **Integrity**: SHA256 checksum verification
+- ✅ **Recovery**: Automatic cleanup on failure
+- ✅ **Audit**: Built-in change tracking
+- ✅ **Simplicity**: Right complexity for Level 3 project
 
-**Audit Log Schema**:
+---
 
-```typescript
-interface AuditEntry {
-  id: string; // Unique audit ID
-  timestamp: string; // ISO timestamp
-  action: "create" | "update" | "delete" | "read";
-  entityType: "project" | "resource";
-  entityId: string; // ID of affected entity
-  source: "mcp" | "api" | "admin";
-  changes?: {
-    field: string;
-    oldValue: any;
-    newValue: any;
-  }[];
-  metadata: {
-    userAgent?: string;
-    clientId?: string;
-    ipAddress?: string;
-  };
-}
-```
+## REVISED IMPLEMENTATION STRATEGY
 
-#### 3. API Architecture Design ✅ COMPLETED
-
-**RESTful Endpoint Structure**:
+### Phase 1: Data Layer Foundation ⏳ READY
 
 ```
-/api/
-├── projects/
-│   ├── route.ts                 # GET (list all projects)
-│   └── [id]/
-│       └── route.ts             # GET, PUT, DELETE (single project)
-├── resources/
-│   ├── route.ts                 # GET (list all resources)
-│   └── [id]/
-│       └── route.ts             # GET, PUT, DELETE (single resource)
-├── mcp/
-│   ├── health/
-│   │   └── route.ts             # MCP server health check
-│   ├── projects/
-│   │   ├── route.ts             # MCP projects list
-│   │   └── [id]/
-│   │       └── route.ts         # MCP single project operations
-│   ├── resources/
-│   │   ├── route.ts             # MCP resources list
-│   │   └── [id]/
-│   │       └── route.ts         # MCP single resource operations
-│   └── sync/
-│       └── route.ts             # MCP data synchronization
-└── audit/
-    └── route.ts                 # Audit log access (read-only)
+lib/
+├── services/
+│   ├── projectService.ts      # Project CRUD with FileOperations
+│   ├── resourceService.ts     # Resource CRUD with FileOperations
+│   ├── auditService.ts        # Audit log operations
+│   └── fileOperations.ts      # Atomic file I/O with checksums
+├── types/
+│   ├── project.ts             # Project TypeScript interfaces (from PLAN)
+│   ├── resource.ts            # Resource TypeScript interfaces (from PLAN)
+│   └── api.ts                 # API response interfaces
+└── utils/
+    ├── validation.ts          # Zod schemas for MCP tools
+    └── constants.ts           # File paths (/public/data/*.json)
 ```
 
-**API Response Format**:
-
-```typescript
-interface ApiResponse<T = any> {
-  success: boolean;
-  data?: T;
-  error?: {
-    code: string;
-    message: string;
-    details?: any;
-  };
-  meta?: {
-    timestamp: string;
-    requestId: string;
-    total?: number; // For list endpoints
-    page?: number; // For pagination
-    limit?: number; // For pagination
-  };
-}
-```
-
-#### 4. MCP Server Architecture Design ✅ COMPLETED
-
-**MCP Server Components**:
+### Phase 2: MCP Integration ⏳ READY
 
 ```
-MCP Server (Port 3001)
-├── WebSocket Handler
-│   ├── Real-time updates
-│   ├── Client connection management
-│   └── Event broadcasting
-├── HTTP Routes
-│   ├── REST API compatibility
-│   ├── Authentication middleware
-│   └── Rate limiting
-├── Data Validation Layer
-│   ├── Zod schema validation
-│   ├── Request sanitization
-│   └── Response formatting
-├── File System Operations
-│   ├── Atomic JSON read/write
-│   ├── File locking mechanism
-│   └── Backup management
-└── Audit Logging
-    ├── Action tracking
-    ├── Source identification
-    └── Change detection
+Dependencies to install:
+- @vercel/mcp-adapter (uses @modelcontextprotocol/sdk@1.12.0)
+
+File structure:
+- app/api/mcp/route.ts         # Single MCP endpoint using createMcpHandler
 ```
 
-**MCP Protocol Implementation**:
+### Phase 3: Data Migration ⏳ READY
 
-```typescript
-interface MCPHandler {
-  // Core MCP operations
-  listResources(): Promise<Resource[]>;
-  getResource(id: string): Promise<Resource>;
-  updateResource(id: string, data: Partial<Resource>): Promise<Resource>;
-
-  // Project operations
-  listProjects(): Promise<Project[]>;
-  getProject(id: string): Promise<Project>;
-  updateProject(id: string, data: Partial<Project>): Promise<Project>;
-
-  // Utility operations
-  healthCheck(): Promise<{ status: string; uptime: number }>;
-  getAuditLog(limit?: number): Promise<AuditEntry[]>;
-}
+```
+Data files to create:
+- public/data/projects.json    # Extracted from hardcoded data
+- public/data/resources.json   # Extracted from hardcoded data
+- public/data/audit.json       # Initialize empty audit log
 ```
 
-#### 5. Technology Stack Validation
+### Phase 4: UI Integration ⏳ READY
 
-**Current Technology** ✅ **Verified**:
+```
+Components to refactor:
+- app/projects/[slug]/page.tsx # Use API instead of hardcoded data
+- app/resources/[slug]/page.tsx # Use API instead of hardcoded data
+```
+
+---
+
+## CORRECTED TECHNOLOGY STACK
+
+### Current (Verified) ✅
 
 - Next.js 15.2.4 ✅
 - React 19 ✅
@@ -244,187 +222,101 @@ interface MCPHandler {
 - Tailwind CSS 3.4.17 ✅
 - Zod 3.24.1 ✅
 
-**New Dependencies Required** ⏳ **To Install**:
+### New Dependencies Required ⏳
 
 ```json
 {
-  "@modelcontextprotocol/sdk": "^1.0.0",
-  "@types/ws": "^8.5.0",
-  "ws": "^8.18.0",
-  "express": "^4.18.0",
-  "@types/express": "^4.17.0",
-  "cors": "^2.8.5",
-  "@types/cors": "^2.8.0",
-  "file-lock": "^1.1.0"
+  "@vercel/mcp-adapter": "latest"
 }
 ```
 
-**Technology Validation Checklist**:
-
-- [ ] Install MCP SDK and verify API compatibility
-- [ ] Create hello world MCP server
-- [ ] Test WebSocket connection with MCP client
-- [ ] Verify Express.js integration with Next.js
-- [ ] Test file locking mechanism for concurrent writes
-- [ ] Validate JSON schema with Zod
-
-#### 6. Implementation Strategy ✅ PLANNED
-
-**Phase 1: Data Migration & API Foundation**
-
-1. Extract hardcoded data to JSON files
-
-   - Create `/public/data/projects.json`
-   - Create `/public/data/resources.json`
-   - Create `/public/data/audit-log.json`
-   - Create `/public/data/metadata.json`
-
-2. Build API endpoints
-
-   - Implement projects CRUD operations
-   - Implement resources CRUD operations
-   - Add input validation with Zod
-   - Add error handling and logging
-
-3. Refactor components to use API
-   - Update project page to fetch from API
-   - Update resource page to fetch from API
-   - Add loading states and error boundaries
-   - Implement caching strategy
-
-**Phase 2: MCP Server Implementation**
-
-1. Setup MCP server infrastructure
-
-   - Install and configure MCP SDK
-   - Create Express.js server
-   - Setup WebSocket handlers
-   - Implement authentication middleware
-
-2. MCP protocol integration
-   - Implement MCP resource handlers
-   - Add project/resource operations
-   - Setup real-time synchronization
-   - Add audit logging
-
-**Phase 3: Testing & Validation**
-
-1. API testing
-
-   - Unit tests for all endpoints
-   - Integration tests with Next.js
-   - Error scenario testing
-   - Performance testing
-
-2. MCP integration testing
-   - Test with Claude and other MCP clients
-   - Validate real-time updates
-   - Test concurrent access scenarios
-   - Validate security measures
-
-#### 7. Creative Phases Required ✅ IDENTIFIED
-
-**🎨 UI/UX Design**: **NOT REQUIRED**
-
-- Current UI preserved completely
-- No design decisions needed
-
-**🏗️ Architecture Design**: **REQUIRED**
-
-- MCP server architecture design
-- File system concurrency management
-- Error handling and fallback strategies
-- Real-time synchronization design
-
-**⚙️ Algorithm Design**: **REQUIRED**
-
-- Atomic file operations algorithm
-- Conflict resolution for concurrent writes
-- Caching invalidation strategy
-- Real-time update propagation
-
-#### 8. Risk Mitigation Strategies
-
-**Data Migration Risks**:
-
-- **Risk**: Data loss during hardcoded extraction
-- **Mitigation**: Backup original files, validate schema mapping, gradual migration
-
-**File Concurrency Risks**:
-
-- **Risk**: Concurrent writes corrupting JSON files
-- **Mitigation**: File locking, atomic writes, backup before write
-
-**MCP Integration Risks**:
-
-- **Risk**: Protocol compatibility issues
-- **Mitigation**: Early proof of concept, comprehensive testing, fallback mechanisms
-
-**Performance Risks**:
-
-- **Risk**: API calls slower than hardcoded access
-- **Mitigation**: Aggressive caching, static generation, lazy loading
-
-#### 9. Testing Strategy
-
-**Unit Testing**:
-
-- [ ] API endpoint unit tests (Jest)
-- [ ] Data validation tests (Zod schemas)
-- [ ] File operations tests
-- [ ] MCP handler tests
-
-**Integration Testing**:
-
-- [ ] End-to-end API flows
-- [ ] MCP client integration
-- [ ] Next.js page rendering with API data
-- [ ] Error boundary testing
-
-**Load Testing**:
-
-- [ ] Concurrent file access
-- [ ] Multiple MCP client connections
-- [ ] API endpoint performance
-- [ ] Memory usage monitoring
-
-#### 10. Documentation Plan
-
-- [ ] API documentation (OpenAPI/Swagger)
-- [ ] MCP server setup guide
-- [ ] Data schema documentation
-- [ ] Development workflow guide
-- [ ] Deployment instructions
+**Note**: @vercel/mcp-adapter internally uses @modelcontextprotocol/sdk@1.12.0, so no separate SDK installation needed.
 
 ---
 
-## TECHNOLOGY VALIDATION CHECKPOINT
+## CREATIVE DECISIONS COMPLETED
 
-**Status**: ⏳ **PENDING** - Technology validation required before implementation
+### ✅ Architecture Design COMPLETED
 
-**Next Actions**:
+**Decision**: Modular Data Layer with Vercel MCP Adapter
 
-1. Install new dependencies and verify compatibility
-2. Create minimal MCP server proof of concept
-3. Test file locking mechanism
-4. Validate API integration with Next.js
+- Single MCP endpoint with clean service separation
+- No Redis required for initial implementation
+- Direct Next.js integration without separate server
+
+### ✅ Algorithm Design COMPLETED
+
+**Decision**: Copy-on-Write with Checksums
+
+- Atomic file operations using file system guarantees
+- Data integrity verification with SHA256
+- Built-in error recovery and audit logging
+
+### ❌ UI/UX Design NOT REQUIRED
+
+**Decision**: Preserve current UI completely
+
+- Zero UI changes needed
+- Focus on backend integration only
 
 ---
 
-## IMPLEMENTATION READINESS
+## IMPLEMENTATION READINESS ASSESSMENT
 
-**✅ PLAN COMPLETE - READY FOR CREATIVE PHASE**
+### ✅ Phase 1 Ready: Data Layer Foundation
 
-All Level 3 planning requirements satisfied:
+- [x] Service architecture designed (ProjectService, ResourceService, FileOperations)
+- [x] Algorithm chosen (copy-on-write with checksums)
+- [x] File structure planned (/lib/services/, /lib/types/, /lib/utils/)
+- [x] Atomic operations algorithm detailed
 
-- [x] Comprehensive requirements analysis
-- [x] Detailed component identification (API, MCP server, data layer)
-- [x] Implementation strategy with phased approach
-- [x] Risk mitigation strategies
-- [x] Creative phases identified (Architecture + Algorithm design)
-- [x] Testing strategy defined
-- [x] Documentation plan created
+### ✅ Phase 2 Ready: MCP Integration
 
-**NEXT RECOMMENDED MODE**: **CREATIVE** (for architecture and algorithm design decisions)
+- [x] Vercel MCP adapter approach designed
+- [x] Tool definitions planned (6 main tools: list/get/update for projects/resources)
+- [x] Integration pattern established (createMcpHandler in app/api/mcp/route.ts)
+- [x] **Correct dependency identified**: @vercel/mcp-adapter
 
-**User Action**: Type `CREATIVE` to begin design decision phase
+### ✅ Phase 3 Ready: Data Migration
+
+- [x] JSON file structure planned (/public/data/\*.json)
+- [x] Data extraction strategy defined (hardcoded → JSON files)
+- [x] Schema validation approach planned (existing Zod schemas)
+
+### ✅ Phase 4 Ready: UI Integration
+
+- [x] Component refactoring strategy defined
+- [x] API integration approach planned
+- [x] Loading states and error handling planned
+
+---
+
+## NEXT ACTIONS
+
+### IMPLEMENT Phase (Immediate)
+
+1. **Install Dependencies**: Add @vercel/mcp-adapter
+2. **Create Data Layer**: Implement FileOperations with copy-on-write algorithm
+3. **Build Services**: Implement ProjectService and ResourceService
+4. **Create MCP Endpoint**: Implement app/api/mcp/route.ts with Vercel adapter
+5. **Extract Data**: Move hardcoded data to JSON files
+6. **Test Integration**: Verify MCP tools work with Claude
+
+### Post-Implementation Actions
+
+1. Comprehensive testing with MCP clients
+2. Performance validation
+3. Error scenario testing
+4. Documentation and demo preparation
+
+---
+
+## CONTEXT FOR IMPLEMENT PHASE
+
+**Architecture Corrected**: Simplified approach using Vercel MCP adapter eliminates complex server setup
+**Algorithms Chosen**: Copy-on-write provides atomic operations with data integrity
+**Implementation Ready**: All design decisions made, clear path forward
+
+**READY FOR IMPLEMENT MODE** - Creative decisions complete, implementation strategy clear
+
+**User Action**: Type `IMPLEMENT` to begin development phase
