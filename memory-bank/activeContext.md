@@ -2,148 +2,176 @@
 
 ## CURRENT PROJECT STATE
 
-**Date**: IMPLEMENT Phase Completion  
-**Mode**: IMPLEMENT → REFLECT Transition  
-**Status**: Level 3 Implementation Complete
+**Date**: PLAN Phase - Frontend Integration  
+**Mode**: PLAN → IMPLEMENT Transition  
+**Status**: Level 3 Frontend Refactoring Planning
 
 ## IMMEDIATE OBJECTIVES
 
-1. **IMPLEMENT Phase**: ✅ COMPLETED - All code implementation finished successfully
-2. **Next Phase**: REFLECT mode for testing and validation
-3. **Focus**: Validate MCP functionality, test file operations, document results
+1. **MCP Backend**: ✅ COMPLETED and tested with inspector client
+2. **Current Phase**: PLAN mode for frontend refactoring with hybrid approach
+3. **Focus**: Create API routes and refactor frontend to use dynamic data while preserving feature requests
 
-## KEY ACHIEVEMENTS FROM IMPLEMENT PHASE
+## FRONTEND REFACTORING CONTEXT
 
-### Architecture Implementation: Vercel MCP Adapter Integration
+### Problem Statement
 
-**SUCCESSFUL IMPLEMENTATION**: Corrected architecture using Vercel MCP adapter delivered:
+**Current Issue**: Frontend still uses hardcoded data despite working MCP backend
 
-- **Single Endpoint**: `/api/mcp` with 8 functional tools
-- **Simplified Stack**: 1 dependency instead of 8 (87% complexity reduction)
-- **Type Safety**: Full TypeScript coverage with Zod validation
-- **Build Success**: Zero errors, clean compilation
+- Main page has hardcoded ResourceCard and ProjectCard components
+- Project detail pages use static data objects
+- Resource detail pages use static data objects
+- No integration between frontend and the JSON files we created
 
-### Data Layer Implementation: Copy-on-Write with Checksums
+### Solution: Hybrid Approach
 
-**ATOMIC OPERATIONS ACHIEVED**:
+**Goal**: Combine API data (from JSON files) + static "feature request" items
 
-- **FileOperations**: SHA256 checksums with integrity verification
-- **Service Layer**: ProjectService, ResourceService, AuditService
-- **Error Recovery**: Automatic cleanup on failure
-- **Audit Trail**: Complete logging of all operations
+- Load real projects/resources from `/public/data/*.json` via API routes
+- Append hardcoded items marked with `featureRequest={true}`
+- Maintain identical UX while making data dynamic
+- Preserve feature request modal functionality
 
-### Data Migration: Hardcoded → JSON Files
+## ARCHITECTURAL APPROACH
 
-**EXTRACTION COMPLETED**:
-
-- **Projects**: 2 complete projects extracted to `/public/data/projects.json`
-- **Resources**: 3 resources extracted to `/public/data/resources.json`
-- **Audit Log**: Initialized at `/public/data/audit.json`
-- **Schema Compliance**: All data follows TypeScript interfaces
-
-## IMPLEMENTATION RESULTS
-
-### Files Created (15 total):
+### Data Sources Strategy:
 
 ```
-lib/
-├── services/
-│   ├── projectService.ts      ✅ 219 lines
-│   ├── resourceService.ts     ✅ 253 lines
-│   ├── auditService.ts        ✅ 205 lines
-│   └── fileOperations.ts      ✅ 186 lines
-├── types/
-│   ├── project.ts             ✅ 51 lines
-│   ├── resource.ts            ✅ 27 lines
-│   └── api.ts                 ✅ 45 lines
-├── utils/
-│   ├── validation.ts          ✅ 112 lines
-│   └── constants.ts           ✅ 31 lines
-app/api/mcp/route.ts           ✅ 437 lines
-public/data/
-├── projects.json              ✅ 2 projects
-├── resources.json             ✅ 3 resources
-└── audit.json                 ✅ initialized
+Frontend Data Flow:
+├── Primary: Internal API Routes
+│   ├── /api/projects → Published projects from JSON
+│   ├── /api/resources → Published resources from JSON
+│   ├── /api/projects/[slug] → Single project lookup
+│   └── /api/resources/[slug] → Single resource lookup
+└── Secondary: Static Feature Request Data
+    ├── Feature request projects (hardcoded)
+    └── Feature request resources (hardcoded)
 ```
 
-### MCP Tools Implemented (8 total):
+### Implementation Layers:
 
-1. ✅ `list_projects` - Get all projects with metadata
-2. ✅ `get_project` - Get single project by ID
-3. ✅ `update_project` - Update project with audit logging
-4. ✅ `list_resources` - Get all resources with metadata
-5. ✅ `get_resource` - Get single resource by ID
-6. ✅ `update_resource` - Update resource with audit logging
-7. ✅ `get_audit_log` - Get recent audit entries (with limit)
-8. ✅ `get_audit_stats` - Get audit statistics and metrics
+1. **API Routes** (not MCP - internal consumption only)
+2. **React Hooks** for data fetching with hybrid merging
+3. **Static Data Extraction** to constants file
+4. **Component Updates** to use dynamic data sources
 
-### Technical Achievements:
+## CURRENT ANALYSIS COMPLETE
 
-- **Atomic File Operations**: Copy-on-write with SHA256 verification
-- **Error Handling**: Comprehensive error responses with detailed messages
-- **Type Safety**: 100% TypeScript coverage with Zod validation
-- **Audit Trail**: Complete logging of all data changes
-- **Build Quality**: Zero TypeScript errors, successful compilation
+### Frontend Structure:
 
-## CURRENT TECHNICAL STATE
+**Main Page (`app/page.tsx`)**:
 
-### Build Status: ✅ SUCCESSFUL
+- 6 ResourceCard components (2 real + 4 featureRequest)
+- 4 ProjectCard components (1 real + 3 featureRequest)
+- All data currently hardcoded in JSX
 
-```bash
-npm run build
-✓ Compiled successfully
-✓ Collecting page data
-✓ Generating static pages (11/11)
-✓ Finalizing page optimization
-```
+**Detail Pages**:
 
-### Dependencies: ✅ MINIMAL
+- Project page: hardcoded `projects` object with 2 complete projects
+- Resource page: hardcoded `resources` object with 3 complete resources
 
-- **Added**: `@vercel/mcp-adapter` (includes @modelcontextprotocol/sdk@1.12.0)
-- **Total Impact**: 1 new dependency vs 8 originally planned
-- **Bundle Size**: Minimal impact on existing build
+**Components**:
 
-### Architecture Quality: ✅ EXCELLENT
+- ✅ ProjectCard: supports `featureRequest` prop
+- ✅ ResourceCard: supports `featureRequest` prop
+- Both components ready for dynamic props
 
-- **Separation of Concerns**: Clean service layer with FileOperations
-- **Data Integrity**: SHA256 checksums for all file operations
-- **Error Recovery**: Automatic cleanup and detailed error messages
-- **Maintainability**: Clear interfaces and comprehensive documentation
+## HYBRID DATA MERGING STRATEGY
 
-## NEXT PHASE READINESS
+### Data Priority:
 
-### REFLECT Mode Preparation: ✅ READY
+1. **API Data First**: Load published items from JSON files
+2. **Feature Requests Second**: Append static placeholder items
+3. **Seamless UX**: User sees no difference in behavior
+4. **Flexible Content**: Mix of real and preview content
 
-**Testing Areas Identified:**
+### Feature Request Preservation:
 
-1. **MCP Endpoint Testing**: Verify all 8 tools function correctly
-2. **File Operations Testing**: Validate atomic operations and checksums
-3. **Data Integrity Testing**: Verify data consistency and error recovery
-4. **Error Handling Testing**: Validate comprehensive error responses
-5. **Audit Logging Testing**: Verify complete audit trail functionality
+- Items with `featureRequest={true}` trigger modals instead of navigation
+- Maintain exact same visual styling and interactions
+- Preserve all current functionality without changes
 
-**Documentation Areas:**
+## IMPLEMENTATION PHASES READY
 
-1. **Implementation Results**: Performance characteristics and metrics
-2. **Architecture Decisions**: Lessons learned from CREATIVE corrections
-3. **Feature Validation**: Confirm both target features work as intended
-4. **User Guide**: How to use MCP tools with Claude or other clients
+### Phase 1: Internal API Routes ✅ READY
 
-### Success Criteria for REFLECT Phase:
+Create 4 API routes that use existing ProjectService and ResourceService:
 
-- [ ] All MCP tools tested and functional
-- [ ] File operations verified as atomic and reliable
-- [ ] Error handling validated across all scenarios
-- [ ] Audit logging confirmed complete and accurate
-- [ ] Performance characteristics documented
-- [ ] Implementation lessons documented
+- `GET /api/projects` - list all published projects
+- `GET /api/projects/[slug]` - single project by ID
+- `GET /api/resources` - list all published resources
+- `GET /api/resources/[slug]` - single resource by ID
 
-## PROJECT HEALTH: EXCELLENT ✅
+### Phase 2: React Hooks ✅ READY
 
-**Overall Progress**: 80% Complete (4/5 phases finished)
-**Technical Debt**: Zero - Clean implementation with proper patterns
-**Risk Level**: Low - All major technical challenges resolved
-**Code Quality**: High - Full TypeScript coverage with validation
-**Architecture**: Simplified and appropriate for Level 3 complexity
+Create custom hooks for data fetching:
 
-**Ready for REFLECT mode** - Implementation complete, testing and validation ready to begin.
+- `useProjects()` - fetch and merge API + feature request projects
+- `useResources()` - fetch and merge API + feature request resources
+- `useProject(slug)` - single project with fallback to hardcoded
+- `useResource(slug)` - single resource with fallback to hardcoded
+
+### Phase 3: Static Data Extraction ✅ READY
+
+Extract hardcoded feature request items to:
+
+- `lib/data/feature-requests.ts` - all static placeholder data
+- Maintain exact structure matching API interfaces
+- Add `featureRequest: true` flags for identification
+
+### Phase 4: Frontend Updates ✅ READY
+
+Update 3 main files to use hooks instead of hardcoded data:
+
+- Homepage: replace hardcoded cards with hook data
+- Project page: use `useProject(slug)` hook
+- Resource page: use `useResource(slug)` hook
+
+### Phase 5: Testing ✅ READY
+
+Comprehensive validation:
+
+- All current content still displays correctly
+- Feature request modals still work
+- Navigation functions properly
+- Loading states are smooth
+- Error handling is graceful
+
+## TECHNICAL SPECIFICATIONS
+
+### API Response Format:
+
+Using existing `ApiResponse<T>` interface for consistency with MCP endpoints.
+
+### Hook Patterns:
+
+Standard React patterns with loading states, error handling, and refetch capabilities.
+
+### Performance Considerations:
+
+- Client-side rendering with loading states
+- Proper error boundaries
+- Efficient data merging
+- Maintained static generation where possible
+
+## SUCCESS CRITERIA
+
+### Must Preserve:
+
+- ✅ **Identical UI/UX**: No visual or behavioral changes
+- ✅ **Feature Request Functionality**: Modals work exactly the same
+- ✅ **Performance**: No noticeable slowdown
+- ✅ **SEO**: Maintain current search optimization
+
+### Must Achieve:
+
+- ✅ **Dynamic Data**: Projects and resources loaded from JSON files
+- ✅ **Hybrid System**: API data + feature request items combined
+- ✅ **Type Safety**: Full TypeScript coverage maintained
+- ✅ **Error Handling**: Graceful fallbacks and loading states
+
+## NEXT IMMEDIATE ACTION
+
+**Ready to start IMPLEMENT phase** with Phase 1: Create internal API routes that leverage our existing service layer.
+
+The plan provides a clear, well-scoped approach to complete the integration loop while preserving all current functionality and user experience.
