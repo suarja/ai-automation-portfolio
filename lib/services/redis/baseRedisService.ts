@@ -50,7 +50,19 @@ export abstract class BaseRedisService<T extends BaseEntity> {
         return null;
       }
 
-      const entity = JSON.parse(data as string) as T;
+      // Handle different return types from Upstash Redis
+      let jsonString: string;
+      if (typeof data === "string") {
+        jsonString = data;
+      } else if (typeof data === "object") {
+        // If Redis returns an object directly, stringify then parse to ensure consistency
+        jsonString = JSON.stringify(data);
+      } else {
+        // Convert other types to string
+        jsonString = String(data);
+      }
+
+      const entity = JSON.parse(jsonString) as T;
 
       // Update last accessed timestamp
       await this.updateLastAccessed(id);
@@ -155,9 +167,21 @@ export abstract class BaseRedisService<T extends BaseEntity> {
 
       for (let i = 0; i < results.length; i++) {
         const data = results[i];
-        if (data && typeof data === "string") {
+        if (data) {
           try {
-            entities.push(JSON.parse(data) as T);
+            // Handle different return types from Upstash Redis
+            let jsonString: string;
+            if (typeof data === "string") {
+              jsonString = data;
+            } else if (typeof data === "object") {
+              // If Redis returns an object directly, stringify then parse to ensure consistency
+              jsonString = JSON.stringify(data);
+            } else {
+              // Convert other types to string
+              jsonString = String(data);
+            }
+
+            entities.push(JSON.parse(jsonString) as T);
           } catch (parseError) {
             console.error(
               `Failed to parse ${this.entityType} data for ID ${ids[i]}:`,
@@ -284,12 +308,31 @@ export abstract class BaseRedisService<T extends BaseEntity> {
     try {
       const client = await redisManager.getClient("write");
 
+      // Safely serialize data to avoid circular references and [object Object] errors
+      let serializedChanges: any = data;
+      if (data) {
+        try {
+          // Test if data can be serialized
+          JSON.stringify(data);
+          serializedChanges = data;
+        } catch (serializeError) {
+          // If data can't be serialized, create a safe representation
+          serializedChanges = {
+            entityId,
+            serializationError:
+              "Data contains circular references or non-serializable objects",
+            dataType: typeof data,
+            timestamp: new Date().toISOString(),
+          };
+        }
+      }
+
       const logEntry: AuditLogEntry = {
         timestamp: new Date().toISOString(),
         action,
         entityType: this.entityType,
         entityId,
-        changes: data,
+        changes: serializedChanges,
         source: "redis_service",
       };
 

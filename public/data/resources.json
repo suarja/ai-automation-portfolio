@@ -1,8 +1,8 @@
 [
   {
     "id": "templates",
-    "title": "Mes Templates",
-    "description": "Récupère toutes mes templates et ressources pour automatiser ton business",
+    "title": "Mes Templates - UPDATED VIA MCP DUAL-WRITE",
+    "description": "Test de mise à jour via MCP hybridDataService",
     "longDescription": "Une collection complète de templates et de ressources pour automatiser ton business. Ces templates sont conçus pour t'aider à gagner du temps et à optimiser tes processus. Ils sont faciles à utiliser et à adapter à tes besoins spécifiques.",
     "image": "/images/icons/folder.png",
     "tags": [
@@ -19,7 +19,7 @@
     ],
     "metadata": {
       "createdAt": "2025-01-10T00:00:00.000Z",
-      "updatedAt": "2025-05-31T08:17:21.299Z",
+      "updatedAt": "2025-05-31T10:18:28.971Z",
       "featured": true,
       "status": "published",
       "downloadCount": 245

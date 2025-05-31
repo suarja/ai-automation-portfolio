@@ -27,5 +27,103 @@
     },
     "id": "audit_1748679441303_i1th4p1t4",
     "timestamp": "2025-05-31T08:17:21.303Z"
+  },
+  {
+    "id": "audit_1748685731464_a74ecsyj3",
+    "timestamp": "2025-05-31T10:02:11.462Z",
+    "action": "update",
+    "entityType": "resource",
+    "entityId": "resources",
+    "source": "api",
+    "metadata": {
+      "checksum": "4ccc33405feb4bde45f87086a3b40f68e4d14aa2aa61e83b98d6947106037206"
+    }
+  },
+  {
+    "action": "update",
+    "entityType": "resource",
+    "entityId": "templates",
+    "source": "mcp",
+    "changes": [
+      {
+        "field": "resource_data",
+        "oldValue": "previous_state",
+        "newValue": "updated_via_mcp_hybrid"
+      }
+    ],
+    "metadata": {
+      "clientId": "mcp_client",
+      "hybridService": true
+    },
+    "id": "audit_1748685731465_e28cmncrw",
+    "timestamp": "2025-05-31T10:02:11.465Z"
+  },
+  {
+    "id": "audit_1748686708973_ya9bvwfao",
+    "timestamp": "2025-05-31T10:18:28.972Z",
+    "action": "update",
+    "entityType": "resource",
+    "entityId": "resources",
+    "source": "api",
+    "metadata": {
+      "checksum": "658df679a492f26413d2ea962de358737a60d610b18ed27a1ca23fd984d66a13"
+    }
+  },
+  {
+    "action": "update",
+    "entityType": "resource",
+    "entityId": "templates",
+    "source": "mcp",
+    "changes": [
+      {
+        "field": "resource_data",
+        "oldValue": "previous_state",
+        "newValue": "updated_via_mcp_hybrid"
+      }
+    ],
+    "metadata": {
+      "clientId": "mcp_client",
+      "hybridService": true
+    },
+    "id": "audit_1748686709491_oroikqdam",
+    "timestamp": "2025-05-31T10:18:29.491Z"
+  },
+  {
+    "action": "update",
+    "entityType": "resource",
+    "entityId": "test-resource-001",
+    "source": "mcp",
+    "changes": [
+      {
+        "field": "resource_data",
+        "oldValue": "previous_state",
+        "newValue": "updated_via_mcp_hybrid"
+      }
+    ],
+    "metadata": {
+      "clientId": "mcp_client",
+      "hybridService": true
+    },
+    "id": "audit_1748686897832_6hd0yjae0",
+    "timestamp": "2025-05-31T10:21:37.832Z"
+  },
+  {
+    "action": "update",
+    "entityType": "resource",
+    "entityId": "test-resource-001",
+    "source": "mcp",
+    "changes": [
+      {
+        "field": "resource_data",
+        "oldValue": "previous_state",
+        "newValue": "updated_via_mcp_hybrid"
+      }
+    ],
+    "metadata": {
+      "clientId": "mcp_client",
+      "hybridService": true
+    },
+    "id": "audit_1748687050844_5jqoa7iyg",
+    "timestamp": "2025-05-31T10:24:10.844Z"
   }
 ]

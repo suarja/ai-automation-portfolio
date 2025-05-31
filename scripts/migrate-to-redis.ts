@@ -115,7 +115,7 @@ class DataMigrationService {
    */
   async migrateProjects(): Promise<void> {
     try {
-      console.log("📂 Migrating projects...");
+      console.log("🏗️ Migrating projects...");
 
       // Get all projects from JSON
       const jsonProjects = await ProjectService.listProjects();
@@ -142,13 +142,22 @@ class DataMigrationService {
               }
             }
 
-            // Transform for Redis (add required fields)
+            // Transform for Redis (add required fields) with explicit serialization check
             const redisProject = {
               ...project,
               published: project.metadata?.status === "published",
               createdAt: project.metadata?.createdAt,
               updatedAt: project.metadata?.updatedAt,
             };
+
+            // Validate serialization before saving
+            try {
+              JSON.stringify(redisProject);
+            } catch (serializeError) {
+              throw new Error(
+                `Serialization failed for project ${project.id}: ${serializeError.message}`
+              );
+            }
 
             // Save to Redis
             await projectRedisService.saveProject(redisProject);
@@ -160,7 +169,7 @@ class DataMigrationService {
           } catch (error) {
             this.stats.projects.failed++;
             const errorMsg = `Failed to migrate project ${project.id}: ${
-              error instanceof Error ? error.message : "Unknown error"
+              error instanceof Error ? error.message : String(error)
             }`;
             this.stats.projects.errors.push(errorMsg);
             console.error(`❌ ${errorMsg}`);
@@ -218,14 +227,27 @@ class DataMigrationService {
               }
             }
 
-            // Transform for Redis (add required fields)
+            // Transform for Redis (add required fields) with explicit serialization check
             const redisResource = {
               ...resource,
               published: resource.metadata?.status === "published",
               createdAt: resource.metadata?.createdAt,
               updatedAt: resource.metadata?.updatedAt,
               featureRequest: false, // Default value
+              // Ensure downloadLink is present for published resources
+              downloadLink:
+                resource.downloadLink ||
+                (resource.metadata?.status === "published" ? "#" : undefined),
             };
+
+            // Validate serialization before saving
+            try {
+              JSON.stringify(redisResource);
+            } catch (serializeError) {
+              throw new Error(
+                `Serialization failed for resource ${resource.id}: ${serializeError.message}`
+              );
+            }
 
             // Save to Redis
             await resourceRedisService.saveResource(redisResource);
@@ -237,7 +259,7 @@ class DataMigrationService {
           } catch (error) {
             this.stats.resources.failed++;
             const errorMsg = `Failed to migrate resource ${resource.id}: ${
-              error instanceof Error ? error.message : "Unknown error"
+              error instanceof Error ? error.message : String(error)
             }`;
             this.stats.resources.errors.push(errorMsg);
             console.error(`❌ ${errorMsg}`);
