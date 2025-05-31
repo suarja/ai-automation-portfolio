@@ -8,7 +8,13 @@ import SectionHeader from "@/components/section-header";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SiteFooter from "@/components/site-footer";
 import { CONSTANTS } from "@/lib/constants/constants";
+import { useProjects } from "@/hooks/use-projects";
+import { useResources } from "@/hooks/use-resources";
+
 export default function Home() {
+  const { projects, loading: projectsLoading } = useProjects();
+  const { resources, loading: resourcesLoading } = useResources();
+
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
@@ -82,65 +88,37 @@ export default function Home() {
           </Tabs>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ResourceCard
-              featureRequest
-              title="Mes Templates"
-              description="Récupère toutes mes templates et ressources pour automatiser ton business"
-              image="/images/icons/folder.png"
-              tags={["N8N", "Airtable", "Notion"]}
-              buttonText="Je les veux !"
-              buttonLink="/resources/templates"
-            />
-            <ResourceCard
-              title="Ton Assistant Personnel IA"
-              description="Ton assistant IA pour tes tâches de liste"
-              image="/images/icons/cloud-download.png"
-              tags={["IA", "Productivité"]}
-              buttonText="Télécharger"
-              buttonLink={CONSTANTS.FORM_URL_AI_ASSISTANT!}
-              gradient="from-purple-900 to-indigo-800"
-            />
-
-            <ResourceCard
-              featureRequest
-              title="TON GHOST WRITER LINKEDIN"
-              description="Automatise la rédaction de tes posts LinkedIn"
-              image="/images/icons/card.png"
-              tags={["IA", "LinkedIn"]}
-              buttonText="Télécharger"
-              buttonLink="/resources/ghost-writer"
-              gradient="from-purple-900 to-indigo-800"
-            />
-
-            <ResourceCard
-              featureRequest
-              title="Workflow Automatisé Client"
-              description="Automatise l'onboarding de tes clients"
-              image="/images/icons/grow-coin.png"
-              tags={["N8N", "Freelance"]}
-              buttonText="Voir la fiche"
-              buttonLink="/resources/workflow-client"
-            />
-
-            <ResourceCard
-              featureRequest
-              title="Dashboard Freelance"
-              description="Template de dashboard pour suivre ton activité"
-              image="/images/icons/folder.png"
-              tags={["Notion", "Freelance"]}
-              buttonText="Télécharger"
-              buttonLink="/resources/dashboard"
-            />
-
-            <ResourceCard
-              featureRequest
-              title="Connecteur API Universel"
-              description="Connecte n'importe quelle API à tes outils"
-              image="/images/icons/card.png"
-              tags={["N8N", "API"]}
-              buttonText="Voir la fiche"
-              buttonLink="/resources/api-connector"
-            />
+            {resourcesLoading
+              ? // Loading state - show skeletons
+                Array.from({ length: 6 }).map((_, index) => (
+                  <div key={index} className="animate-pulse">
+                    <div className="bg-[#151515] rounded-3xl h-80 border border-[#222]"></div>
+                  </div>
+                ))
+              : // Dynamic resources from API + feature requests
+                resources.map((resource) => (
+                  <ResourceCard
+                    key={resource.id}
+                    title={resource.title}
+                    description={resource.description}
+                    image={resource.image}
+                    tags={resource.tags}
+                    buttonText={
+                      resource.featureRequest ? "Je les veux !" : "Télécharger"
+                    }
+                    buttonLink={
+                      resource.featureRequest
+                        ? `/resources/${resource.id}`
+                        : resource.downloadLink
+                    }
+                    gradient={
+                      resource.tags.includes("IA")
+                        ? "from-purple-900 to-indigo-800"
+                        : undefined
+                    }
+                    featureRequest={resource.featureRequest}
+                  />
+                ))}
           </div>
         </section>
 
@@ -152,40 +130,25 @@ export default function Home() {
           <SectionHeader title="Projets / Use Cases" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ProjectCard
-              title="Système de prise de RDV pour artisan"
-              result="Gain de 5h/semaine sur la gestion des rendez-vous"
-              tags={["N8N", "Airtable", "Frontend"]}
-              image="/images/icons/safebox.png"
-              link="/projects/rdv-artisan"
-            />
-
-            <ProjectCard
-              featureRequest
-              title="Automatisation de leads pour coach"
-              result="Augmentation de 40% du taux de conversion"
-              tags={["IA", "N8N", "API"]}
-              image="/images/icons/star-badge.png"
-              link="/projects/leads-coach"
-            />
-
-            <ProjectCard
-              featureRequest
-              title="Système de facturation automatisé"
-              result="Réduction de 80% du temps de facturation"
-              tags={["N8N", "Airtable", "API"]}
-              image="/images/icons/grow-coin.png"
-              link="/projects/facturation"
-            />
-
-            <ProjectCard
-              featureRequest
-              title="Assistant IA pour rédaction de contenu"
-              result="Production de contenu x3 plus rapide"
-              tags={["IA", "API", "Frontend"]}
-              image="/images/icons/cloud-download.png"
-              link="/projects/assistant-redaction"
-            />
+            {projectsLoading
+              ? // Loading state - show skeletons
+                Array.from({ length: 4 }).map((_, index) => (
+                  <div key={index} className="animate-pulse">
+                    <div className="bg-[#151515] rounded-3xl h-48 border border-[#222]"></div>
+                  </div>
+                ))
+              : // Dynamic projects from API + feature requests
+                projects.map((project) => (
+                  <ProjectCard
+                    key={project.id}
+                    title={project.title}
+                    result={project.result}
+                    tags={project.tags}
+                    image={project.image}
+                    link={`/projects/${project.id}`}
+                    featureRequest={project.featureRequest}
+                  />
+                ))}
           </div>
         </section>
 
@@ -197,7 +160,7 @@ export default function Home() {
             <p className="text-gray-300 mb-4">
               🧠{" "}
               <strong>
-                J’aide les indépendants, artisans et petites équipes ambitieuses
+                J'aide les indépendants, artisans et petites équipes ambitieuses
                 à reprendre le contrôle sur leur temps, leurs outils, et leur
                 croissance.
               </strong>
@@ -211,7 +174,7 @@ export default function Home() {
             </p>
             <p className="text-gray-300 mb-4">
               🎯 Mon objectif : vous permettre de vous concentrer sur ce qui
-              crée réellement de la valeur — pendant que je m’occupe du reste.
+              crée réellement de la valeur — pendant que je m'occupe du reste.
             </p>
 
             <h3 className="text-xl font-bold mt-6 mb-3">
@@ -223,7 +186,7 @@ export default function Home() {
                 autour de vos vrais besoins métier
               </li>
               <li>
-                <strong>Intégration fluide d’agents IA</strong> dans vos outils
+                <strong>Intégration fluide d'agents IA</strong> dans vos outils
                 existants (formulaires, CRM, e-mail…)
               </li>
               <li>

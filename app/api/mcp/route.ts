@@ -431,7 +431,14 @@ const handler = createMcpHandler(
       }
     });
   },
-  {}, // Server options
+  {
+    capabilities: {
+      redisUrl: process.env.REDIS_REDIS_URL,
+      basePath: "",
+      verboseLogs: true,
+      maxDuration: 60,
+    },
+  }, // Server options
   {
     basePath: MCP_CONFIG.basePath,
     maxDuration: MCP_CONFIG.maxDuration,
