@@ -333,57 +333,8 @@ export class HybridDataService {
         "write",
         "projects"
       );
-      const isDualMode = await featureFlags.isDualMode();
 
-      if (redisWriteEnabled && isDualMode) {
-        // Dual-write mode: write to both systems
-        source = "both";
-
-        const [redisResult, jsonResult] = await Promise.allSettled([
-          this.updateProjectInRedis(slug, updates),
-          ProjectService.updateProject(slug, updates),
-        ]);
-
-        if (
-          redisResult.status === "fulfilled" &&
-          jsonResult.status === "fulfilled"
-        ) {
-          success = true;
-          this.recordStats(
-            "both",
-            "write",
-            "projects",
-            success,
-            Date.now() - startTime
-          );
-
-          // Validate consistency
-          await this.validateProjectConsistency(slug);
-
-          return redisResult.value;
-        } else {
-          // Handle partial failure
-          console.error("Dual-write partial failure:", {
-            redisResult,
-            jsonResult,
-          });
-
-          // If Redis succeeded but JSON failed, we continue with Redis
-          if (redisResult.status === "fulfilled") {
-            success = true;
-            this.recordStats(
-              "both",
-              "write",
-              "projects",
-              success,
-              Date.now() - startTime
-            );
-            return redisResult.value;
-          }
-
-          throw new Error("Both Redis and JSON write operations failed");
-        }
-      } else if (redisWriteEnabled) {
+      if (redisWriteEnabled) {
         // Redis-only mode
         source = "redis";
         const result = await this.updateProjectInRedis(slug, updates);
@@ -397,18 +348,9 @@ export class HybridDataService {
         );
         return result;
       } else {
-        // JSON-only mode
-        source = "json";
-        const result = await ProjectService.updateProject(slug, updates);
-        success = true;
-        this.recordStats(
-          "json",
-          "write",
-          "projects",
-          success,
-          Date.now() - startTime
-        );
-        return result;
+        // JSON operations removed due to production EROFS errors
+        console.warn("JSON write operations are disabled in production");
+        throw new Error("JSON write operations are disabled in production");
       }
     } catch (error) {
       this.recordStats(
@@ -438,57 +380,8 @@ export class HybridDataService {
         "write",
         "resources"
       );
-      const isDualMode = await featureFlags.isDualMode();
 
-      if (redisWriteEnabled && isDualMode) {
-        // Dual-write mode: write to both systems
-        source = "both";
-
-        const [redisResult, jsonResult] = await Promise.allSettled([
-          this.updateResourceInRedis(slug, updates),
-          ResourceService.updateResource(slug, updates),
-        ]);
-
-        if (
-          redisResult.status === "fulfilled" &&
-          jsonResult.status === "fulfilled"
-        ) {
-          success = true;
-          this.recordStats(
-            "both",
-            "write",
-            "resources",
-            success,
-            Date.now() - startTime
-          );
-
-          // Validate consistency
-          await this.validateResourceConsistency(slug);
-
-          return redisResult.value;
-        } else {
-          // Handle partial failure
-          console.error("Dual-write partial failure:", {
-            redisResult,
-            jsonResult,
-          });
-
-          // If Redis succeeded but JSON failed, we continue with Redis
-          if (redisResult.status === "fulfilled") {
-            success = true;
-            this.recordStats(
-              "both",
-              "write",
-              "resources",
-              success,
-              Date.now() - startTime
-            );
-            return redisResult.value;
-          }
-
-          throw new Error("Both Redis and JSON write operations failed");
-        }
-      } else if (redisWriteEnabled) {
+      if (redisWriteEnabled) {
         // Redis-only mode
         source = "redis";
         const result = await this.updateResourceInRedis(slug, updates);
@@ -502,18 +395,9 @@ export class HybridDataService {
         );
         return result;
       } else {
-        // JSON-only mode
-        source = "json";
-        const result = await ResourceService.updateResource(slug, updates);
-        success = true;
-        this.recordStats(
-          "json",
-          "write",
-          "resources",
-          success,
-          Date.now() - startTime
-        );
-        return result;
+        // JSON operations removed due to production EROFS errors
+        console.warn("JSON write operations are disabled in production");
+        throw new Error("JSON write operations are disabled in production");
       }
     } catch (error) {
       this.recordStats(
@@ -580,8 +464,7 @@ export class HybridDataService {
       // Compare key fields
       const isConsistent =
         redisProject.title === jsonProject.title &&
-        redisProject.description === jsonProject.description &&
-        redisProject.published === jsonProject.published;
+        redisProject.description === jsonProject.description;
 
       if (!isConsistent) {
         console.warn(`Consistency check failed: Project ${slug} data mismatch`);
@@ -624,8 +507,7 @@ export class HybridDataService {
       // Compare key fields
       const isConsistent =
         redisResource.title === jsonResource.title &&
-        redisResource.description === jsonResource.description &&
-        redisResource.published === jsonResource.published;
+        redisResource.description === jsonResource.description;
 
       if (!isConsistent) {
         console.warn(
@@ -695,7 +577,7 @@ export class HybridDataService {
     const latencies: Record<string, number[]> = {
       redis: [],
       json: [],
-      both: [],
+      both: [], // Kept for historical data even though dual-write is now disabled
     };
     let successCount = 0;
 
