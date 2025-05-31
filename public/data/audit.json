@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "id": "audit_1748679441301_pvx2psjqt",
+    "timestamp": "2025-05-31T08:17:21.300Z",
+    "action": "update",
+    "entityType": "resource",
+    "entityId": "resources",
+    "source": "api",
+    "metadata": {
+      "checksum": "6d9a4f257cba9b660286a7b6dec03e58c34eea7103ab18c5a2123085620512ce"
+    }
+  },
+  {
+    "action": "update",
+    "entityType": "resource",
+    "entityId": "templates",
+    "source": "mcp",
+    "changes": [
+      {
+        "field": "resource_data",
+        "oldValue": "previous_state",
+        "newValue": "updated_via_mcp"
+      }
+    ],
+    "metadata": {
+      "clientId": "mcp_client"
+    },
+    "id": "audit_1748679441303_i1th4p1t4",
+    "timestamp": "2025-05-31T08:17:21.303Z"
+  }
+]

@@ -5,9 +5,13 @@
     "description": "Récupère toutes mes templates et ressources pour automatiser ton business",
     "longDescription": "Une collection complète de templates et de ressources pour automatiser ton business. Ces templates sont conçus pour t'aider à gagner du temps et à optimiser tes processus. Ils sont faciles à utiliser et à adapter à tes besoins spécifiques.",
     "image": "/images/icons/folder.png",
-    "tags": ["N8N", "Airtable", "Notion"],
+    "tags": [
+      "N8N",
+      "Airtable",
+      "Notion"
+    ],
     "price": "Gratuit",
-    "downloadLink": "https://gumroad.com/username/templates",
+    "downloadLink": "https://3902660594729.gumroad.com/?_gl=1*rwyusr*_ga*MjA2NDUxNzg0Ni4xNzQ2NDc2NDY2*_ga_6LJN6D94N6*MTc0ODY3ODc4Ny4yNS4wLjE3NDg2Nzg3ODcuMC4wLjA.",
     "gallery": [
       "/placeholder.svg?height=200&width=300",
       "/placeholder.svg?height=200&width=300",
@@ -15,7 +19,7 @@
     ],
     "metadata": {
       "createdAt": "2025-01-10T00:00:00.000Z",
-      "updatedAt": "2025-01-20T00:00:00.000Z",
+      "updatedAt": "2025-05-31T08:17:21.299Z",
       "featured": true,
       "status": "published",
       "downloadCount": 245
@@ -27,7 +31,10 @@
     "description": "Automatise la rédaction de tes posts LinkedIn",
     "longDescription": "Un outil puissant qui utilise l'IA pour automatiser la rédaction de tes posts LinkedIn. Il te permet de créer du contenu engageant et professionnel en quelques clics. Plus besoin de passer des heures à réfléchir à quoi écrire, laisse l'IA faire le travail pour toi.",
     "image": "/images/icons/card.png",
-    "tags": ["IA", "LinkedIn"],
+    "tags": [
+      "IA",
+      "LinkedIn"
+    ],
     "price": "29€",
     "downloadLink": "https://gumroad.com/username/ghost-writer",
     "gallery": [
@@ -48,7 +55,10 @@
     "description": "Ton assistant IA pour tes tâches de liste",
     "longDescription": "Un assistant IA personnel qui t'aide à gérer tes tâches quotidiennes. Il te permet de créer des listes de tâches, de les organiser et de les prioriser. Il peut également te rappeler les échéances importantes et te suggérer des actions à entreprendre.",
     "image": "/images/icons/cloud-download.png",
-    "tags": ["IA", "Productivité"],
+    "tags": [
+      "IA",
+      "Productivité"
+    ],
     "price": "19€",
     "downloadLink": "https://gumroad.com/username/assistant-ia",
     "gallery": [
