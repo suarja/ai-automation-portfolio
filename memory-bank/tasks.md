@@ -1,109 +1,430 @@
 # TASKS - CURRENT PROGRESS
 
-## CURRENT TASK: VAN Analysis & Memory Bank Setup
+## CURRENT TASK: PLAN Mode - Comprehensive Feature Planning
 
-### VAN MODE CHECKLIST
+### PLAN MODE STATUS
 
-- [x] **Platform Detection Complete**
-
-  - [x] Operating System: macOS (darwin 24.5.0)
-  - [x] Shell: /bin/zsh
-  - [x] Path separators: Forward slash (/)
-  - [x] Commands adapted for Unix-like system
-
-- [x] **Memory Bank Creation Complete**
-
-  - [x] `memory-bank/projectbrief.md` - Project overview and objectives
-  - [x] `memory-bank/productContext.md` - Business goals and user personas
-  - [x] `memory-bank/systemPatterns.md` - Technical architecture patterns
-  - [x] `memory-bank/techContext.md` - Technology stack and requirements
-  - [x] `memory-bank/activeContext.md` - Current state and immediate focus
-  - [x] `memory-bank/tasks.md` - This file (single source of truth)
-
-- [x] **File Verification Complete**
-
-  - [x] All memory bank files created successfully
-  - [x] Documentation structure established
-  - [x] Proper file paths verified (memory-bank/ directory)
-
-- [x] **Complexity Determination Complete**
-  - [x] Task analyzed: MCP integration + API refactoring
-  - [x] Scope assessment: Multiple interconnected components
-  - [x] Risk evaluation: Protocol integration, data migration
-  - [x] **COMPLEXITY LEVEL: 3 (Intermediate Feature)**
-
-### VAN ANALYSIS FINDINGS
-
-#### Current Codebase Analysis
-
-- **Framework**: Next.js 15 with App Router ✅
-- **Data Storage**: Hardcoded objects in React components ⚠️
-- **Routes**: Dynamic routes `/projects/[slug]` and `/resources/[slug]` ✅
-- **Styling**: Tailwind CSS with Radix UI ✅
-- **Type Safety**: TypeScript throughout ✅
-
-#### Data Extraction Requirements
-
-- **Projects Data**: Located in `/app/projects/[slug]/page.tsx` (lines ~15-100)
-- **Resources Data**: Located in `/app/resources/[slug]/page.tsx` (lines ~15-50)
-- **Target Location**: `/public/data/*.json` files
-- **Estimated Records**: ~4-6 projects, ~6-8 resources
-
-#### MCP Integration Requirements
-
-- **New Dependencies**: `@modelcontextprotocol/sdk`, `ws`, `express`, `cors`
-- **New Server**: MCP server process (port 3001)
-- **API Layer**: Complete REST API for projects/resources
-- **Authentication**: Token-based for write operations
-
-### IMMEDIATE NEXT STEPS
-
-#### Ready for PLAN Mode Transition
-
-The VAN analysis is complete. All requirements for **Level 3 complexity** confirmed:
-
-- ✅ Architectural planning required (MCP server design)
-- ✅ Data layer refactoring needed (hardcoded → API)
-- ✅ External protocol integration (MCP)
-- ✅ Multiple interconnected components
-
-**STATUS**: VAN mode complete, ready for PLAN mode
-
-#### Mode Transition Requirements
-
-1. **User Action Required**: Type `PLAN` to begin planning phase
-2. **Planning Focus**:
-   - Data schema design and migration strategy
-   - API architecture and endpoint design
-   - MCP server architecture and protocol handling
-   - Implementation roadmap and phase planning
-
-### RISK MITIGATION NOTES
-
-- **Data Migration Risk**: Extract data carefully to preserve all fields
-- **Type Safety Risk**: Maintain TypeScript interfaces during refactoring
-- **Performance Risk**: Plan caching strategy for API calls
-- **UX Risk**: Ensure zero disruption to current user experience
+- **Previous Phase**: ✅ VAN Mode Complete
+- **Current Phase**: 🔄 PLAN Mode (Level 3 Comprehensive Planning)
+- **Complexity Level**: 3 (Intermediate Feature)
+- **Focus**: Data schemas, API architecture, MCP server design, technology validation
 
 ---
 
-## PROJECT OVERVIEW (Reference)
+## LEVEL 3 PLANNING CHECKLIST
 
-### Target Features
+### ✅ VAN PHASE COMPLETED
 
-1. **MCP Integration**: Enable remote access to projects/resources via MCP clients
-2. **API Refactoring**: Move from hardcoded data to JSON files + API endpoints
-3. **Showcase Features**:
-   - Remote data retrieval through MCP clients
-   - Remote data updates demonstrating "automation magic"
+- [x] Platform detection and Memory Bank setup
+- [x] Current codebase analysis (Next.js 15 + hardcoded data)
+- [x] Complexity assessment (Level 3 confirmed)
+- [x] Technical requirements identified
+- [x] Git commit with comprehensive documentation
 
-### Success Criteria
+### 🔄 PLAN PHASE IN PROGRESS
 
-- MCP integration working with Claude and other clients
-- API endpoints for full CRUD operations
-- Zero disruption to current user experience
-- Compelling demonstration of remote automation capabilities
+#### 1. Requirements Analysis
+
+- [x] **Core Requirements Identified**:
+
+  - [x] MCP server integration for remote access
+  - [x] API layer refactoring (hardcoded → JSON + REST endpoints)
+  - [x] Data migration with zero UX disruption
+  - [x] Authentication for write operations
+  - [x] Audit trail for demonstration purposes
+
+- [x] **Technical Constraints Documented**:
+  - [x] No database requirement (JSON files only)
+  - [x] Preserve current UI/UX completely
+  - [x] Maintain TypeScript type safety
+  - [x] Support multiple MCP clients (Claude, etc.)
+
+#### 2. Data Schema Design ✅ COMPLETED
+
+**Project Schema** (extracted from `/app/projects/[slug]/page.tsx`):
+
+```typescript
+interface Project {
+  id: string; // Unique identifier (slug)
+  title: string; // Project title
+  result: string; // Main achievement/result
+  tags: string[]; // Technology tags
+  image: string; // Icon/image path
+  client: {
+    type: string; // Client type/industry
+    size: string; // Client size
+    objective: string; // Client's objective
+  };
+  challenge: string; // Problem description
+  solution: {
+    description: string; // Solution overview
+    tools: string[]; // Tools used
+    features: string[]; // Key features list
+    videoUrl?: string; // Demo video URL
+    screenshots: string[]; // Screenshot URLs
+    demoLink?: string; // Live demo URL
+  };
+  description: string; // Detailed description
+  testimonial: {
+    text: string; // Client testimonial
+    author: string; // Client name
+    avatar: string; // Avatar image
+  };
+  results: string[]; // Key results achieved
+  insight: {
+    title: string; // Insight section title
+    text: string; // Insight content
+    resourceLink?: {
+      text: string; // Link text
+      url: string; // Link URL
+    };
+  };
+  metadata: {
+    createdAt: string; // Creation timestamp
+    updatedAt: string; // Last update timestamp
+    featured: boolean; // Featured project flag
+    status: "published" | "draft" | "archived";
+  };
+}
+```
+
+**Resource Schema** (extracted from `/app/resources/[slug]/page.tsx`):
+
+```typescript
+interface Resource {
+  id: string; // Unique identifier (slug)
+  title: string; // Resource title
+  description: string; // Short description
+  longDescription: string; // Detailed description
+  image: string; // Icon/image path
+  tags: string[]; // Category tags
+  price: string; // Price (or "Gratuit")
+  downloadLink: string; // Download/purchase URL
+  gallery: string[]; // Gallery images
+  metadata: {
+    createdAt: string; // Creation timestamp
+    updatedAt: string; // Last update timestamp
+    featured: boolean; // Featured resource flag
+    status: "published" | "draft" | "archived";
+    downloadCount?: number; // Download tracking
+  };
+}
+```
+
+**Audit Log Schema**:
+
+```typescript
+interface AuditEntry {
+  id: string; // Unique audit ID
+  timestamp: string; // ISO timestamp
+  action: "create" | "update" | "delete" | "read";
+  entityType: "project" | "resource";
+  entityId: string; // ID of affected entity
+  source: "mcp" | "api" | "admin";
+  changes?: {
+    field: string;
+    oldValue: any;
+    newValue: any;
+  }[];
+  metadata: {
+    userAgent?: string;
+    clientId?: string;
+    ipAddress?: string;
+  };
+}
+```
+
+#### 3. API Architecture Design ✅ COMPLETED
+
+**RESTful Endpoint Structure**:
+
+```
+/api/
+├── projects/
+│   ├── route.ts                 # GET (list all projects)
+│   └── [id]/
+│       └── route.ts             # GET, PUT, DELETE (single project)
+├── resources/
+│   ├── route.ts                 # GET (list all resources)
+│   └── [id]/
+│       └── route.ts             # GET, PUT, DELETE (single resource)
+├── mcp/
+│   ├── health/
+│   │   └── route.ts             # MCP server health check
+│   ├── projects/
+│   │   ├── route.ts             # MCP projects list
+│   │   └── [id]/
+│   │       └── route.ts         # MCP single project operations
+│   ├── resources/
+│   │   ├── route.ts             # MCP resources list
+│   │   └── [id]/
+│   │       └── route.ts         # MCP single resource operations
+│   └── sync/
+│       └── route.ts             # MCP data synchronization
+└── audit/
+    └── route.ts                 # Audit log access (read-only)
+```
+
+**API Response Format**:
+
+```typescript
+interface ApiResponse<T = any> {
+  success: boolean;
+  data?: T;
+  error?: {
+    code: string;
+    message: string;
+    details?: any;
+  };
+  meta?: {
+    timestamp: string;
+    requestId: string;
+    total?: number; // For list endpoints
+    page?: number; // For pagination
+    limit?: number; // For pagination
+  };
+}
+```
+
+#### 4. MCP Server Architecture Design ✅ COMPLETED
+
+**MCP Server Components**:
+
+```
+MCP Server (Port 3001)
+├── WebSocket Handler
+│   ├── Real-time updates
+│   ├── Client connection management
+│   └── Event broadcasting
+├── HTTP Routes
+│   ├── REST API compatibility
+│   ├── Authentication middleware
+│   └── Rate limiting
+├── Data Validation Layer
+│   ├── Zod schema validation
+│   ├── Request sanitization
+│   └── Response formatting
+├── File System Operations
+│   ├── Atomic JSON read/write
+│   ├── File locking mechanism
+│   └── Backup management
+└── Audit Logging
+    ├── Action tracking
+    ├── Source identification
+    └── Change detection
+```
+
+**MCP Protocol Implementation**:
+
+```typescript
+interface MCPHandler {
+  // Core MCP operations
+  listResources(): Promise<Resource[]>;
+  getResource(id: string): Promise<Resource>;
+  updateResource(id: string, data: Partial<Resource>): Promise<Resource>;
+
+  // Project operations
+  listProjects(): Promise<Project[]>;
+  getProject(id: string): Promise<Project>;
+  updateProject(id: string, data: Partial<Project>): Promise<Project>;
+
+  // Utility operations
+  healthCheck(): Promise<{ status: string; uptime: number }>;
+  getAuditLog(limit?: number): Promise<AuditEntry[]>;
+}
+```
+
+#### 5. Technology Stack Validation
+
+**Current Technology** ✅ **Verified**:
+
+- Next.js 15.2.4 ✅
+- React 19 ✅
+- TypeScript 5 ✅
+- Tailwind CSS 3.4.17 ✅
+- Zod 3.24.1 ✅
+
+**New Dependencies Required** ⏳ **To Install**:
+
+```json
+{
+  "@modelcontextprotocol/sdk": "^1.0.0",
+  "@types/ws": "^8.5.0",
+  "ws": "^8.18.0",
+  "express": "^4.18.0",
+  "@types/express": "^4.17.0",
+  "cors": "^2.8.5",
+  "@types/cors": "^2.8.0",
+  "file-lock": "^1.1.0"
+}
+```
+
+**Technology Validation Checklist**:
+
+- [ ] Install MCP SDK and verify API compatibility
+- [ ] Create hello world MCP server
+- [ ] Test WebSocket connection with MCP client
+- [ ] Verify Express.js integration with Next.js
+- [ ] Test file locking mechanism for concurrent writes
+- [ ] Validate JSON schema with Zod
+
+#### 6. Implementation Strategy ✅ PLANNED
+
+**Phase 1: Data Migration & API Foundation**
+
+1. Extract hardcoded data to JSON files
+
+   - Create `/public/data/projects.json`
+   - Create `/public/data/resources.json`
+   - Create `/public/data/audit-log.json`
+   - Create `/public/data/metadata.json`
+
+2. Build API endpoints
+
+   - Implement projects CRUD operations
+   - Implement resources CRUD operations
+   - Add input validation with Zod
+   - Add error handling and logging
+
+3. Refactor components to use API
+   - Update project page to fetch from API
+   - Update resource page to fetch from API
+   - Add loading states and error boundaries
+   - Implement caching strategy
+
+**Phase 2: MCP Server Implementation**
+
+1. Setup MCP server infrastructure
+
+   - Install and configure MCP SDK
+   - Create Express.js server
+   - Setup WebSocket handlers
+   - Implement authentication middleware
+
+2. MCP protocol integration
+   - Implement MCP resource handlers
+   - Add project/resource operations
+   - Setup real-time synchronization
+   - Add audit logging
+
+**Phase 3: Testing & Validation**
+
+1. API testing
+
+   - Unit tests for all endpoints
+   - Integration tests with Next.js
+   - Error scenario testing
+   - Performance testing
+
+2. MCP integration testing
+   - Test with Claude and other MCP clients
+   - Validate real-time updates
+   - Test concurrent access scenarios
+   - Validate security measures
+
+#### 7. Creative Phases Required ✅ IDENTIFIED
+
+**🎨 UI/UX Design**: **NOT REQUIRED**
+
+- Current UI preserved completely
+- No design decisions needed
+
+**🏗️ Architecture Design**: **REQUIRED**
+
+- MCP server architecture design
+- File system concurrency management
+- Error handling and fallback strategies
+- Real-time synchronization design
+
+**⚙️ Algorithm Design**: **REQUIRED**
+
+- Atomic file operations algorithm
+- Conflict resolution for concurrent writes
+- Caching invalidation strategy
+- Real-time update propagation
+
+#### 8. Risk Mitigation Strategies
+
+**Data Migration Risks**:
+
+- **Risk**: Data loss during hardcoded extraction
+- **Mitigation**: Backup original files, validate schema mapping, gradual migration
+
+**File Concurrency Risks**:
+
+- **Risk**: Concurrent writes corrupting JSON files
+- **Mitigation**: File locking, atomic writes, backup before write
+
+**MCP Integration Risks**:
+
+- **Risk**: Protocol compatibility issues
+- **Mitigation**: Early proof of concept, comprehensive testing, fallback mechanisms
+
+**Performance Risks**:
+
+- **Risk**: API calls slower than hardcoded access
+- **Mitigation**: Aggressive caching, static generation, lazy loading
+
+#### 9. Testing Strategy
+
+**Unit Testing**:
+
+- [ ] API endpoint unit tests (Jest)
+- [ ] Data validation tests (Zod schemas)
+- [ ] File operations tests
+- [ ] MCP handler tests
+
+**Integration Testing**:
+
+- [ ] End-to-end API flows
+- [ ] MCP client integration
+- [ ] Next.js page rendering with API data
+- [ ] Error boundary testing
+
+**Load Testing**:
+
+- [ ] Concurrent file access
+- [ ] Multiple MCP client connections
+- [ ] API endpoint performance
+- [ ] Memory usage monitoring
+
+#### 10. Documentation Plan
+
+- [ ] API documentation (OpenAPI/Swagger)
+- [ ] MCP server setup guide
+- [ ] Data schema documentation
+- [ ] Development workflow guide
+- [ ] Deployment instructions
 
 ---
 
-**NEXT ACTION**: User should type `PLAN` to begin detailed planning phase
+## TECHNOLOGY VALIDATION CHECKPOINT
+
+**Status**: ⏳ **PENDING** - Technology validation required before implementation
+
+**Next Actions**:
+
+1. Install new dependencies and verify compatibility
+2. Create minimal MCP server proof of concept
+3. Test file locking mechanism
+4. Validate API integration with Next.js
+
+---
+
+## IMPLEMENTATION READINESS
+
+**✅ PLAN COMPLETE - READY FOR CREATIVE PHASE**
+
+All Level 3 planning requirements satisfied:
+
+- [x] Comprehensive requirements analysis
+- [x] Detailed component identification (API, MCP server, data layer)
+- [x] Implementation strategy with phased approach
+- [x] Risk mitigation strategies
+- [x] Creative phases identified (Architecture + Algorithm design)
+- [x] Testing strategy defined
+- [x] Documentation plan created
+
+**NEXT RECOMMENDED MODE**: **CREATIVE** (for architecture and algorithm design decisions)
+
+**User Action**: Type `CREATIVE` to begin design decision phase
