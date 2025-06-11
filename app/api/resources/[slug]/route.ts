@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ResourceService } from "@/lib/services/resourceService";
 import { ApiResponse } from "@/lib/types/api";
 import { Resource } from "@/lib/types/resource";
+import { hybridDataService } from "@/lib/services/hybridDataService";
 
 interface RouteParams {
   params: {
@@ -29,11 +29,27 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json(errorResponse, { status: 400 });
     }
 
-    // Get resource by ID from the service
-    const resource = await ResourceService.getResource(slug);
+    // Get resource by ID from the hybrid service
+    const resource = await hybridDataService.getResource(slug);
+
+    if (!resource) {
+      const notFoundResponse: ApiResponse<never> = {
+        success: false,
+        error: {
+          code: "RESOURCE_NOT_FOUND",
+          message: "Resource not found",
+        },
+        meta: {
+          timestamp: new Date().toISOString(),
+          requestId: `req_${Date.now()}`,
+        },
+      };
+
+      return NextResponse.json(notFoundResponse, { status: 404 });
+    }
 
     // Check if resource is published
-    if (resource.metadata.status !== "published") {
+    if (!resource.metadata || resource.metadata.status !== "published") {
       const notFoundResponse: ApiResponse<never> = {
         success: false,
         error: {
@@ -64,7 +80,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     console.error("Error fetching resource:", error);
 
     // Handle specific "not found" error
-    if (error.message.includes("not found")) {
+    if (error.message && error.message.includes("not found")) {
       const notFoundResponse: ApiResponse<never> = {
         success: false,
         error: {

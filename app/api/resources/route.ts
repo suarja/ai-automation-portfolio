@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ResourceService } from "@/lib/services/resourceService";
 import { ApiResponse } from "@/lib/types/api";
 import { Resource } from "@/lib/types/resource";
+import { hybridDataService } from "@/lib/services/hybridDataService";
 
 export async function GET(request: NextRequest) {
   try {
-    // Get all resources from the service
-    const resources = await ResourceService.listResources();
+    // Get all resources from the hybrid service
+    const resources = await hybridDataService.getResources();
 
     // Filter only published resources for frontend consumption
     const publishedResources = resources.filter(
-      (resource) => resource.metadata.status === "published"
+      (resource) =>
+        resource.metadata && resource.metadata.status === "published"
     );
 
     // Create standardized API response

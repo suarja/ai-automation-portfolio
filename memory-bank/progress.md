@@ -357,3 +357,30 @@
 - **Response Time**: Fast JSON file operations
 - **Scalability**: Suitable for portfolio scale
 - **Maintainability**: Clean service layer separation
+
+## REDIS MIGRATION PROGRESS - PHASE 4
+
+### ENDPOINT UPDATES - COMPLETED ✅ (May 31, 2025)
+
+Successfully updated all API endpoints to use the hybridDataService instead of direct JSON file operations:
+
+1. ✅ Updated `/api/projects` endpoint to use hybridDataService
+2. ✅ Updated `/api/projects/[slug]` endpoint to use hybridDataService
+3. ✅ Updated `/api/resources` endpoint to use hybridDataService
+4. ✅ Updated `/api/resources/[slug]` endpoint to use hybridDataService
+5. ✅ Added null metadata checks to prevent errors
+6. ✅ Tested all endpoints - successfully retrieving data from Redis
+7. ✅ Verified error handling works correctly
+
+### CURRENT STATUS:
+
+- **Redis Feature Flags**: All enabled for both read and write operations
+- **MCP Tools**: Working correctly with Redis backend
+- **API Endpoints**: All converted to use hybridDataService with Redis
+- **Production Readiness**: All endpoints ready for deployment with EROFS protection
+
+### NEXT STEPS:
+
+1. Deploy to production
+2. Monitor performance and logs
+3. Complete full migration to Redis-only mode when stable

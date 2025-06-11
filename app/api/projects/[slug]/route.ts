@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ProjectService } from "@/lib/services/projectService";
 import { ApiResponse } from "@/lib/types/api";
 import { Project } from "@/lib/types/project";
+import { hybridDataService } from "@/lib/services/hybridDataService";
 
 interface RouteParams {
   params: {
@@ -29,11 +29,27 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json(errorResponse, { status: 400 });
     }
 
-    // Get project by ID from the service
-    const project = await ProjectService.getProject(slug);
+    // Get project by ID from the hybrid service
+    const project = await hybridDataService.getProject(slug);
+
+    if (!project) {
+      const notFoundResponse: ApiResponse<never> = {
+        success: false,
+        error: {
+          code: "PROJECT_NOT_FOUND",
+          message: "Project not found",
+        },
+        meta: {
+          timestamp: new Date().toISOString(),
+          requestId: `req_${Date.now()}`,
+        },
+      };
+
+      return NextResponse.json(notFoundResponse, { status: 404 });
+    }
 
     // Check if project is published
-    if (project.metadata.status !== "published") {
+    if (!project.metadata || project.metadata.status !== "published") {
       const notFoundResponse: ApiResponse<never> = {
         success: false,
         error: {
@@ -64,7 +80,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     console.error("Error fetching project:", error);
 
     // Handle specific "not found" error
-    if (error.message.includes("not found")) {
+    if (error.message && error.message.includes("not found")) {
       const notFoundResponse: ApiResponse<never> = {
         success: false,
         error: {
