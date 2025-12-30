@@ -89,15 +89,18 @@ app/api/
 ├── resources/
 │   ├── route.ts              # GET /api/resources
 │   └── [slug]/route.ts       # GET/PUT/DELETE single resource
-└── (legacy endpoints - disabled)
-    ├── mcp/                  # MCP integration (not used)
-    ├── migration/            # Redis migration (not used)
-    └── test-hybrid/          # Testing endpoint (not used)
+├── blog/
+│   ├── route.ts              # GET /api/blog (list all posts)
+│   └── [slug]/route.ts       # GET /api/blog/[slug] (single post metadata)
+└── _legacy/                  # Disabled legacy routes (ignored by Next.js)
+    ├── mcp/                  # MCP integration (reference only)
+    ├── migration/            # Redis migration tools (reference only)
+    └── test-hybrid/          # Hybrid service testing (reference only)
 ```
 
 All active API routes follow this pattern:
-1. Import appropriate service (`ProjectService`, `ResourceService`)
-2. Call service methods to read/write JSON files
+1. Import appropriate service (`ProjectService`, `ResourceService`, or MDX for blog)
+2. Call service methods to read/write JSON files or import MDX modules
 3. Return standardized `ApiResponse` format
 4. Handle errors with proper HTTP status codes
 
@@ -239,10 +242,10 @@ From `.cursor/rules`:
 **Active Features:**
 - ✅ Projects section with JSON data
 - ✅ Resources section with JSON data
+- ✅ Blog section with MDX support
+- ✅ About/Skills dedicated page
 - ✅ Bento-style card layout
 - ✅ Dark theme support
-- ⚠️ Blog section (to be implemented with MDX)
-- ⚠️ About/Skills section (to be added)
 
 **Disabled/Legacy (Do Not Use):**
 - ❌ Redis data layer
@@ -253,10 +256,12 @@ From `.cursor/rules`:
 **Critical Files for Data Operations:**
 1. `lib/services/projectService.ts` - Project data management
 2. `lib/services/resourceService.ts` - Resource data management
-3. `lib/services/fileOperations.ts` - Safe file read/write
-4. `app/api/*/route.ts` - API endpoints
-5. `hooks/use-*.ts` - Frontend data fetching
-6. `public/data/*.json` - Content storage
+3. `lib/blog.ts` - Blog post utilities (MDX)
+4. `lib/services/fileOperations.ts` - Safe file read/write
+5. `app/api/*/route.ts` - API endpoints (projects, resources, blog)
+6. `hooks/use-*.ts` - Frontend data fetching
+7. `public/data/*.json` - Projects and resources storage
+8. `content/blog/*.mdx` - Blog posts storage
 
 ## Project Documentation System
 
