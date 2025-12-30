@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "@/lib/types/api";
 import { Resource } from "@/lib/types/resource";
-import { hybridDataService } from "@/lib/services/hybridDataService";
+import { ResourceService } from "@/lib/services/resourceService";
 
 export async function GET(request: NextRequest) {
   try {
-    // Get all resources from the hybrid service
-    const resources = await hybridDataService.getResources();
+    // Get all resources from JSON service
+    const resources = await ResourceService.listResources();
 
     // Filter only published resources for frontend consumption
     const publishedResources = resources.filter(

@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ApiResponse } from "@/lib/types/api";
 import { Project } from "@/lib/types/project";
-import { hybridDataService } from "@/lib/services/hybridDataService";
+import { ProjectService } from "@/lib/services/projectService";
 
 export async function GET(request: NextRequest) {
   try {
-    // Get all projects from the hybrid service
-    const projects = await hybridDataService.getProjects();
+    // Get all projects from JSON service
+    const projects = await ProjectService.listProjects();
 
     // Filter only published projects for frontend consumption
     const publishedProjects = projects.filter(
