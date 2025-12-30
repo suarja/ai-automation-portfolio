@@ -18,7 +18,7 @@ export default async function BlogPage() {
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         <Link
           href="/"
-          className="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors"
+          className="inline-flex  z-20 items-center text-gray-400 hover:text-white mb-8 transition-colors"
         >
           <ChevronLeft className="mr-1 h-4 w-4" />
           Retour à l'accueil
@@ -26,9 +26,9 @@ export default async function BlogPage() {
 
         {/* Hero Section with gradient */}
         <div className="mb-12 relative">
-          <div className="absolute -top-20 -left-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
-          <div className="absolute -top-10 -right-10 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl"></div>
-          <div className="relative">
+          <div className="absolute -top-20 -left-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute -top-10 -right-10 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-3 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-2xl border border-primary/30">
                 <BookOpen className="w-8 h-8 text-primary" />

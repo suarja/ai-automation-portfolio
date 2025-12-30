@@ -132,12 +132,7 @@ export default function Home() {
 
         {/* Blog Section */}
         <section className="mt-16">
-          <div className="flex items-center justify-between mb-6">
-            <SectionHeader title="Blog" />
-            <Button asChild variant="ghost" className="rounded-full">
-              <Link href="/blog">Voir tous les articles →</Link>
-            </Button>
-          </div>
+          <SectionHeader title="Blog" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {postsLoading
