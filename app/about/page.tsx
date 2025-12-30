@@ -4,9 +4,23 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
 export const metadata = {
-  title: 'À propos - Jason Suarez',
+  title: 'À propos - Jason Suarez | Développeur Fullstack',
   description:
-    'Découvrez mon parcours, mes compétences et comment je peux vous aider à automatiser votre business',
+    'Développeur fullstack spécialisé en React, TypeScript et Symfony. Découvrez mon parcours de prof d\'espagnol à développeur.',
+  openGraph: {
+    title: 'À propos - Jason Suarez',
+    description: 'Développeur fullstack - React, TypeScript, Symfony',
+    type: 'profile',
+    url: 'https://media.jason-suarez.com/about',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'À propos - Jason Suarez',
+    description: 'Développeur fullstack - React, TypeScript, Symfony',
+  },
+  alternates: {
+    canonical: 'https://media.jason-suarez.com/about',
+  },
 };
 
 const skills = {

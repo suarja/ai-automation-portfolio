@@ -8,25 +8,25 @@ import { FeatureRequestProvider } from "@/contexts/feature-requests-context";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Jason Suárez | Automatisations IA sur mesure & workflows créatifs",
+  title: "Jason Suarez | Développeur Fullstack",
   description:
-    "Je conçois des systèmes automatisés avec IA pour les freelances et petites équipes. Automatisations marketing, CRM, outils sur mesure. Moins de tâches, plus d’impact.",
+    "Développeur fullstack spécialisé en React, TypeScript et Symfony. Création d'applications web modernes.",
   metadataBase: new URL("https://media.jason-suarez.com"),
-  authors: [{ name: "Jason Suárez" }],
+  authors: [{ name: "Jason Suarez" }],
   openGraph: {
     type: "website",
     locale: "fr_FR",
     url: "https://media.jason-suarez.com",
-    siteName: "Jason Suárez",
-    title: "Jason Suárez | Automatisations IA sur mesure & workflows créatifs",
+    siteName: "Jason Suarez",
+    title: "Jason Suarez | Développeur Fullstack",
     description:
-      "Automatisation de vos tâches, intégration d’agents IA, systèmes sur mesure avec une approche artisanale et orientée ROI. Fait pour vous, pas pour la masse.",
+      "Développeur fullstack - React, TypeScript, Symfony",
     images: [
       {
         url: "/images/og-jason-suarez.png",
         width: 1200,
         height: 630,
-        alt: "Jason Suárez – Créateur de workflows IA sur mesure",
+        alt: "Jason Suarez – Développeur Fullstack",
       },
     ],
   },
@@ -37,25 +37,22 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@swarecito",
     creator: "@swarecito",
-    title: "Jason Suarez | Automatisations IA sur mesure & workflows créatifs",
+    title: "Jason Suarez | Développeur Fullstack",
     description:
-      "Automatisation de vos tâches, intégration d’agents IA, systèmes sur mesure avec une approche artisanale et orientée ROI. Fait pour vous, pas pour la masse.",
+      "Développeur fullstack - React, TypeScript, Symfony",
     images: ["/images/og-jason-suarez.png"],
   },
   keywords: [
-    "automatisation IA",
-    "freelance",
-    "no-code",
-    "workflows n8n",
-    "créateur digital",
-    "Jason Suárez",
-    "system design",
-    "lead magnet",
-    "smart CRM",
-    "automation haut de gamme",
-    "agent IA",
-    "TikTok automation",
-    "back-end créatif",
+    "développeur fullstack",
+    "react developer",
+    "typescript",
+    "symfony developer",
+    "next.js",
+    "développeur freelance",
+    "react native",
+    "Jason Suarez",
+    "développement web",
+    "applications web",
   ],
   icons: {
     icon: [

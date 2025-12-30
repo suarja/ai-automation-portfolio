@@ -299,6 +299,67 @@ When working on significant features, reference these documentation files for co
 3. Keep files under 150 lines - refactor if exceeded
 4. Maintain mobile-first responsive design
 
+## Personal Knowledge Base API
+
+**URL:** `http://localhost:8080/`
+
+This project has access to a personal Obsidian vault API for accessing notes, documentation, and personal knowledge.
+
+**Vault Location:** `/Users/mata/App/PersonalDocs`
+
+### Available Endpoints
+
+| Method | Endpoint | Description | Example |
+|--------|----------|-------------|---------|
+| GET | `/` | API information and quick start | `http://localhost:8080/` |
+| GET | `/docs` | Complete API documentation | `http://localhost:8080/docs` |
+| GET | `/health` | Health check | `http://localhost:8080/health` |
+| GET | `/files` | List all markdown files in vault | `http://localhost:8080/files` |
+| GET | `/files/*` | Get specific file with parsed frontmatter | `http://localhost:8080/files/Identity/profile.md` |
+| GET | `/search?q=query` | Search across all content | `http://localhost:8080/search?q=blog` |
+| GET | `/by-type/:type` | Filter by YAML frontmatter type | `http://localhost:8080/by-type/log` |
+| GET | `/folder/:folder` | List files in specific folder | `http://localhost:8080/folder/1-Active` |
+
+### Response Format
+
+All endpoints return JSON. File responses include:
+- `path` - File path relative to vault root
+- `frontmatter` - Parsed YAML frontmatter (if present)
+- `content` - File content without frontmatter
+- `raw` - Complete raw file content
+
+### Usage Tips
+
+1. **Discovery**: Start with `GET /files` to see available documents
+2. **Search**: Use `GET /search?q=...` to find relevant content
+3. **Filter**: Use `GET /by-type/...` to filter by document type (log, project, etc.)
+4. **Context**: Files may contain strategic direction, editorial content, project notes, etc.
+
+### Common Use Cases
+
+- **Content Updates**: Fetch latest project direction from notes
+- **Editorial Strategy**: Access content strategy documents
+- **Personal Context**: Retrieve profile, skills, or project information
+- **Research**: Search for specific topics or keywords
+
+### Example Usage
+
+```javascript
+// List all files
+const files = await fetch('http://localhost:8080/files').then(r => r.json());
+
+// Get specific file
+const profile = await fetch('http://localhost:8080/files/Identity/profile.md').then(r => r.json());
+
+// Search for blog-related content
+const results = await fetch('http://localhost:8080/search?q=blog').then(r => r.json());
+
+// Get all active projects
+const active = await fetch('http://localhost:8080/folder/1-Active').then(r => r.json());
+```
+
+**Note:** This API runs locally and is not deployed to production. Use it for development and content management tasks.
+
 ## Deployment Notes
 
 **Platform:** Vercel

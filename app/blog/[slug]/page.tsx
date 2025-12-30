@@ -18,6 +18,53 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+
+  try {
+    const mdxModule = await import(`@/content/blog/${slug}.mdx`);
+    const metadata = mdxModule.metadata;
+
+    return {
+      title: `${metadata.title} | Jason Suarez`,
+      description: metadata.description,
+      authors: [{ name: metadata.author }],
+      openGraph: {
+        title: metadata.title,
+        description: metadata.description,
+        type: 'article',
+        publishedTime: metadata.publishedAt,
+        modifiedTime: metadata.updatedAt || metadata.publishedAt,
+        authors: [metadata.author],
+        tags: metadata.tags,
+        images: metadata.coverImage ? [
+          {
+            url: metadata.coverImage,
+            width: 1200,
+            height: 630,
+            alt: metadata.title,
+          }
+        ] : [],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: metadata.title,
+        description: metadata.description,
+        creator: '@swarecito',
+        images: metadata.coverImage ? [metadata.coverImage] : [],
+      },
+      alternates: {
+        canonical: `https://media.jason-suarez.com/blog/${slug}`,
+      },
+    };
+  } catch (error) {
+    return {
+      title: 'Article non trouvé | Jason Suarez',
+      description: 'Cet article n\'existe pas.',
+    };
+  }
+}
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
 
@@ -34,8 +81,40 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: metadata.title,
+    description: metadata.description,
+    image: metadata.coverImage || '',
+    datePublished: metadata.publishedAt,
+    dateModified: metadata.updatedAt || metadata.publishedAt,
+    author: {
+      '@type': 'Person',
+      name: metadata.author,
+      url: 'https://media.jason-suarez.com',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Jason Suarez',
+      url: 'https://media.jason-suarez.com',
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://media.jason-suarez.com/blog/${slug}`,
+    },
+    keywords: metadata.tags.join(', '),
+  };
+
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white">
+      {/* JSON-LD structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Background gradients */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>

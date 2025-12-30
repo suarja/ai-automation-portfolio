@@ -5,9 +5,23 @@ import { getBlogPosts } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
 
 export const metadata = {
-  title: 'Blog - Articles & Tutoriels',
+  title: 'Blog - Jason Suarez | Articles & Tutoriels',
   description:
-    'Articles techniques, réflexions et tutoriels sur l\'automatisation, l\'IA et le développement web',
+    'Articles techniques sur le développement web, React, TypeScript, et l\'apprentissage du code.',
+  openGraph: {
+    title: 'Blog - Jason Suarez',
+    description: 'Articles techniques sur le développement web et l\'apprentissage du code',
+    type: 'website',
+    url: 'https://media.jason-suarez.com/blog',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Blog - Jason Suarez',
+    description: 'Articles techniques sur le développement web',
+  },
+  alternates: {
+    canonical: 'https://media.jason-suarez.com/blog',
+  },
 };
 
 export default async function BlogPage() {
