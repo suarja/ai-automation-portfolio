@@ -227,7 +227,7 @@ export default function Home() {
             <h3 className="text-xl font-bold mt-6 mb-3">
               🚀 Ce que je vous apporte :
             </h3>
-            <ul className="list-disc list-inside text-gray-300 space-y-2">
+            <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
               <li>
                 <strong>Workflows IA & automation</strong> sur-mesure, conçus
                 autour de vos vrais besoins métier
@@ -249,6 +249,12 @@ export default function Home() {
                 sans vous noyer dans la technique
               </li>
             </ul>
+
+            <div className="flex justify-center">
+              <Button asChild variant="outline" size="lg" className="rounded-full">
+                <Link href="/about">En savoir plus →</Link>
+              </Button>
+            </div>
           </div>
         </section>
 
