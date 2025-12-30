@@ -14,10 +14,14 @@ export default function ProfileHeader() {
         />
       </div>
 
-      <h1 className="mt-4 text-3xl font-bold">Jason Suárez</h1>
+      <h1 className="mt-4 text-3xl font-bold">Jason Suarez</h1>
+
+      <p className="mt-2 text-lg font-semibold text-white">
+        Développeur Fullstack
+      </p>
 
       <p className="mt-2 text-gray-400 max-w-md">
-        Le temps, c'est de l'argent. Automatise les deux.
+        React • TypeScript • Symfony • Next.js
       </p>
 
       <div className="flex gap-3 mt-4">

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ChevronLeft, Code, Cpu, Zap, Target, Users, Rocket } from 'lucide-react';
+import { ChevronLeft, Code } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
@@ -24,78 +24,29 @@ export const metadata = {
 };
 
 const skills = {
-  'Automatisation & IA': [
-    'n8n',
-    'Make',
-    'Zapier',
-    'Claude AI',
-    'GPT-4',
-    'Agents IA',
-    'Workflows intelligents',
+  'Frontend': [
+    'React / Next.js',
+    'TypeScript / JavaScript',
+    'React Native',
+    'Tailwind CSS',
   ],
-  'Développement': [
-    'TypeScript',
-    'Next.js',
-    'React',
-    'Node.js',
-    'Python',
-    'API Development',
+  'Backend': [
+    'Symfony (PHP)',
+    'Node.js / Express',
+    'RESTful APIs',
   ],
-  'No-Code / Low-Code': [
-    'Airtable',
-    'Notion',
-    'Webflow',
-    'Bubble',
-    'Glide',
+  'Base de données': [
+    'PostgreSQL',
+    'MySQL',
+    'Redis',
   ],
-  'Intégrations': [
-    'Stripe',
-    'SendGrid',
-    'Calendly',
-    'CRM Integration',
-    'Webhooks',
-    'REST APIs',
+  'Outils': [
+    'Git / GitHub',
+    'Docker',
+    'n8n (automatisation)',
+    'IA (Claude, GPT-4)',
   ],
 };
-
-const services = [
-  {
-    icon: Zap,
-    title: 'Automatisation Stratégique',
-    description:
-      'Je conçois des workflows intelligents qui éliminent les tâches répétitives et libèrent votre temps pour ce qui compte vraiment.',
-  },
-  {
-    icon: Cpu,
-    title: 'Intelligence Artificielle',
-    description:
-      'Intégration d\'agents IA personnalisés dans vos processus métier pour augmenter votre productivité et améliorer vos décisions.',
-  },
-  {
-    icon: Code,
-    title: 'Systèmes Backend Sur-Mesure',
-    description:
-      'Développement de solutions techniques adaptées à vos besoins spécifiques, qui évoluent avec votre business.',
-  },
-  {
-    icon: Target,
-    title: 'Optimisation de Processus',
-    description:
-      'Analyse et refonte de vos systèmes existants pour éliminer les frictions et maximiser l\'efficacité.',
-  },
-  {
-    icon: Users,
-    title: 'Accompagnement Personnalisé',
-    description:
-      'Formation et support pour que vous gardiez la maîtrise de vos outils sans vous noyer dans la technique.',
-  },
-  {
-    icon: Rocket,
-    title: 'Mise en Production Rapide',
-    description:
-      'Des solutions concrètes et opérationnelles, déployées rapidement pour un impact immédiat sur votre business.',
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -113,60 +64,32 @@ export default function AboutPage() {
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">À propos</h1>
           <p className="text-xl text-gray-400">
-            Automatisation • Intelligence Artificielle • Développement
+            Développeur Fullstack
           </p>
         </div>
 
-        {/* Introduction */}
+        {/* Parcours */}
         <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 mb-8">
-          <h2 className="text-2xl font-bold mb-4">Qui suis-je ?</h2>
-          <div className="space-y-4 text-gray-300">
+          <h2 className="text-2xl font-bold mb-4">Parcours</h2>
+          <div className="space-y-3 text-gray-300">
             <p>
-              🧠 <strong>J'aide les indépendants, artisans et petites équipes ambitieuses</strong> à
-              reprendre le contrôle sur leur temps, leurs outils, et leur croissance.
+              Je suis né en République Dominicaine, arrivé en France à 10 ans.
             </p>
-            <p>
-              En combinant <strong>automatisation stratégique</strong>,{' '}
-              <strong>intelligence artificielle intégrée</strong> et{' '}
-              <strong>systèmes backend sur-mesure</strong>, je conçois des agents et des workflows
-              qui travaillent pour vous — même quand vous dormez.
-            </p>
-            <p>
-              🎯 Mon objectif : vous permettre de vous concentrer sur ce qui crée réellement de la
-              valeur — pendant que je m'occupe du reste.
-            </p>
+
+            <div className="space-y-2">
+              <p><strong>2020</strong> : CAPES d'espagnol, prof puis steward chez Ryanair et Iberia</p>
+              <p><strong>2022</strong> : Reconversion dans le développement web</p>
+              <p><strong>2024</strong> : Dev Frontend @ Just Gains (startup fitness US)</p>
+              <p><strong>2024-2025</strong> : Spécialisation blockchain et sécurité smart contracts (6 mois)</p>
+              <p><strong>Avril 2025</strong> : Lancement TikTok @swarecito (~2000 followers)</p>
+              <p><strong>Septembre 2025</strong> : Dev Fullstack @ C'CIN Chartres (Symfony/React)</p>
+            </div>
           </div>
         </div>
 
-        {/* Services */}
+        {/* Stack Technique */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">🚀 Ce que je vous apporte</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <div
-                  key={index}
-                  className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-full bg-primary/10 border border-primary/20">
-                      <Icon className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold mb-2">{service.title}</h3>
-                      <p className="text-gray-400 text-sm">{service.description}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Skills */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">💡 Compétences Techniques</h2>
+          <h2 className="text-3xl font-bold mb-6">Stack Technique</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Object.entries(skills).map(([category, items]) => (
               <div
@@ -174,37 +97,167 @@ export default function AboutPage() {
                 className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6"
               >
                 <h3 className="text-lg font-bold mb-4">{category}</h3>
-                <div className="flex flex-wrap gap-2">
+                <ul className="space-y-2 text-gray-300">
                   {items.map((skill) => (
-                    <Badge
-                      key={skill}
-                      variant="secondary"
-                      className="bg-[#222] border border-[#333] rounded-full"
-                    >
-                      {skill}
-                    </Badge>
+                    <li key={skill}>• {skill}</li>
                   ))}
-                </div>
+                </ul>
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTA */}
+        {/* Langues */}
+        <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 mb-8">
+          <h2 className="text-2xl font-bold mb-4">Langues</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-gray-300">
+            <div>
+              <p className="text-xl">🇪🇸 <strong>Espagnol</strong></p>
+              <p className="text-sm text-gray-400">Natif</p>
+            </div>
+            <div>
+              <p className="text-xl">🇫🇷 <strong>Français</strong></p>
+              <p className="text-sm text-gray-400">Natif</p>
+            </div>
+            <div>
+              <p className="text-xl">🇬🇧 <strong>Anglais</strong></p>
+              <p className="text-sm text-gray-400">Professionnel</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Projets */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold mb-6">Projets</h2>
+
+          {/* SWE Wannabe */}
+          <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 mb-6">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="p-3 rounded-full bg-primary/10 border border-primary/20">
+                <Code className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-2">SWE Wannabe</h3>
+                <p className="text-gray-400 text-sm">En construction</p>
+              </div>
+            </div>
+
+            <p className="text-gray-300 mb-4">
+              Plateforme d'apprentissage CLI pour développeurs juniors.
+            </p>
+
+            <p className="text-gray-300 mb-4">
+              <strong>Objectif</strong> : Apprendre par la pratique avec des projets réels, pas des tutoriels.
+            </p>
+
+            <ul className="list-disc list-inside text-gray-300 space-y-2">
+              <li>Exercices basés sur des problèmes métier réels</li>
+              <li>Tests automatisés pour valider les solutions</li>
+              <li>Progression guidée du junior au niveau intermédiaire</li>
+            </ul>
+          </div>
+
+          {/* @swarecito */}
+          <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8">
+            <h3 className="text-2xl font-bold mb-4">@swarecito (TikTok/YouTube)</h3>
+
+            <p className="text-gray-300 mb-4">
+              Contenu sur l'apprentissage du développement et l'utilisation de l'IA.
+            </p>
+
+            <p className="text-gray-300 mb-3"><strong>Sujets</strong> :</p>
+            <ul className="list-disc list-inside text-gray-300 space-y-2">
+              <li>Apprendre à coder en 2025</li>
+              <li>IA comme outil, pas comme remplacement</li>
+              <li>Reconversion dans la tech</li>
+              <li>Progression junior → senior</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Services */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold mb-6">Services</h2>
+
+          {/* Développement Web */}
+          <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 mb-6">
+            <h3 className="text-2xl font-bold mb-4">Développement Web</h3>
+
+            <p className="text-gray-300 mb-4">
+              Je développe des applications web modernes et robustes.
+            </p>
+
+            <p className="text-gray-300 mb-3">
+              <strong>Technologies</strong> : React, TypeScript, Next.js, Symfony, React Native
+            </p>
+
+            <p className="text-gray-300 mb-3"><strong>Je peux vous aider sur</strong> :</p>
+            <ul className="list-disc list-inside text-gray-300 space-y-2">
+              <li>Applications web complètes (frontend + backend)</li>
+              <li>APIs RESTful</li>
+              <li>Intégrations IA/automatisation</li>
+              <li>Maintenance et évolution de projets existants</li>
+            </ul>
+          </div>
+
+          {/* Contenu & Mentorat */}
+          <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8">
+            <h3 className="text-2xl font-bold mb-4">Contenu & Mentorat</h3>
+
+            <div className="space-y-3 text-gray-300">
+              <p>
+                <strong>Contenu</strong> : Création de vidéos/articles techniques
+              </p>
+              <p>
+                <strong>Mentorat</strong> : Accompagnement juniors et reconversions (ponctuellement)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Disponibilité */}
+        <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 mb-8">
+          <h2 className="text-2xl font-bold mb-4">Disponibilité</h2>
+          <div className="space-y-2 text-gray-300">
+            <p><strong>Actuellement</strong> : En poste à temps plein</p>
+            <p><strong>Freelance</strong> : Missions ponctuelles possibles</p>
+            <p><strong>Projets collaboratifs</strong> : Ouvert aux discussions</p>
+          </div>
+        </div>
+
+        {/* Contact */}
         <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Prêt à automatiser votre business ?</h2>
-          <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-            Discutons de votre projet et voyons ensemble comment je peux vous aider à gagner du
-            temps et à augmenter votre productivité.
-          </p>
+          <h2 className="text-2xl font-bold mb-4">Contact</h2>
+
+          <div className="space-y-3 text-gray-300 mb-6">
+            <p>
+              <strong>TikTok</strong> :{' '}
+              <a href="https://tiktok.com/@swarecito" className="text-primary hover:underline">
+                @swarecito
+              </a>
+            </p>
+            <p>
+              <strong>GitHub</strong> :{' '}
+              <a href="https://github.com/suarja" className="text-primary hover:underline">
+                github.com/suarja
+              </a>
+            </p>
+            <p>
+              <strong>LinkedIn</strong> :{' '}
+              <a href="https://linkedin.com/in/jason-suarez" className="text-primary hover:underline">
+                Jason Suarez
+              </a>
+            </p>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full">
               <Link href="https://cal.com/jasonsuarez/booking">
-                Réserver un appel découverte
+                Discutons de votre projet
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-full">
-              <Link href="/">Voir mes projets</Link>
+              <Link href="/">Retour à l'accueil</Link>
             </Button>
           </div>
         </div>
