@@ -63,7 +63,7 @@ export default function LinkCard({
               variant="outline"
               className="rounded-full border-[#333] bg-[#111] hover:bg-[#222] shadow-md"
             >
-              <Link href={buttonLink}>{buttonText}</Link>
+              <Link href={buttonLink} target="_blank" rel="noopener noreferrer">{buttonText}</Link>
             </Button>
           )}
         </div>

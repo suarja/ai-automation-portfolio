@@ -27,7 +27,7 @@ export default function CallToAction() {
             size="lg"
             className="rounded-full bg-white text-purple-900 hover:bg-gray-200 shadow-[0_5px_20px_rgba(255,255,255,0.3)]"
           >
-            <Link href="https://cal.com/jasonsuarez/booking">
+            <Link href="https://cal.com/jasonsuarez/booking" target="_blank" rel="noopener noreferrer">
               Réserver un appel
             </Link>
           </Button>

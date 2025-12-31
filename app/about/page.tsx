@@ -232,19 +232,19 @@ export default function AboutPage() {
           <div className="space-y-3 text-gray-300 mb-6">
             <p>
               <strong>TikTok</strong> :{' '}
-              <a href="https://tiktok.com/@swarecito" className="text-primary hover:underline">
+              <a href="https://tiktok.com/@swarecito" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                 @swarecito
               </a>
             </p>
             <p>
               <strong>GitHub</strong> :{' '}
-              <a href="https://github.com/suarja" className="text-primary hover:underline">
+              <a href="https://github.com/suarja" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                 github.com/suarja
               </a>
             </p>
             <p>
               <strong>LinkedIn</strong> :{' '}
-              <a href="https://linkedin.com/in/jason-suarez" className="text-primary hover:underline">
+              <a href="https://linkedin.com/in/jason-suarez" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                 Jason Suarez
               </a>
             </p>
@@ -252,7 +252,7 @@ export default function AboutPage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full">
-              <Link href="https://cal.com/jasonsuarez/booking">
+              <Link href="https://cal.com/jasonsuarez/booking" target="_blank" rel="noopener noreferrer">
                 Discutons de votre projet
               </Link>
             </Button>

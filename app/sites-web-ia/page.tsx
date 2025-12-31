@@ -57,6 +57,7 @@ export default function SitesWebIAPage() {
                   href="https://cal.com/jasonsuarez/session-decouverte-site-ia"
                   className="flex items-center"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Calendar className="mr-2 h-5 w-5" />
                   Réserve ta session découverte
@@ -498,6 +499,7 @@ export default function SitesWebIAPage() {
                 href="https://cal.com/jasonsuarez/session-decouverte-site-ia"
                 className="flex items-center"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <Calendar className="mr-2 h-5 w-5" />
                 Réserve ta session découverte

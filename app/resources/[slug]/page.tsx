@@ -223,7 +223,7 @@ export default function ResourcePage({ params }: ResourcePageProps) {
                 Une question sur cette ressource ? Je suis là pour vous aider !
               </p>
               <Button asChild variant="outline" className="w-full rounded-full">
-                <Link href="https://cal.com/jasonsuarez/booking">
+                <Link href="https://cal.com/jasonsuarez/booking" target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="mr-2 h-4 w-4" />
                   Prendre RDV
                 </Link>

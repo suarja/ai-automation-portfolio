@@ -218,12 +218,11 @@ export default function Home() {
             />
 
             <LinkCard
-              featureRequest
-              title="Ma Communauté"
-              description="Rejoins ma commu sur l'automatisation & l'IA"
+              title="TikTok @swarecito"
+              description="Suis mon parcours et mes conseils tech"
               icon="/images/icons/star-badge.png"
-              buttonText="Rejoindre"
-              buttonLink="#"
+              buttonText="Suivre"
+              buttonLink="https://www.tiktok.com/@swarecito"
               gradient="from-purple-900 to-indigo-800"
             />
 

@@ -309,7 +309,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             l'automatiser.
           </p>
           <Button asChild size="lg" className="rounded-full">
-            <Link href="https://cal.com/jasonsuarez/booking">
+            <Link href="https://cal.com/jasonsuarez/booking" target="_blank" rel="noopener noreferrer">
               Réserver un appel découverte
             </Link>
           </Button>

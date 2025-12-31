@@ -50,6 +50,7 @@ export default function AuditAutomationPage() {
                   href="https://cal.com/jasonsuarez/audit-automatisation"
                   className="flex items-center"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Calendar className="mr-2 h-5 w-5" />
                   Réserve ton audit gratuit
@@ -262,6 +263,7 @@ export default function AuditAutomationPage() {
                 href="https://cal.com/jasonsuarez/audit-automatisation"
                 className="flex items-center "
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <Calendar className="mr-2 h-5 w-5" />
                 Réserve ton audit gratuit

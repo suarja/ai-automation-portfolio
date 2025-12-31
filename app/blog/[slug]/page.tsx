@@ -209,6 +209,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </p>
             <Link
               href="https://cal.com/jasonsuarez/booking"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-primary hover:text-primary/80 text-sm font-semibold transition-colors"
             >
               Réserver un appel découverte →
