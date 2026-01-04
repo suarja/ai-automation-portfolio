@@ -75,14 +75,14 @@
   },
   {
     "id": "prompts-claude-dev",
-    "title": "Prompts Claude pour Développeurs",
-    "description": "Collection de prompts optimisés pour Claude - Développement, Debug et Architecture",
-    "longDescription": "Une collection complète de prompts système pour Claude, spécialement conçue pour les développeurs. Optimisez vos interactions avec l'IA pour le développement, le debugging, l'architecture et bien plus.",
+    "title": "Template CLAUDE.md pour Développeurs",
+    "description": "Fichier CLAUDE.md complet et prêt à utiliser pour vos projets de développement",
+    "longDescription": "Un template CLAUDE.md professionnel, basé sur les meilleures pratiques de context engineering. Copiez-le dans votre projet et adaptez-le à vos besoins pour maximiser l'efficacité de Claude Code.",
     "image": "/images/icons/folder.png",
     "tags": [
       "IA",
       "Claude",
-      "Prompts"
+      "CLAUDE.md"
     ],
     "price": "Gratuit",
     "downloadLink": "/resources/prompts-claude-dev",

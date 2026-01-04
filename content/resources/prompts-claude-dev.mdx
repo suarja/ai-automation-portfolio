@@ -1,273 +1,597 @@
 export const metadata = {
-  title: "Prompts Claude pour Développeurs",
-  description: "Collection de prompts optimisés pour Claude - Développement, Debug et Architecture",
-  longDescription: "Une collection complète de prompts système pour Claude, spécialement conçue pour les développeurs. Optimisez vos interactions avec l'IA pour le développement, le debugging, l'architecture et bien plus.",
+  title: "Template CLAUDE.md pour Développeurs",
+  description: "Fichier CLAUDE.md complet et prêt à utiliser pour vos projets de développement",
+  longDescription: "Un template CLAUDE.md professionnel, basé sur les meilleures pratiques de context engineering. Copiez-le dans votre projet et adaptez-le à vos besoins pour maximiser l'efficacité de Claude Code.",
   image: "/images/icons/folder.png",
-  tags: ["IA", "Claude", "Prompts", "Développement"],
+  tags: ["IA", "Claude", "CLAUDE.md", "Développement"],
   price: "Gratuit",
   featured: true,
   coverImage: "/images/icons/folder.png",
   gallery: []
 }
 
-# Prompts Claude pour Développeurs
+# Template CLAUDE.md pour Développeurs
 
-Bienvenue dans cette collection de prompts système optimisés pour Claude, spécialement conçue pour les développeurs. Ces prompts vous aideront à tirer le meilleur parti de Claude dans vos tâches quotidiennes de développement.
+Un fichier `CLAUDE.md` est la **source de vérité centrale** pour Claude Code. Il fournit le contexte, les standards et les règles qui guident l'IA dans votre projet.
 
-## 🚀 Prompt d'Initialisation de Projet
+## Qu'est-ce qu'un fichier CLAUDE.md ?
 
-Utilisez ce prompt pour démarrer un nouveau projet avec Claude :
+- **Emplacement** : Racine de votre projet
+- **Format** : Markdown simple
+- **Chargement** : Automatique par Claude Code au démarrage
+- **Contenu** : Architecture, standards, commandes, règles
+- **Stack-agnostic** : Adaptable à React, Vue, Node.js, Python, etc.
 
-```
-Tu es un développeur expert fullstack avec une expertise en [technologies].
+## Comment utiliser ce template
 
-Contexte du projet :
-- Type : [application web / API / mobile / etc.]
-- Stack technique : [Next.js, React, TypeScript, etc.]
-- Objectif : [description de l'objectif]
-
-Tâches :
-1. Propose une architecture de projet adaptée
-2. Crée la structure de dossiers
-3. Configure les outils de développement (ESLint, Prettier, etc.)
-4. Génère les fichiers de configuration nécessaires
-
-Principes à respecter :
-- Code propre et maintenable
-- Performance optimale
-- Sécurité par design
-- Tests inclus
-
-Commence par me proposer l'architecture et explique tes choix.
-```
-
-## 🐛 Prompt de Debug et Résolution de Problèmes
-
-Pour debugger efficacement avec Claude :
-
-```
-Je rencontre un problème avec mon code. Voici les détails :
-
-**Erreur rencontrée :**
-[Copier le message d'erreur complet]
-
-**Code concerné :**
-[Copier le code qui pose problème]
-
-**Contexte :**
-- Environnement : [dev/prod]
-- Version : [numéros de version des dépendances]
-- Comportement attendu : [description]
-- Comportement observé : [description]
-
-**Ce que j'ai déjà essayé :**
-1. [Action 1]
-2. [Action 2]
-
-Analyse le problème étape par étape et propose des solutions, en commençant par les plus probables.
-```
-
-## 🏗️ Prompt d'Architecture et Design Pattern
-
-Pour les décisions architecturales :
-
-```
-Je travaille sur [description du projet] et j'ai besoin de conseils sur l'architecture.
-
-**Besoin :**
-[Décrire le besoin fonctionnel]
-
-**Contraintes :**
-- Performance : [exigences de performance]
-- Scalabilité : [nombre d'utilisateurs attendus]
-- Budget : [contraintes budgétaires]
-- Délai : [contraintes de temps]
-
-**Stack actuelle :**
-[Technologies utilisées]
-
-**Questions :**
-1. Quelle architecture recommandes-tu ?
-2. Quels design patterns seraient appropriés ?
-3. Quelles sont les alternatives et leurs trade-offs ?
-
-Fournis une réponse structurée avec des diagrammes si nécessaire (utilise du texte ASCII).
-```
-
-## 📝 Prompt de Revue de Code
-
-Pour obtenir une revue de code approfondie :
-
-```
-Effectue une revue de code approfondie du code suivant :
-
-[Copier le code]
-
-Critères de revue :
-✓ Qualité du code (lisibilité, maintenabilité)
-✓ Performance et optimisations possibles
-✓ Sécurité (vulnérabilités potentielles)
-✓ Respect des bonnes pratiques
-✓ Tests (couverture, qualité)
-✓ Documentation
-
-Format de réponse :
-1. Points forts
-2. Points à améliorer (avec exemples de code corrigé)
-3. Suggestions d'optimisation
-4. Score global sur 10
-
-Sois critique mais constructif.
-```
-
-## 🧪 Prompt de Génération de Tests
-
-Pour créer des tests complets :
-
-```
-Génère des tests pour le code suivant :
-
-[Copier le code à tester]
-
-**Framework de test :** [Jest / Vitest / etc.]
-**Type de tests souhaités :**
-- Tests unitaires
-- Tests d'intégration
-- Tests edge cases
-
-**Critères :**
-- Couverture de code > 80%
-- Tests des cas limites
-- Tests des erreurs
-- Mocks appropriés
-
-Génère les tests avec des descriptions claires et des assertions pertinentes.
-```
-
-## 📚 Prompt de Documentation
-
-Pour générer de la documentation de qualité :
-
-```
-Génère une documentation complète pour le code suivant :
-
-[Copier le code]
-
-**Format souhaité :**
-- JSDoc / TSDoc pour le code
-- README.md pour le module
-- Exemples d'utilisation
-
-**Inclure :**
-1. Description générale
-2. Installation et configuration
-3. API reference
-4. Exemples pratiques
-5. FAQ et troubleshooting
-6. Contribution guidelines (si applicable)
-
-La documentation doit être claire, concise et adaptée à [niveau d'expertise de l'audience].
-```
-
-## 🔄 Prompt de Refactoring
-
-Pour refactoriser du code existant :
-
-```
-J'ai besoin de refactoriser le code suivant :
-
-[Copier le code]
-
-**Objectifs du refactoring :**
-- [ ] Améliorer la lisibilité
-- [ ] Réduire la complexité
-- [ ] Optimiser les performances
-- [ ] Respecter les principes SOLID
-- [ ] Éliminer le code dupliqué
-
-**Contraintes :**
-- Ne pas casser les fonctionnalités existantes
-- Maintenir la compatibilité avec [dépendances]
-- Maximum [X] lignes par fonction
-
-Propose un plan de refactoring étape par étape avec le code refactorisé.
-```
-
-## 🔐 Prompt de Sécurité
-
-Pour une analyse de sécurité :
-
-```
-Analyse la sécurité de ce code :
-
-[Copier le code]
-
-**Focus sur :**
-- Injection SQL / XSS / CSRF
-- Validation des entrées utilisateur
-- Gestion des authentifications et autorisations
-- Exposition de données sensibles
-- Dépendances vulnérables
-
-**Format de réponse :**
-1. Vulnérabilités identifiées (classées par criticité)
-2. Impact potentiel
-3. Code corrigé pour chaque vulnérabilité
-4. Recommandations de sécurité générales
-
-Sois exhaustif et explique chaque vulnérabilité.
-```
-
-## ⚡ Prompt d'Optimisation de Performance
-
-Pour optimiser les performances :
-
-```
-J'ai besoin d'optimiser les performances de ce code :
-
-[Copier le code]
-
-**Problème de performance identifié :**
-[Description du problème]
-
-**Métriques actuelles :**
-- Temps d'exécution : [X ms]
-- Consommation mémoire : [X MB]
-- Nombre de requêtes : [X]
-
-**Objectif :**
-- Réduire le temps d'exécution de [X%]
-- Minimiser la consommation mémoire
-- Réduire les appels réseau
-
-Propose des optimisations avec :
-1. Analyse du goulot d'étranglement
-2. Solutions proposées (avec code)
-3. Impact estimé de chaque optimisation
-4. Trade-offs à considérer
-```
-
-## 💡 Conseils d'Utilisation
-
-### Pour de Meilleurs Résultats :
-
-1. **Soyez spécifique** : Plus vous donnez de contexte, meilleures seront les réponses
-2. **Itérez** : N'hésitez pas à affiner vos prompts en fonction des réponses
-3. **Combinez les prompts** : Vous pouvez chaîner plusieurs prompts pour des tâches complexes
-4. **Personnalisez** : Adaptez ces prompts à votre stack et vos besoins spécifiques
-
-### Structure Recommandée :
-
-Chaque prompt devrait contenir :
-- **Contexte** : Décrivez votre situation
-- **Objectif** : Ce que vous voulez accomplir
-- **Contraintes** : Limitations techniques, temporelles, etc.
-- **Format de sortie** : Comment vous voulez recevoir la réponse
-
-## 📥 Téléchargement
-
-Ces prompts sont librement utilisables et partageables. Vous pouvez les copier, les modifier et les adapter à vos besoins.
+1. Copiez le contenu du bloc de code ci-dessous
+2. Créez un fichier `CLAUDE.md` à la racine de votre projet
+3. Collez le contenu
+4. Remplacez les `[PLACEHOLDERS]` par vos informations
+5. Committez le fichier dans Git
 
 ---
 
-*Créé par Jason Suarez | Plus de ressources sur [media.jason-suarez.com](https://media.jason-suarez.com)*
+## Fichier CLAUDE.md complet
+
+```markdown
+# CLAUDE.md
+
+*Dernière mise à jour : [DATE]*
+
+## Aperçu du Projet
+
+**Nom :** [NOM_DU_PROJET]
+**Type :** [Web App / API / CLI / Library / Mobile]
+**Stack :** [React/Vue/Svelte] + [TypeScript/JavaScript] + [Framework backend]
+**Objectif :** [Description en 1-2 phrases du but du projet]
+
+### Technologies Principales
+
+- **Frontend :** [Framework + version] (ex: React 18, Vue 3, Svelte 4)
+- **Backend :** [Framework + version] (ex: Express 4, Fastify 4, Next.js API Routes)
+- **Database :** [Type + version] (ex: PostgreSQL 15, MongoDB 6)
+- **ORM/Query :** [Tool] (ex: Prisma 5, Drizzle, TypeORM)
+- **Styling :** [Approach] (ex: Tailwind CSS 3, CSS Modules, Styled Components)
+- **Testing :** Vitest 1.x (unit/integration) + [E2E tool] (Playwright/Cypress)
+- **Build Tool :** [Vite 5 / Webpack 5 / Turbopack / esbuild]
+- **Package Manager :** [npm / pnpm / yarn / bun]
+- **State Management :** [Zustand / Redux / Jotai / Context] (si applicable)
+- **Validation :** Zod 3.x
+
+## Architecture
+
+### Context Engineering Principles
+
+1. **Context is King** - Toujours travailler avec le contexte approprié
+2. **Type-First Development** - Types avant implémentation
+3. **Change Tracking** - Documenter chaque décision architecturale
+4. **Systematic Testing** - Tests automatiques avec Vitest
+
+### Folder Structure
+
+\`\`\`
+project-root/
+├── src/
+│   ├── components/        # UI components
+│   ├── services/          # Business logic (stack agnostic)
+│   ├── lib/
+│   │   ├── db/            # Database layer
+│   │   ├── types/         # TypeScript types
+│   │   └── utils/         # Pure utility functions
+│   ├── hooks/             # Custom hooks (si React/Vue)
+│   └── __tests__/         # Test files
+│       ├── unit/
+│       ├── integration/
+│       └── e2e/
+├── docs/
+│   ├── decisions/         # ADRs (Architectural Decision Records)
+│   └── README.md          # Project documentation
+└── [config files]
+\`\`\`
+
+### Architectural Principles
+
+**Separation of Concerns**
+- UI layer (`components/`) ne contient QUE de la présentation
+- Business logic isolée dans `services/`
+- Data access centralisé dans `lib/db/`
+
+**Dependency Direction**
+\`\`\`
+UI → Services → Database
+  ↓
+Types (shared across all layers)
+\`\`\`
+
+## Standards de Code
+
+### Naming Conventions
+
+**Files & Folders**
+- Components: `PascalCase.tsx` (ex: `UserProfile.tsx`)
+- Services: `kebab-case.ts` (ex: `user-service.ts`)
+- Utilities: `kebab-case.ts` (ex: `format-date.ts`)
+- Types: `kebab-case.types.ts` (ex: `user.types.ts`)
+- Tests: `*.spec.ts` (Vitest) ou `*.test.ts`
+
+**Code**
+- Functions: `camelCase` (ex: `getUserById`)
+- Constants: `UPPER_SNAKE_CASE` (ex: `API_BASE_URL`)
+- Types/Interfaces: `PascalCase` (ex: `User`, `ApiResponse`)
+- Private functions: `_prefixWithUnderscore` (optionnel)
+
+### Type System & Branded Types
+
+**Utiliser des branded types pour le domain modeling :**
+
+\`\`\`typescript
+// lib/types/branded.ts
+export type Brand<T, TBrand> = T & { __brand: TBrand };
+
+// lib/types/domain.ts
+export type UserId = Brand<string, 'UserId'>;
+export type Email = Brand<string, 'Email'>;
+export type Timestamp = Brand<number, 'Timestamp'>;
+
+// Usage
+interface User {
+  id: UserId;
+  email: Email;
+  createdAt: Timestamp;
+}
+\`\`\`
+
+**Pourquoi ?** Évite les erreurs subtiles (passer un `ProductId` à une fonction attendant `UserId`).
+
+### Validation at Boundaries
+
+**Toujours valider avec Zod aux points d'entrée :**
+
+\`\`\`typescript
+import { z } from 'zod';
+
+const UserSchema = z.object({
+  email: z.string().email(),
+  name: z.string().min(2),
+  age: z.number().int().positive(),
+});
+
+// API route / form handler
+const validated = UserSchema.parse(input); // Throws si invalide
+\`\`\`
+
+### Error Handling Pattern
+
+\`\`\`typescript
+// Custom errors pour le domaine métier
+export class UserNotFoundError extends Error {
+  constructor(userId: UserId) {
+    super(\`User \${userId} not found\`);
+    this.name = 'UserNotFoundError';
+  }
+}
+
+// Service layer
+export async function getUserById(id: UserId): Promise<User> {
+  const user = await db.query(/* ... */);
+  if (!user) throw new UserNotFoundError(id);
+  return user;
+}
+
+// API layer - transform errors
+try {
+  const user = await getUserById(userId);
+  return { success: true, data: user };
+} catch (error) {
+  if (error instanceof UserNotFoundError) {
+    return { success: false, error: 'User not found', status: 404 };
+  }
+  return { success: false, error: 'Internal error', status: 500 };
+}
+\`\`\`
+
+## Commandes Essentielles
+
+### Development
+\`\`\`bash
+[npm/pnpm/yarn] run dev          # Start dev server
+[npm/pnpm/yarn] run build        # Production build
+[npm/pnpm/yarn] run preview      # Preview production build
+[npm/pnpm/yarn] run lint         # Run ESLint
+[npm/pnpm/yarn] run type-check   # TypeScript compilation check
+\`\`\`
+
+### Testing (Vitest)
+\`\`\`bash
+[npm/pnpm/yarn] test              # Run all tests
+[npm/pnpm/yarn] test:unit         # Unit tests only
+[npm/pnpm/yarn] test:integration  # Integration tests
+[npm/pnpm/yarn] test:e2e          # E2E tests
+[npm/pnpm/yarn] test:watch        # Watch mode
+[npm/pnpm/yarn] test:coverage     # Coverage report (target: >80%)
+\`\`\`
+
+### Database (si applicable)
+\`\`\`bash
+# Adapter selon votre ORM (Prisma exemple ci-dessous)
+npx prisma migrate dev            # Create & apply migration
+npx prisma generate               # Generate client
+npx prisma studio                 # Database GUI
+\`\`\`
+
+### Git Workflow
+\`\`\`bash
+git checkout -b feature/[name]    # Create feature branch
+# Make changes...
+[npm/pnpm/yarn] run pre-commit    # Lint + Type-check + Test
+git commit -m "type(scope): desc" # Conventional Commits
+git push origin feature/[name]
+# Create Pull Request
+\`\`\`
+
+## Workflows
+
+### Feature Development (TDD Approach)
+
+1. **Write failing test**
+\`\`\`typescript
+// services/user-service.spec.ts
+import { describe, it, expect } from 'vitest';
+import { createUser } from './user-service';
+
+describe('createUser', () => {
+  it('should create user with valid email', async () => {
+    const user = await createUser({ email: 'test@example.com' });
+    expect(user.email).toBe('test@example.com');
+  });
+});
+\`\`\`
+
+2. **Implement minimum code to pass**
+3. **Refactor while keeping tests green**
+4. **Document architectural decisions if needed**
+
+### Testing Strategy
+
+**Unit Tests** - Pure functions, isolated logic
+\`\`\`typescript
+// lib/utils/slugify.spec.ts
+import { describe, it, expect } from 'vitest';
+import { slugify } from './slugify';
+
+describe('slugify', () => {
+  it('converts string to URL-safe slug', () => {
+    expect(slugify('Hello World!')).toBe('hello-world');
+  });
+});
+\`\`\`
+
+**Integration Tests** - Services with dependencies
+\`\`\`typescript
+// services/user-service.spec.ts
+import { describe, it, expect, beforeEach } from 'vitest';
+import { createUser, getUserById } from './user-service';
+
+describe('UserService Integration', () => {
+  beforeEach(async () => {
+    await resetTestDatabase();
+  });
+
+  it('creates and retrieves user', async () => {
+    const created = await createUser({ email: 'test@example.com' });
+    const retrieved = await getUserById(created.id);
+    expect(retrieved).toEqual(created);
+  });
+});
+\`\`\`
+
+## Pièges Communs & Solutions
+
+### TypeScript Gotchas
+
+❌ **Type assertion sans validation**
+\`\`\`typescript
+const user = data as User; // Unsafe!
+\`\`\`
+
+✅ **Runtime validation avec Zod**
+\`\`\`typescript
+const user = UserSchema.parse(data); // Type + validation
+\`\`\`
+
+### Async/Await Anti-patterns
+
+❌ **Await dans boucles (N+1 problem)**
+\`\`\`typescript
+for (const id of userIds) {
+  const user = await getUser(id); // Sequential, slow
+}
+\`\`\`
+
+✅ **Promise.all pour parallélisme**
+\`\`\`typescript
+const users = await Promise.all(
+  userIds.map(id => getUser(id))
+);
+\`\`\`
+
+### Database Query Patterns
+
+❌ **N+1 queries**
+\`\`\`typescript
+const users = await db.user.findMany();
+for (const user of users) {
+  user.posts = await db.post.findMany({ where: { userId: user.id } });
+}
+\`\`\`
+
+✅ **Eager loading**
+\`\`\`typescript
+const users = await db.user.findMany({
+  include: { posts: true }
+});
+\`\`\`
+
+## Règles de Comportement IA
+
+### Ce que Claude DOIT faire
+
+✅ **Type Safety First**
+- Définir les types AVANT l'implémentation
+- Utiliser branded types pour domain models
+- Valider avec Zod aux boundaries (API, forms, external data)
+
+✅ **Test Coverage**
+- Proposer tests unitaires pour fonctions utilitaires
+- Tests d'intégration pour services avec dépendances
+- Suivre pattern `describe` > `it` avec Vitest
+- Viser >80% coverage sur code critique
+
+✅ **Documentation Inline**
+- JSDoc pour fonctions publiques
+- Commenter les décisions non-évidentes
+- Mettre à jour CLAUDE.md si changement architectural
+
+✅ **Error Handling Robuste**
+- Try-catch aux points d'entrée (API, event handlers)
+- Custom errors pour cas métier
+- Logging approprié (structured logging en production)
+
+### Ce que Claude NE DOIT PAS faire
+
+❌ **Ignorer la validation**
+- Ne JAMAIS accepter input utilisateur sans validation Zod
+- Ne pas utiliser `any` sans justification explicite
+
+❌ **Créer des dépendances circulaires**
+- Vérifier les imports avant d'ajouter
+- Services ne doivent pas importer de UI components
+
+❌ **Patterns obsolètes ou non-idiomatiques**
+- Éviter callbacks quand async/await possible
+- Pas de `var`, toujours `const`/`let`
+- Pas de `@ts-ignore` sans commentaire explicatif
+
+❌ **Tests insuffisants**
+- Ne pas implémenter de logique métier sans tests
+- Ne pas modifier de code critique sans vérifier les tests
+
+## Décisions Architecturales (ADRs)
+
+### ADR-001: Branded Types pour Type Safety
+
+**Date:** [YYYY-MM-DD]
+**Status:** ✅ Accepted
+
+**Context:**
+TypeScript permet confusion entre types primitifs similaires (userId vs productId tous deux `string`).
+
+**Decision:**
+Utiliser branded types pour tous identifiants et valeurs métier.
+
+**Consequences:**
+- ✅ Erreurs de type détectées à la compilation
+- ✅ Documentation self-evident du domaine
+- ⚠️ Légère verbosité, nécessite helpers
+
+### ADR-002: Vitest pour Testing
+
+**Date:** [YYYY-MM-DD]
+**Status:** ✅ Accepted
+
+**Context:**
+Besoin d'un test runner rapide avec excellent support TypeScript.
+
+**Decision:**
+Vitest comme framework de test principal.
+
+**Consequences:**
+- ✅ 10-20x plus rapide que Jest
+- ✅ ESM natif, config minimale
+- ✅ API compatible Jest (migration facile)
+- ⚠️ Ecosystem plus récent
+
+### ADR-003: Zod pour Validation Runtime
+
+**Date:** [YYYY-MM-DD]
+**Status:** ✅ Accepted
+
+**Context:**
+TypeScript types disparaissent à runtime. Besoin validation des inputs externes.
+
+**Decision:**
+Zod pour validation + inference de types.
+
+**Consequences:**
+- ✅ Single source of truth (schema → types)
+- ✅ Messages d'erreur clairs
+- ✅ Validation composable
+- ⚠️ Bundle size légèrement plus gros
+
+## Debugging Quick Reference
+
+**Build fails mais dev fonctionne**
+\`\`\`bash
+# TypeScript errors probables
+npm run type-check
+# Vérifier les imports, any types, etc.
+\`\`\`
+
+**Tests échouent de manière aléatoire**
+\`\`\`bash
+# Souvent des tests non-isolés
+# Vérifier beforeEach/afterEach dans les specs
+# Regarder les mocks/stubs non nettoyés
+\`\`\`
+
+**Performance dégradée**
+\`\`\`bash
+# Profiler avec dev tools
+# Vérifier N+1 queries (database)
+# Bundle size analysis
+npm run build -- --analyze
+\`\`\`
+
+## Variables d'Environnement
+
+\`\`\`bash
+# .env.example (committer celui-ci)
+DATABASE_URL="[connection_string]"
+API_KEY="[your_api_key]"
+NODE_ENV="development"
+
+# .env.local (ne PAS committer)
+# Copier .env.example et remplir avec vraies valeurs
+\`\`\`
+
+**⚠️ Sécurité:** Ne JAMAIS committer `.env.local`. Toujours utiliser `.env.example` pour documentation.
+
+## Ressources
+
+**Documentation**
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [Vitest Docs](https://vitest.dev)
+- [Zod Docs](https://zod.dev)
+
+**Outils Internes**
+- Test Coverage: `npm run test:coverage` → `coverage/index.html`
+- Type Coverage: `npx type-coverage --detail`
+
+**Style Guide**
+- Conventional Commits: https://www.conventionalcommits.org/
+- Semantic Versioning: https://semver.org/
+
+---
+
+*Maintenu par : [ÉQUIPE/PERSONNE]*
+*Questions : [EMAIL/SLACK]*
+```
+
+---
+
+## Variantes du template
+
+### Mini CLAUDE.md (Projets simples)
+
+Pour prototypes ou projets personnels, utilisez cette version allégée :
+
+```markdown
+# CLAUDE.md
+
+## Stack
+[Framework], TypeScript, [CSS approach], [Database]
+
+## Structure
+- `src/` - Source code
+- `src/__tests__/` - Tests (Vitest)
+
+## Commandes
+\`\`\`bash
+npm run dev   # Dev server
+npm test      # Run tests
+npm run build # Production build
+\`\`\`
+
+## Standards
+- Files: kebab-case
+- Types: PascalCase
+- Always validate inputs with Zod
+- >80% test coverage on critical paths
+
+## Pièges
+- [Piège spécifique à votre stack]
+- [Common gotcha #2]
+```
+
+---
+
+## Guide d'utilisation
+
+### Étape 1 : Installation
+
+Copiez le template principal et créez le fichier :
+
+```bash
+# À la racine de votre projet
+touch CLAUDE.md
+# Collez le contenu du template
+```
+
+### Étape 2 : Personnalisation
+
+Remplacez tous les `[PLACEHOLDERS]` :
+- `[NOM_DU_PROJET]` → Nom réel de votre projet
+- `[Framework + version]` → React 18.2, Vue 3.4, etc.
+- `[ÉQUIPE/PERSONNE]` → Votre nom ou équipe
+- `[EMAIL/SLACK]` → Canal de communication
+
+### Étape 3 : Test
+
+Démarrez Claude Code et testez :
+
+```
+💬 "Quelle est l'architecture de ce projet ?"
+💬 "Comment créer un nouveau service avec tests ?"
+💬 "Quels sont les pièges à éviter ?"
+```
+
+Si Claude répond précisément → ✅ Votre CLAUDE.md fonctionne !
+
+### Étape 4 : Évolution
+
+Traitez CLAUDE.md comme du code :
+- Committez chaque changement architectural
+- Ajoutez des pièges quand découverts
+- Documentez les décisions (ADRs)
+- Mettez à jour régulièrement
+
+### Multi-environnements
+
+- `CLAUDE.md` → Version d'équipe (committée)
+- `CLAUDE.local.md` → Préférences personnelles (gitignored)
+- `~/.claude/CLAUDE.md` → Préférences globales
+
+### Monorepos
+
+Claude charge récursivement tous les CLAUDE.md :
+
+```markdown
+# CLAUDE.md (racine)
+
+@packages/frontend/CLAUDE.md
+@packages/backend/CLAUDE.md
+@packages/shared/CLAUDE.md
+```
+
+---
+
+## Ressources complémentaires
+
+- **Guide officiel** : [stevekinney.com - CLAUDE.md](https://stevekinney.com/courses/ai-development/claude-dot-md)
+- **Context Engineering** : Principes avancés de context engineering
+- **Exemples GitHub** : [Rechercher filename:CLAUDE.md](https://github.com/search?q=filename%3ACLAUDE.md)
+
+---
+
+*Template créé par Jason Suarez | [media.jason-suarez.com](https://media.jason-suarez.com)*
