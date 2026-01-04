@@ -38,14 +38,28 @@ export default function ResourceCard({
     openFeatureRequestModal(title, description);
   };
 
-  const handleRedirectToLeadMagnetForm = async () => {
-    await sendFeatureRequestV1({
-      title,
-      description,
-      hasConsent,
-      fingerprint: visitorId,
-    });
-    router.push(buttonLink);
+  const handleClick = async () => {
+    if (featureRequest) {
+      handleFeatureRequest();
+      return;
+    }
+
+    // Check if internal or external link
+    const isExternal = buttonLink.startsWith('http://') || buttonLink.startsWith('https://');
+
+    if (isExternal) {
+      // External resource: Send tracking and open in new tab
+      await sendFeatureRequestV1({
+        title,
+        description,
+        hasConsent,
+        fingerprint: visitorId,
+      });
+      window.open(buttonLink, '_blank');
+    } else {
+      // Internal resource: Navigate to detail page
+      router.push(buttonLink);
+    }
   };
 
   return (
@@ -77,22 +91,16 @@ export default function ResourceCard({
         </div>
         <h3 className="text-xl font-bold mb-2">{title}</h3>
         <p className="text-gray-400 mb-6">{description}</p>
-        {featureRequest ? (
-          <Button
-            onClick={handleFeatureRequest}
-            variant="outline"
-            className="rounded-full border-[#333] bg-[#111] hover:bg-[#222] shadow-md"
-          >
-            {buttonText}
-          </Button>
-        ) : (
-          <Button
-            onClick={handleRedirectToLeadMagnetForm}
-            className="w-full rounded-full bg-[#222] hover:bg-[#333] shadow-md"
-          >
-            {buttonText}
-          </Button>
-        )}
+        <Button
+          onClick={handleClick}
+          variant={featureRequest ? "outline" : "default"}
+          className={featureRequest
+            ? "rounded-full border-[#333] bg-[#111] hover:bg-[#222] shadow-md"
+            : "w-full rounded-full bg-[#222] hover:bg-[#333] shadow-md"
+          }
+        >
+          {buttonText}
+        </Button>
       </div>
       <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
     </div>

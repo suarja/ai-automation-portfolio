@@ -1,0 +1,273 @@
+export const metadata = {
+  title: "Prompts Claude pour Développeurs",
+  description: "Collection de prompts optimisés pour Claude - Développement, Debug et Architecture",
+  longDescription: "Une collection complète de prompts système pour Claude, spécialement conçue pour les développeurs. Optimisez vos interactions avec l'IA pour le développement, le debugging, l'architecture et bien plus.",
+  image: "/images/icons/folder.png",
+  tags: ["IA", "Claude", "Prompts", "Développement"],
+  price: "Gratuit",
+  featured: true,
+  coverImage: "/images/icons/folder.png",
+  gallery: []
+}
+
+# Prompts Claude pour Développeurs
+
+Bienvenue dans cette collection de prompts système optimisés pour Claude, spécialement conçue pour les développeurs. Ces prompts vous aideront à tirer le meilleur parti de Claude dans vos tâches quotidiennes de développement.
+
+## 🚀 Prompt d'Initialisation de Projet
+
+Utilisez ce prompt pour démarrer un nouveau projet avec Claude :
+
+```
+Tu es un développeur expert fullstack avec une expertise en [technologies].
+
+Contexte du projet :
+- Type : [application web / API / mobile / etc.]
+- Stack technique : [Next.js, React, TypeScript, etc.]
+- Objectif : [description de l'objectif]
+
+Tâches :
+1. Propose une architecture de projet adaptée
+2. Crée la structure de dossiers
+3. Configure les outils de développement (ESLint, Prettier, etc.)
+4. Génère les fichiers de configuration nécessaires
+
+Principes à respecter :
+- Code propre et maintenable
+- Performance optimale
+- Sécurité par design
+- Tests inclus
+
+Commence par me proposer l'architecture et explique tes choix.
+```
+
+## 🐛 Prompt de Debug et Résolution de Problèmes
+
+Pour debugger efficacement avec Claude :
+
+```
+Je rencontre un problème avec mon code. Voici les détails :
+
+**Erreur rencontrée :**
+[Copier le message d'erreur complet]
+
+**Code concerné :**
+[Copier le code qui pose problème]
+
+**Contexte :**
+- Environnement : [dev/prod]
+- Version : [numéros de version des dépendances]
+- Comportement attendu : [description]
+- Comportement observé : [description]
+
+**Ce que j'ai déjà essayé :**
+1. [Action 1]
+2. [Action 2]
+
+Analyse le problème étape par étape et propose des solutions, en commençant par les plus probables.
+```
+
+## 🏗️ Prompt d'Architecture et Design Pattern
+
+Pour les décisions architecturales :
+
+```
+Je travaille sur [description du projet] et j'ai besoin de conseils sur l'architecture.
+
+**Besoin :**
+[Décrire le besoin fonctionnel]
+
+**Contraintes :**
+- Performance : [exigences de performance]
+- Scalabilité : [nombre d'utilisateurs attendus]
+- Budget : [contraintes budgétaires]
+- Délai : [contraintes de temps]
+
+**Stack actuelle :**
+[Technologies utilisées]
+
+**Questions :**
+1. Quelle architecture recommandes-tu ?
+2. Quels design patterns seraient appropriés ?
+3. Quelles sont les alternatives et leurs trade-offs ?
+
+Fournis une réponse structurée avec des diagrammes si nécessaire (utilise du texte ASCII).
+```
+
+## 📝 Prompt de Revue de Code
+
+Pour obtenir une revue de code approfondie :
+
+```
+Effectue une revue de code approfondie du code suivant :
+
+[Copier le code]
+
+Critères de revue :
+✓ Qualité du code (lisibilité, maintenabilité)
+✓ Performance et optimisations possibles
+✓ Sécurité (vulnérabilités potentielles)
+✓ Respect des bonnes pratiques
+✓ Tests (couverture, qualité)
+✓ Documentation
+
+Format de réponse :
+1. Points forts
+2. Points à améliorer (avec exemples de code corrigé)
+3. Suggestions d'optimisation
+4. Score global sur 10
+
+Sois critique mais constructif.
+```
+
+## 🧪 Prompt de Génération de Tests
+
+Pour créer des tests complets :
+
+```
+Génère des tests pour le code suivant :
+
+[Copier le code à tester]
+
+**Framework de test :** [Jest / Vitest / etc.]
+**Type de tests souhaités :**
+- Tests unitaires
+- Tests d'intégration
+- Tests edge cases
+
+**Critères :**
+- Couverture de code > 80%
+- Tests des cas limites
+- Tests des erreurs
+- Mocks appropriés
+
+Génère les tests avec des descriptions claires et des assertions pertinentes.
+```
+
+## 📚 Prompt de Documentation
+
+Pour générer de la documentation de qualité :
+
+```
+Génère une documentation complète pour le code suivant :
+
+[Copier le code]
+
+**Format souhaité :**
+- JSDoc / TSDoc pour le code
+- README.md pour le module
+- Exemples d'utilisation
+
+**Inclure :**
+1. Description générale
+2. Installation et configuration
+3. API reference
+4. Exemples pratiques
+5. FAQ et troubleshooting
+6. Contribution guidelines (si applicable)
+
+La documentation doit être claire, concise et adaptée à [niveau d'expertise de l'audience].
+```
+
+## 🔄 Prompt de Refactoring
+
+Pour refactoriser du code existant :
+
+```
+J'ai besoin de refactoriser le code suivant :
+
+[Copier le code]
+
+**Objectifs du refactoring :**
+- [ ] Améliorer la lisibilité
+- [ ] Réduire la complexité
+- [ ] Optimiser les performances
+- [ ] Respecter les principes SOLID
+- [ ] Éliminer le code dupliqué
+
+**Contraintes :**
+- Ne pas casser les fonctionnalités existantes
+- Maintenir la compatibilité avec [dépendances]
+- Maximum [X] lignes par fonction
+
+Propose un plan de refactoring étape par étape avec le code refactorisé.
+```
+
+## 🔐 Prompt de Sécurité
+
+Pour une analyse de sécurité :
+
+```
+Analyse la sécurité de ce code :
+
+[Copier le code]
+
+**Focus sur :**
+- Injection SQL / XSS / CSRF
+- Validation des entrées utilisateur
+- Gestion des authentifications et autorisations
+- Exposition de données sensibles
+- Dépendances vulnérables
+
+**Format de réponse :**
+1. Vulnérabilités identifiées (classées par criticité)
+2. Impact potentiel
+3. Code corrigé pour chaque vulnérabilité
+4. Recommandations de sécurité générales
+
+Sois exhaustif et explique chaque vulnérabilité.
+```
+
+## ⚡ Prompt d'Optimisation de Performance
+
+Pour optimiser les performances :
+
+```
+J'ai besoin d'optimiser les performances de ce code :
+
+[Copier le code]
+
+**Problème de performance identifié :**
+[Description du problème]
+
+**Métriques actuelles :**
+- Temps d'exécution : [X ms]
+- Consommation mémoire : [X MB]
+- Nombre de requêtes : [X]
+
+**Objectif :**
+- Réduire le temps d'exécution de [X%]
+- Minimiser la consommation mémoire
+- Réduire les appels réseau
+
+Propose des optimisations avec :
+1. Analyse du goulot d'étranglement
+2. Solutions proposées (avec code)
+3. Impact estimé de chaque optimisation
+4. Trade-offs à considérer
+```
+
+## 💡 Conseils d'Utilisation
+
+### Pour de Meilleurs Résultats :
+
+1. **Soyez spécifique** : Plus vous donnez de contexte, meilleures seront les réponses
+2. **Itérez** : N'hésitez pas à affiner vos prompts en fonction des réponses
+3. **Combinez les prompts** : Vous pouvez chaîner plusieurs prompts pour des tâches complexes
+4. **Personnalisez** : Adaptez ces prompts à votre stack et vos besoins spécifiques
+
+### Structure Recommandée :
+
+Chaque prompt devrait contenir :
+- **Contexte** : Décrivez votre situation
+- **Objectif** : Ce que vous voulez accomplir
+- **Contraintes** : Limitations techniques, temporelles, etc.
+- **Format de sortie** : Comment vous voulez recevoir la réponse
+
+## 📥 Téléchargement
+
+Ces prompts sont librement utilisables et partageables. Vous pouvez les copier, les modifier et les adapter à vos besoins.
+
+---
+
+*Créé par Jason Suarez | Plus de ressources sur [media.jason-suarez.com](https://media.jason-suarez.com)*

@@ -72,5 +72,71 @@
       "status": "published",
       "downloadCount": 156
     }
+  },
+  {
+    "id": "prompts-claude-dev",
+    "title": "Prompts Claude pour Développeurs",
+    "description": "Collection de prompts optimisés pour Claude - Développement, Debug et Architecture",
+    "longDescription": "Une collection complète de prompts système pour Claude, spécialement conçue pour les développeurs. Optimisez vos interactions avec l'IA pour le développement, le debugging, l'architecture et bien plus.",
+    "image": "/images/icons/folder.png",
+    "tags": [
+      "IA",
+      "Claude",
+      "Prompts"
+    ],
+    "price": "Gratuit",
+    "downloadLink": "/resources/prompts-claude-dev",
+    "gallery": [],
+    "metadata": {
+      "createdAt": "2025-01-20T00:00:00.000Z",
+      "updatedAt": "2025-01-20T00:00:00.000Z",
+      "featured": true,
+      "status": "published",
+      "downloadCount": 0
+    }
+  },
+  {
+    "id": "prompts-claude-tech",
+    "title": "Prompts Claude pour Techniciens",
+    "description": "Collection de prompts Claude adaptés aux techniciens et non-développeurs",
+    "longDescription": "Une collection de prompts système pour Claude, optimisée pour les techniciens, formateurs, et professionnels non-développeurs. Utilisez l'IA pour automatiser vos tâches, créer du contenu et améliorer votre productivité.",
+    "image": "/images/icons/card.png",
+    "tags": [
+      "IA",
+      "Claude",
+      "Prompts"
+    ],
+    "price": "Gratuit",
+    "downloadLink": "/resources/prompts-claude-tech",
+    "gallery": [],
+    "metadata": {
+      "createdAt": "2025-01-20T00:00:00.000Z",
+      "updatedAt": "2025-01-20T00:00:00.000Z",
+      "featured": true,
+      "status": "published",
+      "downloadCount": 0
+    }
+  },
+  {
+    "id": "guide-ia-coaches",
+    "title": "Guide IA pour Coaches",
+    "description": "Le guide complet pour intégrer l'IA dans votre pratique de coaching",
+    "longDescription": "Un guide détaillé pour les coaches qui souhaitent intégrer l'intelligence artificielle dans leur pratique. Apprenez à utiliser l'IA pour automatiser vos tâches, personnaliser vos accompagnements et développer votre activité.",
+    "image": "/images/icons/cloud-download.png",
+    "tags": [
+      "IA",
+      "Coaching",
+      "Guide"
+    ],
+    "price": "Gratuit",
+    "downloadLink": "/resources/guide-ia-coaches",
+    "gallery": [],
+    "metadata": {
+      "createdAt": "2025-01-20T00:00:00.000Z",
+      "updatedAt": "2025-01-20T00:00:00.000Z",
+      "featured": false,
+      "status": "published",
+      "downloadCount": 0
+    }
   }
 ]

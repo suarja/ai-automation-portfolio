@@ -24,3 +24,15 @@ export type CreateResourceInput = Omit<Resource, "id" | "metadata"> & {
 export type UpdateResourceInput = Partial<Omit<Resource, "id" | "metadata">> & {
   metadata?: Partial<Resource["metadata"]>;
 };
+
+export interface ResourceMdxMetadata {
+  title: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  tags: string[];
+  price: string;
+  featured: boolean;
+  coverImage?: string;
+  gallery?: string[];
+}
