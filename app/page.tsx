@@ -9,6 +9,9 @@ import SectionHeader from "@/components/section-header";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import SiteFooter from "@/components/site-footer";
+import WorkCard from "@/components/work-card";
+import AiPractices from "@/components/ai-practices";
+import { WORK_ITEMS } from "@/lib/data/work";
 import { CONSTANTS } from "@/lib/constants/constants";
 import { useProjects } from "@/hooks/use-projects";
 import { useResources } from "@/hooks/use-resources";
@@ -26,9 +29,75 @@ export default function Home() {
         {/* Header Section */}
         <ProfileHeader />
 
-        {/* Projets / Use Cases Section */}
+        {/* Ce que j'ai construit */}
         <section className="mt-16">
-          <SectionHeader title="Projets / Use Cases" />
+          <SectionHeader title="Ce que j'ai construit" />
+
+          <div className="grid grid-cols-1 gap-6">
+            {WORK_ITEMS.map((item) => (
+              <WorkCard key={item.id} item={item} />
+            ))}
+          </div>
+        </section>
+
+        {/* À propos Section */}
+        <section className="mt-16">
+          <SectionHeader title="À propos" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            <div className="lg:col-span-3 bg-[#111] p-8 rounded-3xl border border-[#222] backdrop-blur-sm shadow-xl">
+              <p className="text-gray-300 mb-4">
+                Je suis développeur full-stack. Côté TypeScript : React, Next.js, React Native, NestJS et Convex.
+                Côté PHP : Symfony.
+              </p>
+
+              <p className="text-gray-300 mb-4">
+                <strong>Mon parcours</strong> : professeur certifié d'espagnol de 2020 à 2024, reconverti dans le
+                développement en 2022, en parallèle du métier. Depuis, un an seul développeur front dans une startup
+                fitness, puis full-stack Symfony/React chez un opérateur télécom.
+              </p>
+
+              <div className="mb-6">
+                <p className="text-gray-300 mb-2"><strong>Actuellement</strong> :</p>
+                <ul className="list-disc list-inside text-gray-300 space-y-1 ml-4">
+                  <li>Développeur full-stack @ C'CIN Chartres (Symfony / React)</li>
+                  <li>Bandaa, application mobile publiée sur l'App Store et le Play Store en septembre 2026</li>
+                  <li>Contenu tech sur TikTok et YouTube (@swarecito)</li>
+                </ul>
+              </div>
+
+              <h3 className="text-xl font-bold mt-6 mb-3">
+                Ce que je fais
+              </h3>
+              <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
+                <li>
+                  <strong>Web et mobile</strong> : applications React / Next.js et React Native / Expo, APIs Symfony,
+                  back-ends TypeScript
+                </li>
+                <li>
+                  <strong>Contenu</strong> : TikTok / YouTube sur l'apprentissage du code et l'IA comme outil
+                </li>
+                <li>
+                  <strong>Automatisation</strong> : n8n et intégrations IA pour indépendants (cas plus bas)
+                </li>
+              </ul>
+
+              <div className="flex justify-center">
+                <Button asChild variant="outline" size="lg" className="rounded-full">
+                  <Link href="/about">En savoir plus →</Link>
+                </Button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-2">
+              <AiPractices />
+            </div>
+          </div>
+        </section>
+
+        {/* Automatisations Section */}
+        <section className="mt-16">
+          <SectionHeader title="Automatisations pour indépendants" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projectsLoading
@@ -50,52 +119,6 @@ export default function Home() {
                     featureRequest={project.featureRequest}
                   />
                 ))}
-          </div>
-        </section>
-
-        {/* À propos Section */}
-        <section className="mt-16">
-          <SectionHeader title="À propos" />
-
-          <div className="bg-[#111] p-8 rounded-3xl border border-[#222] backdrop-blur-sm shadow-xl">
-            <p className="text-gray-300 mb-4">
-              Je suis développeur fullstack spécialisé en React, TypeScript et Symfony.
-            </p>
-
-            <p className="text-gray-300 mb-4">
-              <strong>Mon parcours</strong> : Prof d'espagnol reconverti en développeur en 2022.
-              Aujourd'hui, je construis des applications web pour des startups et je partage mon apprentissage en public.
-            </p>
-
-            <div className="mb-6">
-              <p className="text-gray-300 mb-2"><strong>Actuellement</strong> :</p>
-              <ul className="list-disc list-inside text-gray-300 space-y-1 ml-4">
-                <li>Dev Fullstack @ C'CIN Chartres</li>
-                <li>Créateur de contenu tech (@swarecito)</li>
-                <li>En construction : SWE Wannabe (plateforme d'apprentissage)</li>
-              </ul>
-            </div>
-
-            <h3 className="text-xl font-bold mt-6 mb-3">
-              Ce que je fais
-            </h3>
-            <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
-              <li>
-                <strong>Développement web</strong> : Applications React/Next.js, APIs Symfony
-              </li>
-              <li>
-                <strong>Création de contenu</strong> : TikTok/YouTube sur l'apprentissage du code
-              </li>
-              <li>
-                <strong>Projets personnels</strong> : Outils et plateformes pour développeurs
-              </li>
-            </ul>
-
-            <div className="flex justify-center">
-              <Button asChild variant="outline" size="lg" className="rounded-full">
-                <Link href="/about">En savoir plus →</Link>
-              </Button>
-            </div>
           </div>
         </section>
 

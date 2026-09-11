@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Linkedin, Youtube } from "lucide-react";
+import { Github, Instagram, Linkedin, Youtube } from "lucide-react";
 
 interface SocialIconProps {
   icon: string;
@@ -28,6 +28,8 @@ export default function SocialIcon({ icon, href, label }: SocialIconProps) {
         return <Youtube size={18} />;
       case "linkedin":
         return <Linkedin size={18} />;
+      case "github":
+        return <Github size={18} />;
       default:
         return <span>?</span>;
     }

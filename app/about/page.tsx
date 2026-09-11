@@ -1,22 +1,23 @@
 import Link from 'next/link';
-import { ChevronLeft, Code } from 'lucide-react';
+import { ChevronLeft, Code, Smartphone } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import AiPractices from '@/components/ai-practices';
 
 export const metadata = {
-  title: 'À propos - Jason Suarez | Développeur Fullstack',
+  title: 'À propos - Jason Suarez | Développeur full-stack',
   description:
-    'Développeur fullstack spécialisé en React, TypeScript et Symfony. Découvrez mon parcours de prof d\'espagnol à développeur.',
+    'Développeur full-stack TypeScript (React, Next.js, React Native, Convex) et Symfony. Parcours, stack, projets et façon de travailler avec l\'IA.',
   openGraph: {
     title: 'À propos - Jason Suarez',
-    description: 'Développeur fullstack - React, TypeScript, Symfony',
+    description: 'Développeur full-stack TypeScript et Symfony',
     type: 'profile',
     url: 'https://media.jason-suarez.com/about',
   },
   twitter: {
     card: 'summary',
     title: 'À propos - Jason Suarez',
-    description: 'Développeur fullstack - React, TypeScript, Symfony',
+    description: 'Développeur full-stack TypeScript et Symfony',
   },
   alternates: {
     canonical: 'https://media.jason-suarez.com/about',
@@ -24,27 +25,28 @@ export const metadata = {
 };
 
 const skills = {
-  'Frontend': [
+  'Front-end': [
     'React / Next.js',
-    'TypeScript / JavaScript',
-    'React Native',
+    'TypeScript',
+    'React Native / Expo',
     'Tailwind CSS',
   ],
-  'Backend': [
-    'Symfony (PHP)',
-    'Node.js / Express',
-    'RESTful APIs',
+  'Back-end': [
+    'Symfony (PHP 8) / Doctrine',
+    'NestJS / Node.js',
+    'Convex',
+    'API REST / GraphQL',
   ],
-  'Base de données': [
-    'PostgreSQL',
-    'MySQL',
-    'Redis',
+  'Données et livraison': [
+    'PostgreSQL / MySQL',
+    'Docker / Docker Compose',
+    'GitLab CI/CD, Linux/SSH',
   ],
-  'Outils': [
-    'Git / GitHub',
-    'Docker',
+  'Qualité et outils': [
+    'PHPUnit, Jest, Vitest',
+    'Git, pull requests, revues de code',
+    'Cursor, Claude Code',
     'n8n (automatisation)',
-    'IA (Claude, GPT-4)',
   ],
 };
 
@@ -64,7 +66,7 @@ export default function AboutPage() {
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">À propos</h1>
           <p className="text-xl text-gray-400">
-            Développeur Fullstack
+            Développeur full-stack TypeScript · React / Next.js · Symfony
           </p>
         </div>
 
@@ -77,12 +79,13 @@ export default function AboutPage() {
             </p>
 
             <div className="space-y-2">
-              <p><strong>2020</strong> : CAPES d'espagnol, prof puis steward chez Ryanair et Iberia</p>
-              <p><strong>2022</strong> : Reconversion dans le développement web</p>
-              <p><strong>2024</strong> : Dev Frontend @ Just Gains (startup fitness US)</p>
-              <p><strong>2024-2025</strong> : Spécialisation blockchain et sécurité smart contracts (6 mois)</p>
-              <p><strong>Avril 2025</strong> : Lancement TikTok @swarecito (~2000 followers)</p>
-              <p><strong>Septembre 2025</strong> : Dev Fullstack @ C'CIN Chartres (Symfony/React)</p>
+              <p><strong>2018</strong> : Master EMOS, Université de Strasbourg, puis personnel navigant (Ryanair, Iberia, Vueling)</p>
+              <p><strong>2020 à 2024</strong> : CAPES d'espagnol, professeur certifié dans le secondaire</p>
+              <p><strong>2022</strong> : reconversion dans le développement web, en parallèle du métier (freeCodeCamp, freelance Next.js en 2023)</p>
+              <p><strong>2024 à 2025</strong> : développeur front-end React chez JustGains (startup fitness), seul dev front pendant un an</p>
+              <p><strong>Avril 2025</strong> : lancement de TikTok et YouTube @swarecito</p>
+              <p><strong>Septembre 2025</strong> : développeur full-stack Symfony / React chez C'CIN Chartres</p>
+              <p><strong>Septembre 2026</strong> : publication de Bandaa sur l'App Store et le Play Store</p>
             </div>
           </div>
         </div>
@@ -107,6 +110,11 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* IA */}
+        <div className="mb-8">
+          <AiPractices />
+        </div>
+
         {/* Langues */}
         <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 mb-8">
           <h2 className="text-2xl font-bold mb-4">Langues</h2>
@@ -121,7 +129,7 @@ export default function AboutPage() {
             </div>
             <div>
               <p className="text-xl">🇬🇧 <strong>Anglais</strong></p>
-              <p className="text-sm text-gray-400">Professionnel</p>
+              <p className="text-sm text-gray-400">C1</p>
             </div>
           </div>
         </div>
@@ -129,6 +137,49 @@ export default function AboutPage() {
         {/* Projets */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold mb-6">Projets</h2>
+
+          {/* Bandaa */}
+          <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 mb-6">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="p-3 rounded-full bg-primary/10 border border-primary/20">
+                <Smartphone className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-2">Bandaa</h3>
+                <p className="text-gray-400 text-sm">En production depuis septembre 2026</p>
+              </div>
+            </div>
+
+            <p className="text-gray-300 mb-4">
+              Application mobile de missions photo pour événements : l'organisateur assigne des missions aux
+              invités, l'app compile un album partagé dans l'ordre de l'événement. FR / EN / ES, achat intégré.
+            </p>
+
+            <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4">
+              <li>Expo / React Native, expo-router, TypeScript</li>
+              <li>Back-end TypeScript sur Convex, stockage R2, paiements RevenueCat</li>
+              <li>Tests Jest et convex-test, décisions d'architecture documentées en ADR</li>
+            </ul>
+
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="https://apps.apple.com/us/app/bandaa-event-photo-missions/id6798290227"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                App Store
+              </a>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.swarecito.bandaa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                Play Store
+              </a>
+            </div>
+          </div>
 
           {/* SWE Wannabe */}
           <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 mb-6">
@@ -188,7 +239,7 @@ export default function AboutPage() {
             </p>
 
             <p className="text-gray-300 mb-3">
-              <strong>Technologies</strong> : React, TypeScript, Next.js, Symfony, React Native
+              <strong>Technologies</strong> : React, Next.js, TypeScript, React Native / Expo, Symfony, Convex
             </p>
 
             <p className="text-gray-300 mb-3"><strong>Je peux vous aider sur</strong> :</p>
@@ -253,7 +304,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full">
               <Link href="https://cal.com/jasonsuarez/booking" target="_blank" rel="noopener noreferrer">
-                Discutons de votre projet
+                Réserver un créneau
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-full">
