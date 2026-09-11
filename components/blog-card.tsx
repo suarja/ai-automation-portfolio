@@ -24,6 +24,7 @@ export default function BlogCard({
 }: BlogCardProps) {
   // Use cover image or default blog image
   const image = coverImage || "/images/icons/folder.png";
+  const isRealCover = Boolean(coverImage && !coverImage.startsWith("/images/icons/"));
 
   // Gradient for featured articles (purple theme like IA resources)
   const bgGradient = featured
@@ -35,17 +36,23 @@ export default function BlogCard({
       className={`card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br ${bgGradient}`}
     >
       <div className="p-6 pb-4">
-        <div className="flex justify-center mb-6">
-          <div className="w-24 h-24 relative flex items-center justify-center">
-            <Image
-              src={image}
-              alt={title}
-              width={96}
-              height={96}
-              className="object-contain drop-shadow-[0_5px_10px_rgba(255,255,255,0.15)] rounded-3xl"
-            />
+        {isRealCover ? (
+          <div className="mb-5 -mx-6 -mt-6 overflow-hidden border-b border-border">
+            <Image src={image} alt="" width={1200} height={630} className="w-full h-auto" />
           </div>
-        </div>
+        ) : (
+          <div className="flex justify-center mb-6">
+            <div className="w-24 h-24 relative flex items-center justify-center">
+              <Image
+                src={image}
+                alt={title}
+                width={96}
+                height={96}
+                className="object-contain drop-shadow-[0_5px_10px_rgba(255,255,255,0.15)] rounded-3xl"
+              />
+            </div>
+          </div>
+        )}
         <div className="flex flex-wrap gap-2 mb-3">
           {tags.map((tag) => (
             <Badge

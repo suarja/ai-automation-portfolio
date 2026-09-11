@@ -47,7 +47,7 @@ export default async function BlogPage() {
               <div className="p-3 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-2xl border border-primary/30">
                 <BookOpen className="w-8 h-8 text-primary" />
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground">
                 Blog
               </h1>
             </div>

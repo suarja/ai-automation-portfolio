@@ -131,7 +131,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
               </div>
 
               {/* Title */}
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
                 {metadata.title}
               </h1>
 

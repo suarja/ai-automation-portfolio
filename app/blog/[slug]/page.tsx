@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChevronLeft, Clock, User, BookOpen } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { getAllSlugs } from '@/lib/blog';
@@ -188,7 +189,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
               {metadata.title}
             </h1>
 
@@ -217,7 +218,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </header>
 
           {/* Cover Image */}
-          {metadata.coverImage && (
+          {metadata.coverImage && !metadata.coverImage.startsWith('/images/icons/') && (
             <div className="mb-10 rounded-2xl overflow-hidden border border-primary/20 shadow-lg">
               <img
                 src={metadata.coverImage}
@@ -231,7 +232,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent mb-10"></div>
 
           {/* MDX Content */}
-          <div className="prose prose-invert prose-lg max-w-none">
+          <div className="prose dark:prose-invert prose-lg max-w-none">
             <Post />
           </div>
 
@@ -241,7 +242,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Footer CTA */}
           <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-purple-600/10 border border-primary/20">
             <p className="text-sm text-soft mb-3">
-              💡 <strong>Cet article vous a plu ?</strong> Découvrez comment je peux vous aider à automatiser votre business.
+              <strong>Une question sur cet article, ou un projet en tête ?</strong> Écrivez-moi, je réponds volontiers.
             </p>
             <Link
               href="https://cal.com/jasonsuarez/booking"
@@ -249,7 +250,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               rel="noopener noreferrer"
               className="text-primary hover:text-primary/80 text-sm font-semibold transition-colors"
             >
-              Réserver un appel découverte →
+              Réserver un créneau →
             </Link>
           </div>
 

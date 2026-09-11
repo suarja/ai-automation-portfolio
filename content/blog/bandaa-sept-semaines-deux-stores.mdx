@@ -1,0 +1,106 @@
+export const metadata = {
+  title: "Bandaa : sept semaines entre la première ligne de code et les deux stores",
+  description: "Une app mobile Expo + Convex publiée en sept semaines, seul, avec Claude Code à côté : les choix d'architecture, les ADR, les tests, et ce qui a coincé.",
+  publishedAt: "2026-09-12T12:00:00.000Z",
+  author: "Jason Suárez",
+  tags: ["Retour d'expérience", "React Native", "Convex", "Claude Code"],
+  featured: true,
+  coverImage: "/blog-covers/bandaa-sept-semaines.jpg"
+}
+
+
+J'ai dit à ma femme que je m'occupais de l'organisation du mariage. Je suis développeur. Donc j'ai fait une app.
+
+Le 22 juillet 2026, premier commit. Le 4 septembre, la version 1.0 est en ligne sur l'App Store et sur le Play Store. Entre les deux : 41 jours avec du code poussé, un peu plus de 1 850 commits, et une date de mariage qui ne bougeait pas.
+
+Cet article raconte ce que j'ai construit, les choix qui ont fait tenir le délai, la façon dont je travaille avec Claude Code, et ce qui a coincé. Avec les chiffres, parce que sans chiffres un retour d'expérience est une opinion.
+
+## Ce que fait Bandaa
+
+Bandaa est une app mobile pour un événement et un groupe fermé : un mariage, un anniversaire, des vacances, une soirée. L'organisateur crée l'événement et partage un QR code. Les invités rejoignent en trente secondes, sans compte. Pendant l'événement, l'app leur donne des missions photo. Le lendemain, un album se génère tout seul, dans l'ordre réel de la journée.
+
+Ce n'est pas un réseau social. Pas de fil, pas de profils, pas de likes. Et pas d'IA générative dans l'album : tout ce qui s'y trouve s'est vraiment passé. C'est la promesse du produit, et c'est aussi une décision d'architecture (j'y reviens).
+
+Elle est disponible sur [l'App Store](https://apps.apple.com/us/app/bandaa-event-photo-missions/id6798290227) et le [Play Store](https://play.google.com/store/apps/details?id=com.swarecito.bandaa), en français, anglais et espagnol, avec un achat intégré pour l'organisateur.
+
+## La contrainte qui a tout dicté
+
+Sept semaines, une seule personne, et un jour J qui sert de recette en conditions réelles. Ça élimine beaucoup d'options avant même d'ouvrir l'éditeur.
+
+Pas de backend à opérer moi-même. Pas de système d'auth à maintenir. Pas de pipeline de build que je ne comprends pas. Et surtout : pas de décision que je ne peux pas expliquer en deux phrases, parce que je vais devoir vivre avec pendant sept semaines sans personne pour me relire.
+
+La stack qui en sort :
+
+- **Expo** avec expo-router pour le mobile, en TypeScript. Un seul code pour iOS et Android, EAS Build pour les binaires, expo-updates pour corriger vite après la sortie.
+- **Convex** pour le back-end : base, fonctions, crons, temps réel, le tout en TypeScript, testable en local avec convex-test. Le back-end de Bandaa, c'est 173 fichiers de fonctions Convex.
+- **Cloudflare R2** pour les photos, derrière le composant `@convex-dev/r2`.
+- **RevenueCat** pour l'achat intégré, parce que gérer StoreKit et Google Play Billing à la main en sept semaines n'était pas une option.
+- **i18next** pour les trois langues dès le départ, pas après.
+
+Aucun de ces choix n'est original. C'est le but. L'originalité, je la garde pour le produit.
+
+## Six décisions écrites avant le code qu'elles concernent
+
+La chose la plus utile que j'ai faite le premier jour n'est pas du code. Ce sont des ADR, des Architecture Decision Records : un fichier par décision, avec le contexte, la décision et ses conséquences. Le 22 juillet, il y en avait quatre. Il y en a six aujourd'hui.
+
+**Identité anonyme par appareil.** Le produit exige de rejoindre un événement en trente secondes. Un compte classique, même avec OAuth, tue ce moment. Décision : pas de login, une identité technique liée à l'appareil (token dans le stockage sécurisé) et un pseudo par événement. Conséquence : zéro email collecté, et RevenueCat fonctionne très bien avec des identifiants anonymes.
+
+**La rétention des photos vit dans mon code, pas chez le fournisseur de stockage.** Les photos non confirmées expirent (RGPD et coûts). R2 sait faire ça avec des règles de cycle de vie sur le bucket. J'ai refusé : la règle "les photos d'un album payé persistent" est une règle métier, elle doit être dans le code, testée, et survivre à un changement de fournisseur. Un cron Convex quotidien fait la purge. Une cinquantaine de lignes de test la couvrent.
+
+**Jamais d'URL en base.** Sur un projet précédent, j'avais persisté des URL signées et je les avais vues expirer en production. Ici, la base ne stocke que la clé R2. Les requêtes signent les URL à la lecture, après vérification que l'appareil est bien membre de l'événement. Le bucket reste privé. Une URL qui fuit meurt toute seule.
+
+**Vérité du récit contre stylisation.** Des filtres, du grain, un cadre : oui, c'est présentationnel, le pixel source reste la vraie photo. Ajouter ou retirer quelqu'un d'une photo : non, jamais. La promesse "tout ce qui est dans l'album s'est vraiment passé" est une contrainte de code, pas un slogan.
+
+**Observabilité maison, sans SDK de crash.** Pas de Sentry. Un handler global côté app capte les erreurs JS et les rejets de promesses, les garde en local au moment de l'erreur et les envoie vers une table Convex au lancement suivant. Les crashs natifs restent aux consoles Apple et Google, et c'est assumé : aucune donnée d'erreur ne part chez un tiers, et ajouter Sentry plus tard reste possible si un crash natif devient indiagnosticable.
+
+La sixième ADR est arrivée le 6 septembre, deux jours après la sortie, et elle m'a fait sourire : le mot visible dans l'interface n'est plus "soirée" mais "événement". Le code avait déjà tranché dans les traductions. Le document rattrapait la réalité. C'est exactement à ça que servent les ADR : quand le code décide sans toi, tu l'écris, et tu arrêtes de te contredire.
+
+## Comment je travaille avec Claude Code
+
+C'est la partie que les gens me demandent le plus, et la partie où il y a le plus d'idées fausses.
+
+Je n'ai pas "demandé une app à l'IA". J'ai construit un cadre dans lequel un agent peut travailler sans me faire perdre le contrôle, puis j'ai passé sept semaines à relire, tester et trancher.
+
+Concrètement, le dépôt contient :
+
+- **Un langage commun.** Un fichier `CONTEXT.md` définit chaque terme du domaine (Party, Membership, Shot, Book, Mission) et impose que le code, les tests, les issues et la documentation utilisent ces mots et pas leurs synonymes. Quand l'agent et moi parlons de la même chose avec le même mot, la moitié des malentendus disparaît.
+- **Des règles d'agent.** Un `AGENTS.md` (Claude Code lit le même fichier) avec des règles absolues. La première : aucun terme technique dans le texte visible par l'utilisateur. Pas de "snapshot", pas de "reset", pas de nom de composant. J'ai vu trop d'interfaces générées qui parlent comme un backend.
+- **Des skills par domaine.** Marketing, design des missions, opérations mobiles (APNs, FCM), fiches store, purge et confiance : chaque sujet a son dossier de connaissances que l'agent charge quand il en a besoin. Le contexte reste petit et pertinent.
+- **Un état d'exécution.** Un document qui dit où on en est, quelle tranche est ouverte, quelle porte de validation reste à passer. Pas un journal : l'état courant, et rien d'autre. Quand il dérive de la réalité, ça se paie (voir plus bas).
+- **Des tests comme porte.** 235 fichiers de tests côté app, 125 côté Convex. Rien de ce que l'agent produit n'entre sans passer par là.
+
+Et puis il y a la règle que je m'applique à moi : l'IA propose, je tranche en lisant le code et en le faisant tourner. Chaque ADR ci-dessus liste les options qui étaient sur la table, et souvent c'est l'agent qui les a mises côte à côte avec leurs conséquences. Comparer, c'est ce qu'il fait le mieux. Décider, c'est mon travail.
+
+Ce que ça change en pratique : je passe moins de temps à taper et plus de temps à lire. Sur sept semaines, c'est la lecture qui a fait la qualité, pas la vitesse de génération.
+
+## Ce qui a coincé
+
+Un retour d'expérience sans échecs est une brochure.
+
+**Le document d'état a menti pendant deux jours.** Jusqu'au 6 septembre, il affirmait qu'Android n'était pas publié. Vérification dans la Play Console : le canal de production était actif, release 14, 67 pays. La fiche était publique, avec des captures d'écran tablette manquantes et un questionnaire de sécurité des données à reprendre. Leçon : un document d'état qui n'est pas relu contre la source de vérité devient un mensonge tranquille. Depuis, l'état est remis à plat après chaque publication, pas avant.
+
+**Le vocabulaire a bougé en cours de route.** Bandaa est née comme une app de soirée. Les templates d'événement ont suivi (mariage, baptême, anniversaire, vacances, libre), les traductions ont suivi, et le glossaire, lui, interdisait toujours le mot "événement". Le code avait raison, le document avait tort. Corrigé par une ADR après coup.
+
+**Les URL signées, deuxième fois.** Je l'ai dit plus haut : c'est une erreur que j'avais déjà faite sur un autre projet. La différence, cette fois, c'est qu'elle est écrite dans une ADR avec le nom du projet où elle m'a coûté. Les erreurs qu'on documente sont celles qu'on ne refait pas.
+
+## Ce que je referais, et ce que je ferais autrement
+
+Je referais les ADR le premier jour. Les six décisions ci-dessus ont tenu sept semaines sans être rouvertes, sauf la sixième, et c'est normal.
+
+Je referais le langage commun avant la première fonction. C'est ce qui rend un agent utilisable sur la durée.
+
+Je referais les tests comme porte d'entrée, même quand le délai hurle. Surtout quand le délai hurle.
+
+Je publierais sur les deux stores dès la première semaine, avec une version vide si nécessaire, pour absorber la partie administrative (comptes, questionnaires, captures, revues) pendant que je code, pas à la fin.
+
+Et je relirais le document d'état contre les consoles Apple et Google chaque semaine, pas "quand j'ai le temps".
+
+## Les chiffres
+
+- 41 jours avec des commits entre le 22 juillet et le 4 septembre 2026, un peu plus de 1 850 commits
+- 173 fichiers de fonctions Convex, 27 écrans
+- 235 fichiers de tests côté app, 125 côté back-end
+- 6 ADR, 5 templates d'événement, 16 missions définies, 3 langues
+- Version 1.0 le 4 septembre sur l'App Store, Play Store en production dans 67 pays, version 1.1 en ligne depuis
+
+Le code de Bandaa n'est pas public. Si tu construis quelque chose de comparable et que tu as une question sur un de ces choix, [écris-moi](mailto:jason.h.suarez@gmail.com) ou passe par [LinkedIn](https://www.linkedin.com/in/jason-suarez/). Je réponds volontiers, surtout aux questions d'architecture.
