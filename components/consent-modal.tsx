@@ -37,30 +37,30 @@ export default function ConsentModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-      <div className="relative w-full max-w-md p-6 mx-4 bg-[#111] border border-[#222] rounded-xl shadow-xl">
+      <div className="relative w-full max-w-md p-6 mx-4 bg-card border border-border rounded-xl shadow-xl">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white"
+          className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
           aria-label="Fermer"
         >
           <X size={20} />
         </button>
 
-        <h2 className="text-xl font-bold mb-4 text-white">
+        <h2 className="text-xl font-bold mb-4 text-foreground">
           Pourquoi nous utilisons FingerprintJS
         </h2>
 
-        <div className="space-y-4 text-gray-300 text-sm">
+        <div className="space-y-4 text-soft text-sm">
           <p>
-            <strong className="text-white">
+            <strong className="text-foreground">
               Nous respectons votre vie privée.
             </strong>{" "}
             FingerprintJS nous permet de vous offrir une expérience
             personnalisée tout en préservant votre anonymat.
           </p>
 
-          <div className="bg-[#1a1a1a] p-4 rounded-lg">
-            <h3 className="font-medium text-white mb-2">
+          <div className="bg-card p-4 rounded-lg">
+            <h3 className="font-medium text-foreground mb-2">
               Ce que vous y gagnez :
             </h3>
             <ul className="list-disc list-inside space-y-1">
@@ -72,7 +72,7 @@ export default function ConsentModal({
           </div>
 
           <p>
-            <strong className="text-white">Comment ça fonctionne :</strong>{" "}
+            <strong className="text-foreground">Comment ça fonctionne :</strong>{" "}
             FingerprintJS crée un identifiant unique basé sur les
             caractéristiques de votre navigateur. Nous n'enregistrons aucune
             donnée personnelle identifiable.
@@ -81,7 +81,7 @@ export default function ConsentModal({
           <p>
             Vous pouvez en apprendre davantage sur notre utilisation de
             FingerprintJS et notre politique de confidentialité sur notre{" "}
-            <Link href="/privacy" className="text-purple-400 hover:underline">
+            <Link href="/privacy" className="text-primary hover:underline">
               page de confidentialité
             </Link>
             .
@@ -91,13 +91,13 @@ export default function ConsentModal({
         <div className="flex gap-3 mt-6">
           <Button
             variant="outline"
-            className="flex-1 bg-transparent border-[#333] hover:bg-[#222] text-gray-300"
+            className="flex-1 bg-transparent border-border hover:bg-secondary text-soft"
             onClick={onDecline}
           >
             Refuser quand même
           </Button>
           <Button
-            className="flex-1 bg-purple-700 hover:bg-purple-600 text-white"
+            className="flex-1 bg-purple-700 hover:bg-purple-600 text-foreground"
             onClick={onAccept}
           >
             Accepter

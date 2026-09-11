@@ -60,10 +60,10 @@ export default function ConsentBanner() {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-[#111] border-t border-[#222] shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-card border-t border-border shadow-lg">
         <div className="container mx-auto max-w-5xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="text-gray-300 text-sm">
+            <div className="text-soft text-sm">
               <p>
                 Nous utilisons des technologies de suivi pour améliorer votre
                 expérience. Acceptez-vous que nous collections votre empreinte
@@ -74,14 +74,14 @@ export default function ConsentBanner() {
               <Button
                 variant="outline"
                 size="sm"
-                className="bg-transparent border-[#333] hover:bg-[#222] text-gray-300"
+                className="bg-transparent border-border hover:bg-secondary text-soft"
                 onClick={() => handleConsent(false)}
               >
                 Refuser
               </Button>
               <Button
                 size="sm"
-                className="bg-purple-700 hover:bg-purple-600 text-white"
+                className="bg-purple-700 hover:bg-purple-600 text-foreground"
                 onClick={() => handleConsent(true)}
               >
                 Accepter

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export default function CallToAction() {
   return (
-    <div className="mt-16 relative overflow-hidden rounded-3xl border border-[#333] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-purple-900 to-indigo-900">
+    <div className="mt-16 relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-purple-900 to-indigo-900 text-white">
       <div className="absolute inset-0 bg-[url('/images/grid.png')] opacity-10"></div>
       <div className="relative z-10 p-8 text-center">
         <div className="flex flex-col items-center">
@@ -18,7 +18,7 @@ export default function CallToAction() {
             />
           </div>
           <h2 className="text-2xl font-bold mb-2">Discutons</h2>
-          <p className="text-gray-200 mb-6 max-w-lg mx-auto">
+          <p className="text-white/85 mb-6 max-w-lg mx-auto">
             Un projet, une question, une opportunité ? Réserve un créneau ou
             écris-moi sur LinkedIn.
           </p>
@@ -33,7 +33,7 @@ export default function CallToAction() {
           </Button>
         </div>
       </div>
-      <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
+      <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-0 dark:opacity-20"></div>
     </div>
   );
 }

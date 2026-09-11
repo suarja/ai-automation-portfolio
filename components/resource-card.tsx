@@ -28,7 +28,7 @@ export default function ResourceCard({
   gradient,
   featureRequest,
 }: ResourceCardProps) {
-  const bgGradient = gradient || "from-[#151515] to-[#111]";
+  const bgGradient = gradient || "from-elevated to-card";
   const { openFeatureRequestModal } = useFeatureRequest();
   const { hasConsent, visitorId } = useFingerprint();
 
@@ -64,7 +64,7 @@ export default function ResourceCard({
 
   return (
     <div
-      className={`relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm bg-gradient-to-br ${bgGradient}`}
+      className={`card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br ${bgGradient}`}
     >
       <div className="p-6 pb-4">
         <div className="flex justify-center mb-6">
@@ -83,26 +83,26 @@ export default function ResourceCard({
             <Badge
               key={tag}
               variant="secondary"
-              className="bg-[#222] border border-[#333] rounded-full text-xs px-3"
+              className="bg-secondary border border-border rounded-full text-xs px-3"
             >
               {tag}
             </Badge>
           ))}
         </div>
         <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-gray-400 mb-6">{description}</p>
+        <p className="text-muted-foreground mb-6">{description}</p>
         <Button
           onClick={handleClick}
           variant={featureRequest ? "outline" : "default"}
           className={featureRequest
-            ? "rounded-full border-[#333] bg-[#111] hover:bg-[#222] shadow-md"
-            : "w-full rounded-full bg-[#222] hover:bg-[#333] shadow-md"
+            ? "rounded-full border-border bg-card hover:bg-secondary shadow-md"
+            : "w-full rounded-full bg-secondary hover:bg-muted shadow-md"
           }
         >
           {buttonText}
         </Button>
       </div>
-      <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
+      <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-0 dark:opacity-20"></div>
     </div>
   );
 }

@@ -63,8 +63,8 @@ export default function WebsiteFaqAccordion() {
           key={index}
           className={`border ${
             openIndex === index
-              ? "border-purple-500/30 bg-[#151515]"
-              : "border-[#222] bg-[#111]"
+              ? "border-purple-500/30 bg-card"
+              : "border-border bg-card"
           } rounded-xl overflow-hidden transition-all duration-300`}
         >
           <button
@@ -73,7 +73,7 @@ export default function WebsiteFaqAccordion() {
           >
             <span className="text-lg font-medium">{item.question}</span>
             <ChevronDown
-              className={`h-5 w-5 text-purple-400 transition-transform duration-300 ${
+              className={`h-5 w-5 text-primary transition-transform duration-300 ${
                 openIndex === index ? "transform rotate-180" : ""
               }`}
             />
@@ -83,7 +83,7 @@ export default function WebsiteFaqAccordion() {
               openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
             }`}
           >
-            <div className="p-6 pt-0 text-gray-300">{item.answer}</div>
+            <div className="p-6 pt-0 text-soft">{item.answer}</div>
           </div>
         </div>
       ))}

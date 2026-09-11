@@ -3,36 +3,78 @@
 @tailwind utilities;
 
 @layer base {
+  /* Thème clair par défaut */
   :root {
+    --background: 220 25% 98%;
+    --foreground: 224 24% 12%;
+    --soft: 224 12% 30%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 24% 12%;
+    --elevated: 220 30% 98%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 24% 12%;
+
+    --primary: 262 72% 54%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 94%;
+    --secondary-foreground: 224 24% 12%;
+
+    --muted: 220 20% 94%;
+    --muted-foreground: 220 10% 44%;
+
+    --accent: 262 72% 54%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 16% 89%;
+    --input: 220 16% 89%;
+    --ring: 262 72% 54%;
+
+    --radius: 1rem;
+
+    --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 32px -12px rgba(16, 24, 40, 0.12);
+    --glow: 262 72% 54%;
+  }
+
+  /* Thème sombre */
+  .dark {
     --background: 0 0% 3%;
     --foreground: 0 0% 98%;
+    --soft: 0 0% 80%;
 
-    --card: 0 0% 5%;
+    --card: 0 0% 6%;
     --card-foreground: 0 0% 98%;
+    --elevated: 0 0% 9%;
 
     --popover: 0 0% 5%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 270 70% 60%;
+    --primary: 270 70% 62%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 0 0% 9%;
+    --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 9%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 62%;
 
-    --accent: 270 70% 60%;
+    --accent: 270 70% 62%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 13%;
-    --input: 0 0% 13%;
-    --ring: 270 70% 60%;
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --ring: 270 70% 62%;
 
-    --radius: 1rem;
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.35);
+    --glow: 270 70% 62%;
   }
 }
 
@@ -48,9 +90,9 @@
 /* Effet de glassmorphism */
 .glass-card {
   backdrop-filter: blur(10px);
-  background: rgba(20, 20, 20, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  background: hsl(var(--card) / 0.6);
+  border: 1px solid hsl(var(--border));
+  box-shadow: var(--shadow-card);
 }
 
 /* Effet de néon subtil */
@@ -82,4 +124,68 @@
   @apply bg-clip-text text-transparent;
   background-size: 100%;
   background-position: 0%;
+}
+
+/* Cartes : lueur au survol, légère élévation */
+.card-glow {
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  will-change: transform;
+}
+.card-glow:hover {
+  transform: translateY(-3px);
+  border-color: hsl(var(--glow) / 0.45);
+  box-shadow:
+    0 0 0 1px hsl(var(--glow) / 0.25),
+    0 18px 50px -18px hsl(var(--glow) / 0.55),
+    var(--shadow-card);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-glow, .card-glow:hover { transition: none; transform: none; }
+}
+
+/* Halo doux derrière la photo de profil */
+.halo {
+  position: relative;
+}
+.halo::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, hsl(var(--glow) / 0.35), transparent 70%);
+  filter: blur(6px);
+  z-index: -1;
+  animation: halo-breathe 6s ease-in-out infinite;
+}
+@keyframes halo-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+/* Apparition en fondu vers le haut */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.fade-up-1 { animation-delay: 0.05s; }
+.fade-up-2 { animation-delay: 0.15s; }
+.fade-up-3 { animation-delay: 0.25s; }
+.fade-up-4 { animation-delay: 0.35s; }
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { animation: none; }
+  .halo::before { animation: none; }
+}
+
+/* Fond : deux taches de couleur très diffuses, fixes */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 40% at 15% 0%, hsl(var(--glow) / 0.10), transparent 60%),
+    radial-gradient(50% 35% at 90% 20%, hsl(230 80% 60% / 0.08), transparent 60%);
 }

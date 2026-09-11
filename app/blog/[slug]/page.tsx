@@ -108,7 +108,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   };
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
+    <main className="min-h-screen bg-background text-foreground">
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
@@ -124,13 +124,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <div className="container mx-auto px-4 py-8 max-w-4xl relative z-10">
         <Link
           href="/blog"
-          className="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors"
+          className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8 transition-colors"
         >
           <ChevronLeft className="mr-1 h-4 w-4" />
           Retour au blog
         </Link>
 
-        <article className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 md:p-12">
+        <article className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8 md:p-12">
           {/* Header */}
           <header className="mb-10">
             {/* Icon decoration */}
@@ -157,12 +157,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </h1>
 
             {/* Meta information */}
-            <div className="flex flex-wrap items-center gap-4 text-gray-400 text-sm">
+            <div className="flex flex-wrap items-center gap-4 text-muted-foreground text-sm">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4 text-primary" />
                 <span>{metadata.author}</span>
               </div>
-              <span className="text-gray-600">•</span>
+              <span className="text-muted-foreground">•</span>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-primary" />
                 <time dateTime={metadata.publishedAt}>
@@ -171,8 +171,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
               {metadata.updatedAt && (
                 <>
-                  <span className="text-gray-600">•</span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-muted-foreground">•</span>
+                  <span className="text-xs text-muted-foreground">
                     Mis à jour le {formatDate(metadata.updatedAt)}
                   </span>
                 </>
@@ -204,7 +204,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Footer CTA */}
           <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-purple-600/10 border border-primary/20">
-            <p className="text-sm text-gray-300 mb-3">
+            <p className="text-sm text-soft mb-3">
               💡 <strong>Cet article vous a plu ?</strong> Découvrez comment je peux vous aider à automatiser votre business.
             </p>
             <Link
@@ -218,7 +218,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {/* Overlay gradient for depth */}
-          <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
+          <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-0 dark:opacity-20"></div>
         </article>
 
         {/* Navigation */}

@@ -28,11 +28,11 @@ export default function BlogCard({
   // Gradient for featured articles (purple theme like IA resources)
   const bgGradient = featured
     ? "from-purple-900 to-indigo-800"
-    : "from-[#151515] to-[#111]";
+    : "from-elevated to-card";
 
   return (
     <div
-      className={`relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm bg-gradient-to-br ${bgGradient}`}
+      className={`card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br ${bgGradient}`}
     >
       <div className="p-6 pb-4">
         <div className="flex justify-center mb-6">
@@ -51,22 +51,22 @@ export default function BlogCard({
             <Badge
               key={tag}
               variant="secondary"
-              className="bg-[#222] border border-[#333] rounded-full text-xs px-3"
+              className="bg-secondary border border-border rounded-full text-xs px-3"
             >
               {tag}
             </Badge>
           ))}
         </div>
         <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-gray-400 mb-6">{description}</p>
+        <p className="text-muted-foreground mb-6">{description}</p>
         <Button
           asChild
-          className="w-full rounded-full bg-[#222] hover:bg-[#333] shadow-md"
+          className="w-full rounded-full bg-secondary hover:bg-muted shadow-md"
         >
           <Link href={`/blog/${slug}`}>Lire l'article</Link>
         </Button>
       </div>
-      <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
+      <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-0 dark:opacity-20"></div>
     </div>
   );
 }

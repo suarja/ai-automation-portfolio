@@ -24,13 +24,13 @@ export default function Home() {
   const { posts, loading: postsLoading } = useBlogPosts();
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
+    <main className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         {/* Header Section */}
         <ProfileHeader />
 
         {/* Ce que j'ai construit */}
-        <section className="mt-16">
+        <section className="mt-16 fade-up fade-up-1">
           <SectionHeader title="Ce que j'ai construit" />
 
           <div className="grid grid-cols-1 gap-6">
@@ -41,25 +41,25 @@ export default function Home() {
         </section>
 
         {/* À propos Section */}
-        <section className="mt-16">
+        <section className="mt-16 fade-up fade-up-2">
           <SectionHeader title="À propos" />
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-            <div className="lg:col-span-3 bg-[#111] p-8 rounded-3xl border border-[#222] backdrop-blur-sm shadow-xl">
-              <p className="text-gray-300 mb-4">
+            <div className="lg:col-span-3 card-glow bg-card p-8 rounded-3xl border border-border backdrop-blur-sm shadow-card">
+              <p className="text-soft mb-4">
                 Je suis développeur full-stack. Côté TypeScript : React, Next.js, React Native, NestJS et Convex.
                 Côté PHP : Symfony.
               </p>
 
-              <p className="text-gray-300 mb-4">
+              <p className="text-soft mb-4">
                 <strong>Mon parcours</strong> : professeur certifié d'espagnol de 2020 à 2024, reconverti dans le
                 développement en 2022, en parallèle du métier. Depuis, un an seul développeur front dans une startup
                 fitness, puis full-stack Symfony/React chez un opérateur télécom.
               </p>
 
               <div className="mb-6">
-                <p className="text-gray-300 mb-2"><strong>Actuellement</strong> :</p>
-                <ul className="list-disc list-inside text-gray-300 space-y-1 ml-4">
+                <p className="text-soft mb-2"><strong>Actuellement</strong> :</p>
+                <ul className="list-disc list-inside text-soft space-y-1 ml-4">
                   <li>Développeur full-stack @ C'CIN Chartres (Symfony / React)</li>
                   <li>Bandaa, application mobile publiée sur l'App Store et le Play Store en septembre 2026</li>
                   <li>Contenu tech sur TikTok et YouTube (@swarecito)</li>
@@ -69,7 +69,7 @@ export default function Home() {
               <h3 className="text-xl font-bold mt-6 mb-3">
                 Ce que je fais
               </h3>
-              <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
+              <ul className="list-disc list-inside text-soft space-y-2 mb-6">
                 <li>
                   <strong>Web et mobile</strong> : applications React / Next.js et React Native / Expo, APIs Symfony,
                   back-ends TypeScript
@@ -96,7 +96,7 @@ export default function Home() {
         </section>
 
         {/* Automatisations Section */}
-        <section className="mt-16">
+        <section className="mt-16 fade-up fade-up-3">
           <SectionHeader title="Automatisations pour indépendants" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -104,7 +104,7 @@ export default function Home() {
               ? // Loading state - show skeletons
                 Array.from({ length: 4 }).map((_, index) => (
                   <div key={index} className="animate-pulse">
-                    <div className="bg-[#151515] rounded-3xl h-48 border border-[#222]"></div>
+                    <div className="bg-card rounded-3xl h-48 border border-border"></div>
                   </div>
                 ))
               : // Dynamic projects from API + feature requests
@@ -123,7 +123,7 @@ export default function Home() {
         </section>
 
         {/* Blog Section */}
-        <section className="mt-16">
+        <section className="mt-16 fade-up fade-up-4">
           <SectionHeader title="Blog" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -131,7 +131,7 @@ export default function Home() {
               ? // Loading state - show skeletons
                 Array.from({ length: 3 }).map((_, index) => (
                   <div key={index} className="animate-pulse">
-                    <div className="bg-[#151515] rounded-3xl h-80 border border-[#222]"></div>
+                    <div className="bg-card rounded-3xl h-80 border border-border"></div>
                   </div>
                 ))
               : // Dynamic blog posts from API
@@ -152,7 +152,7 @@ export default function Home() {
 
           {posts.length === 0 && !postsLoading && (
             <div className="text-center py-12">
-              <p className="text-gray-400">
+              <p className="text-muted-foreground">
                 Aucun article publié pour le moment. Revenez bientôt !
               </p>
             </div>
@@ -160,11 +160,11 @@ export default function Home() {
         </section>
 
         {/* Templates & Ressources Section */}
-        <section className="mt-16">
+        <section className="mt-16 fade-up fade-up-4">
           <SectionHeader title="Mes Ressources" />
 
           <Tabs defaultValue="tous" className="mb-6">
-            <TabsList className="bg-[#151515] rounded-full p-1 border border-[#222] w-auto inline-flex">
+            <TabsList className="bg-card rounded-full p-1 border border-border w-auto inline-flex">
               <TabsTrigger
                 value="tous"
                 className="rounded-full px-4 py-1.5 text-sm"
@@ -197,7 +197,7 @@ export default function Home() {
               ? // Loading state - show skeletons
                 Array.from({ length: 6 }).map((_, index) => (
                   <div key={index} className="animate-pulse">
-                    <div className="bg-[#151515] rounded-3xl h-80 border border-[#222]"></div>
+                    <div className="bg-card rounded-3xl h-80 border border-border"></div>
                   </div>
                 ))
               : // Dynamic resources from API + feature requests
@@ -228,7 +228,7 @@ export default function Home() {
         </section>
 
         {/* Mes Liens Section */}
-        <section className="mt-16">
+        <section className="mt-16 fade-up fade-up-4">
           <SectionHeader title="Mes Liens" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
