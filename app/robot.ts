@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       disallow: ["/admin/", "/api/", "/_next/", "/private/"],
     },
     sitemap: [
-      "https://media.jason-suarez.com/sitemap.xml",
+      "https://www.jason-suarez.com/sitemap.xml",
     ],
   };
 }

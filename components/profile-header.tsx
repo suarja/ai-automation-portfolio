@@ -1,12 +1,13 @@
 import Image from "next/image";
 import SocialIcon from "./social-icon";
+import ThemeToggle from "./theme-toggle";
 
 export default function ProfileHeader() {
   return (
     <header className="flex flex-col items-center text-center">
-      <div className="relative w-32 h-32 overflow-hidden rounded-full border-2 border-gray-700 shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+      <div className="halo relative w-32 h-32 overflow-hidden rounded-full border-2 border-border shadow-card">
         <Image
-          src="/images/profile.png"
+          src="/images/profile.jpg"
           alt="Photo de profil"
           fill
           className="object-cover"
@@ -16,11 +17,11 @@ export default function ProfileHeader() {
 
       <h1 className="mt-4 text-3xl font-bold">Jason Suarez</h1>
 
-      <p className="mt-2 text-lg font-semibold text-white">
+      <p className="mt-2 text-lg font-semibold text-foreground">
         Développeur full-stack TypeScript · React / Next.js · Symfony
       </p>
 
-      <p className="mt-2 text-gray-400 max-w-md">
+      <p className="mt-2 text-muted-foreground max-w-md">
         2 ans d'expérience · en poste chez C'CIN (Chartres) · Île-de-France
       </p>
 
@@ -45,6 +46,7 @@ export default function ProfileHeader() {
           href="https://github.com/suarja"
           label="GitHub"
         />
+        <ThemeToggle />
       </div>
     </header>
   );

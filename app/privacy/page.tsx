@@ -37,13 +37,13 @@ export default function PrivacyPage() {
     : "Non disponible";
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
+    <main className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-4 py-8 max-w-md">
         {/* En-tête avec navigation */}
         <div className="mb-8 flex items-center">
           <Link
             href="/"
-            className="mr-4 text-gray-400 hover:text-white transition-colors"
+            className="mr-4 text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft size={20} />
           </Link>
@@ -79,7 +79,7 @@ export default function PrivacyPage() {
               } flex items-center justify-center mr-3`}
             >
               {hasConsent ? (
-                <Check size={20} className="text-green-400" />
+                <Check size={20} className="text-emerald-600 dark:text-emerald-400" />
               ) : (
                 <X size={20} className="text-red-400" />
               )}
@@ -87,12 +87,12 @@ export default function PrivacyPage() {
             <div>
               <p
                 className={`font-medium ${
-                  hasConsent ? "text-green-400" : "text-red-400"
+                  hasConsent ? "text-emerald-600 dark:text-emerald-400" : "text-red-400"
                 }`}
               >
                 {hasConsent ? "Tracking activé" : "Tracking désactivé"}
               </p>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-muted-foreground">
                 {hasConsent
                   ? "Vous avez accepté le tracking anonyme"
                   : "Vous avez refusé le tracking anonyme"}
@@ -101,22 +101,22 @@ export default function PrivacyPage() {
           </div>
 
           {hasConsent && (
-            <div className="mt-4 p-3 bg-[#111] rounded-xl">
+            <div className="mt-4 p-3 bg-card rounded-xl">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center">
-                  <Fingerprint size={16} className="mr-2 text-gray-400" />
-                  <span className="text-sm text-gray-300">
+                  <Fingerprint size={16} className="mr-2 text-muted-foreground" />
+                  <span className="text-sm text-soft">
                     Votre identifiant unique
                   </span>
                 </div>
                 <button
                   onClick={() => setShowVisitorId(!showVisitorId)}
-                  className="text-gray-400 hover:text-white"
+                  className="text-muted-foreground hover:text-foreground"
                 >
                   {showVisitorId ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
-              <code className="block w-full text-xs bg-[#0a0a0a] p-2 rounded border border-[#222] overflow-x-auto">
+              <code className="block w-full text-xs bg-background p-2 rounded border border-border overflow-x-auto">
                 {showVisitorId ? visitorId : maskedVisitorId}
               </code>
             </div>
@@ -139,30 +139,30 @@ export default function PrivacyPage() {
 
         {/* Explication du fonctionnement */}
         <div className="space-y-6 mb-8">
-          <section className="bg-[#111] p-6 rounded-3xl border border-[#222]">
+          <section className="bg-card p-6 rounded-3xl border border-border">
             <h2 className="text-xl font-semibold mb-4 flex items-center">
               <Fingerprint className="mr-2" size={20} />
               Comment ça fonctionne
             </h2>
-            <p className="text-gray-300 mb-4">
+            <p className="text-soft mb-4">
               FingerprintJS crée un identifiant unique basé sur les
               caractéristiques de votre navigateur et appareil, sans collecter
               d'informations personnelles.
             </p>
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-[#1a1a1a] p-3 rounded-xl">
+              <div className="bg-card p-3 rounded-xl">
                 <h3 className="font-medium text-sm mb-2">Ce qu'on utilise</h3>
-                <ul className="text-xs text-gray-400 space-y-1">
+                <ul className="text-xs text-muted-foreground space-y-1">
                   <li>• Configuration navigateur</li>
                   <li>• Caractéristiques appareil</li>
                   <li>• Paramètres graphiques</li>
                 </ul>
               </div>
-              <div className="bg-[#1a1a1a] p-3 rounded-xl">
+              <div className="bg-card p-3 rounded-xl">
                 <h3 className="font-medium text-sm mb-2">
                   Ce qu'on n'utilise pas
                 </h3>
-                <ul className="text-xs text-gray-400 space-y-1">
+                <ul className="text-xs text-muted-foreground space-y-1">
                   <li>• Nom ou email</li>
                   <li>• Adresse IP</li>
                   <li>• Données personnelles</li>
@@ -171,40 +171,40 @@ export default function PrivacyPage() {
             </div>
           </section>
 
-          <section className="bg-[#111] p-6 rounded-3xl border border-[#222]">
+          <section className="bg-card p-6 rounded-3xl border border-border">
             <h2 className="text-xl font-semibold mb-4">Pourquoi c'est utile</h2>
             <div className="space-y-3">
               <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-purple-900/30 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                  <Check size={16} className="text-purple-400" />
+                <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                  <Check size={16} className="text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-white">
+                  <p className="font-medium text-foreground">
                     Expérience personnalisée
                   </p>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-muted-foreground">
                     Nous adaptons le contenu à vos préférences
                   </p>
                 </div>
               </div>
               <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-purple-900/30 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                  <Check size={16} className="text-purple-400" />
+                <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                  <Check size={16} className="text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-white">Navigation fluide</p>
-                  <p className="text-sm text-gray-400">
+                  <p className="font-medium text-foreground">Navigation fluide</p>
+                  <p className="text-sm text-muted-foreground">
                     Pas besoin de vous identifier à chaque visite
                   </p>
                 </div>
               </div>
               <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-purple-900/30 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                  <Check size={16} className="text-purple-400" />
+                <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                  <Check size={16} className="text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-white">Contenu pertinent</p>
-                  <p className="text-sm text-gray-400">
+                  <p className="font-medium text-foreground">Contenu pertinent</p>
+                  <p className="text-sm text-muted-foreground">
                     Nous vous montrons ce qui vous intéresse
                   </p>
                 </div>
@@ -214,13 +214,13 @@ export default function PrivacyPage() {
         </div>
 
         {/* Code d'implémentation */}
-        <div className="mb-8 bg-[#111] p-6 rounded-3xl border border-[#222]">
+        <div className="mb-8 bg-card p-6 rounded-3xl border border-border">
           <h2 className="text-xl font-semibold mb-4">Implémentation simple</h2>
-          <p className="text-gray-300 mb-4">
+          <p className="text-soft mb-4">
             Voici comment nous utilisons le hook dans notre code :
           </p>
-          <div className="bg-[#0a0a0a] p-4 rounded-xl border border-[#222] overflow-x-auto">
-            <pre className="text-xs text-gray-300">
+          <div className="bg-background p-4 rounded-xl border border-border overflow-x-auto">
+            <pre className="text-xs text-soft">
               <code>{`// Dans n'importe quel composant React
 import { useFingerprint } from '@/hooks/use-fingerprint'
 
@@ -240,14 +240,14 @@ function MyComponent() {
         </div>
 
         {/* Contact */}
-        <div className="mb-16 bg-[#111] p-6 rounded-3xl border border-[#222]">
+        <div className="mb-16 bg-card p-6 rounded-3xl border border-border">
           <h2 className="text-xl font-semibold mb-4">Contact</h2>
-          <p className="text-gray-300">
+          <p className="text-soft">
             Pour toute question concernant notre politique de confidentialité,
             veuillez nous contacter à l'adresse suivante :
             <a
               href="mailto:jason.h.suarez@gmail.com"
-              className="text-purple-400 ml-1 hover:underline"
+              className="text-primary ml-1 hover:underline"
             >
               jason.h.suarez@gmail.com
             </a>

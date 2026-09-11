@@ -67,10 +67,10 @@ export default function WebsiteShowcase() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+    <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
       <div className="flex flex-col md:flex-row gap-8">
         <div className="md:w-1/2 relative">
-          <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-[#333] shadow-lg">
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border shadow-lg">
             <Image
               src={websites[activeIndex].image || "/placeholder.svg"}
               alt={websites[activeIndex].title}
@@ -121,7 +121,7 @@ export default function WebsiteShowcase() {
           <h3 className="text-2xl font-bold mb-2">
             {websites[activeIndex].title}
           </h3>
-          <p className="text-gray-300 mb-4">
+          <p className="text-soft mb-4">
             {websites[activeIndex].description}
           </p>
 
@@ -129,14 +129,14 @@ export default function WebsiteShowcase() {
             {websites[activeIndex].tags.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 bg-[#222] border border-[#333] rounded-full text-sm text-gray-300"
+                className="px-3 py-1 bg-secondary border border-border rounded-full text-sm text-soft"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <p className="text-gray-400 mb-6">
+          <p className="text-muted-foreground mb-6">
             Ce type de site peut être créé en moins de 14 jours avec notre
             méthode, même sans compétences techniques préalables.
           </p>
@@ -144,7 +144,7 @@ export default function WebsiteShowcase() {
           <Button
             asChild
             variant="outline"
-            className="rounded-full border-[#333] bg-[#111] hover:bg-[#222]"
+            className="rounded-full border-border bg-card hover:bg-secondary"
           >
             <a
               href={websites[activeIndex].link}

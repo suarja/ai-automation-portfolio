@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: "Jason Suarez | Développeur full-stack",
   description:
     "Développeur full-stack TypeScript (React, Next.js, React Native, Convex) et Symfony. Bandaa sur l'App Store et le Play Store, full-stack chez C'CIN Chartres.",
-  metadataBase: new URL("https://media.jason-suarez.com"),
+  metadataBase: new URL("https://www.jason-suarez.com"),
   authors: [{ name: "Jason Suarez" }],
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://media.jason-suarez.com",
+    url: "https://www.jason-suarez.com",
     siteName: "Jason Suarez",
     title: "Jason Suarez | Développeur full-stack",
     description:
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://media.jason-suarez.com",
+    canonical: "https://www.jason-suarez.com",
   },
   twitter: {
     card: "summary_large_image",
@@ -90,7 +90,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0F0F0F",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafbfd" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0f0f" },
+  ],
 };
 
 export default function RootLayout({
@@ -103,11 +106,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange
         >
           <FeatureRequestProvider>
+            <div className="ambient" aria-hidden="true" />
             {children}
             <ConsentBanner />
           </FeatureRequestProvider>

@@ -14,7 +14,7 @@ export default function DemoCard() {
     : "Non disponible";
 
   return (
-    <div className="bg-[#111] p-6 rounded-3xl border border-[#222] shadow-lg">
+    <div className="bg-card p-6 rounded-3xl border border-border shadow-lg">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold flex items-center">
           <Fingerprint className="mr-2" size={18} />
@@ -44,7 +44,7 @@ export default function DemoCard() {
               } flex items-center justify-center mr-3`}
             >
               {hasConsent ? (
-                <Check size={16} className="text-green-400" />
+                <Check size={16} className="text-emerald-600 dark:text-emerald-400" />
               ) : (
                 <X size={16} className="text-red-400" />
               )}
@@ -52,12 +52,12 @@ export default function DemoCard() {
             <div>
               <p
                 className={`font-medium ${
-                  hasConsent ? "text-green-400" : "text-red-400"
+                  hasConsent ? "text-emerald-600 dark:text-emerald-400" : "text-red-400"
                 }`}
               >
                 {hasConsent ? "Tracking activé" : "Tracking désactivé"}
               </p>
-              <p className="text-xs text-gray-400">
+              <p className="text-xs text-muted-foreground">
                 {hasConsent
                   ? "Votre visite est anonymement tracée"
                   : "Votre visite n'est pas tracée"}
@@ -66,12 +66,12 @@ export default function DemoCard() {
           </div>
 
           {hasConsent && (
-            <div className="mt-2 p-3 bg-[#0a0a0a] rounded-lg">
+            <div className="mt-2 p-3 bg-background rounded-lg">
               <div className="flex items-center mb-1">
-                <Fingerprint size={14} className="mr-2 text-gray-400" />
-                <span className="text-xs text-gray-300">ID Visiteur</span>
+                <Fingerprint size={14} className="mr-2 text-muted-foreground" />
+                <span className="text-xs text-soft">ID Visiteur</span>
               </div>
-              <code className="block w-full text-xs bg-[#111] p-2 rounded border border-[#222] overflow-x-auto">
+              <code className="block w-full text-xs bg-card p-2 rounded border border-border overflow-x-auto">
                 {maskedVisitorId}
               </code>
             </div>

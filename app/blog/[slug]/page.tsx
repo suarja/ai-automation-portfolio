@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { getAllSlugs } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
 import { notFound } from 'next/navigation';
+import { SITE_URL, SITE_NAME } from '@/lib/site';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -25,36 +26,38 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     const mdxModule = await import(`@/content/blog/${slug}.mdx`);
     const metadata = mdxModule.metadata;
 
+    const canonicalUrl = `${SITE_URL}/blog/${slug}`;
+    // Une vraie couverture (1200x630) sert de carte sociale ; une icône de
+    // catégorie ne le peut pas, on retombe sur l'image du site.
+    const hasRealCover = metadata.coverImage && !metadata.coverImage.startsWith('/images/icons/');
+    const ogImage = hasRealCover ? `${SITE_URL}${metadata.coverImage}` : `${SITE_URL}/opengraph-image.png`;
+
     return {
-      title: `${metadata.title} | Jason Suarez`,
+      metadataBase: new URL(SITE_URL),
+      title: `${metadata.title} | ${SITE_NAME}`,
       description: metadata.description,
-      authors: [{ name: metadata.author }],
+      authors: [{ name: metadata.author || SITE_NAME, url: SITE_URL }],
+      keywords: metadata.tags,
+      alternates: { canonical: canonicalUrl },
       openGraph: {
+        type: 'article',
         title: metadata.title,
         description: metadata.description,
-        type: 'article',
+        url: canonicalUrl,
+        siteName: SITE_NAME,
+        locale: 'fr_FR',
         publishedTime: metadata.publishedAt,
         modifiedTime: metadata.updatedAt || metadata.publishedAt,
-        authors: [metadata.author],
+        authors: [metadata.author || SITE_NAME],
         tags: metadata.tags,
-        images: metadata.coverImage ? [
-          {
-            url: metadata.coverImage,
-            width: 1200,
-            height: 630,
-            alt: metadata.title,
-          }
-        ] : [],
+        images: [{ url: ogImage, width: 1200, height: 630, alt: metadata.title }],
       },
       twitter: {
         card: 'summary_large_image',
         title: metadata.title,
         description: metadata.description,
         creator: '@swarecito',
-        images: metadata.coverImage ? [metadata.coverImage] : [],
-      },
-      alternates: {
-        canonical: `https://media.jason-suarez.com/blog/${slug}`,
+        images: [ogImage],
       },
     };
   } catch (error) {
@@ -93,22 +96,55 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     author: {
       '@type': 'Person',
       name: metadata.author,
-      url: 'https://media.jason-suarez.com',
+      url: 'https://www.jason-suarez.com',
     },
     publisher: {
       '@type': 'Person',
       name: 'Jason Suarez',
-      url: 'https://media.jason-suarez.com',
+      url: 'https://www.jason-suarez.com',
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://media.jason-suarez.com/blog/${slug}`,
+      '@id': `https://www.jason-suarez.com/blog/${slug}`,
     },
     keywords: metadata.tags.join(', '),
   };
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
+    <main className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: metadata.title,
+            description: metadata.description,
+            datePublished: metadata.publishedAt,
+            dateModified: metadata.updatedAt || metadata.publishedAt,
+            author: { '@type': 'Person', name: metadata.author || SITE_NAME, url: SITE_URL },
+            publisher: { '@type': 'Person', name: SITE_NAME, url: SITE_URL },
+            image: [metadata.coverImage && !metadata.coverImage.startsWith('/images/icons/') ? `${SITE_URL}${metadata.coverImage}` : `${SITE_URL}/opengraph-image.png`],
+            mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${slug}` },
+            keywords: (metadata.tags || []).join(', '),
+            inLanguage: 'fr-FR',
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+              { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+              { '@type': 'ListItem', position: 3, name: metadata.title, item: `${SITE_URL}/blog/${slug}` },
+            ],
+          }),
+        }}
+      />
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
@@ -118,19 +154,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Background gradients */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute top-40 right-1/4 w-72 h-72 bg-purple-600/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute top-40 right-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-4xl relative z-10">
         <Link
           href="/blog"
-          className="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors"
+          className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8 transition-colors"
         >
           <ChevronLeft className="mr-1 h-4 w-4" />
           Retour au blog
         </Link>
 
-        <article className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 md:p-12">
+        <article className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8 md:p-12">
           {/* Header */}
           <header className="mb-10">
             {/* Icon decoration */}
@@ -157,12 +193,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </h1>
 
             {/* Meta information */}
-            <div className="flex flex-wrap items-center gap-4 text-gray-400 text-sm">
+            <div className="flex flex-wrap items-center gap-4 text-muted-foreground text-sm">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4 text-primary" />
                 <span>{metadata.author}</span>
               </div>
-              <span className="text-gray-600">•</span>
+              <span className="text-muted-foreground">•</span>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-primary" />
                 <time dateTime={metadata.publishedAt}>
@@ -171,8 +207,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
               {metadata.updatedAt && (
                 <>
-                  <span className="text-gray-600">•</span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-muted-foreground">•</span>
+                  <span className="text-xs text-muted-foreground">
                     Mis à jour le {formatDate(metadata.updatedAt)}
                   </span>
                 </>
@@ -204,7 +240,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Footer CTA */}
           <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-purple-600/10 border border-primary/20">
-            <p className="text-sm text-gray-300 mb-3">
+            <p className="text-sm text-soft mb-3">
               💡 <strong>Cet article vous a plu ?</strong> Découvrez comment je peux vous aider à automatiser votre business.
             </p>
             <Link
@@ -218,7 +254,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {/* Overlay gradient for depth */}
-          <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
+          <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-0 dark:opacity-20"></div>
         </article>
 
         {/* Navigation */}

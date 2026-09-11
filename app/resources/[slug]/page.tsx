@@ -93,23 +93,23 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
     }
 
     return (
-      <main className="min-h-screen bg-[#0a0a0a] text-white">
+      <main className="min-h-screen bg-background text-foreground">
         {/* Background gradients */}
         <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute top-40 right-1/4 w-72 h-72 bg-purple-600/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute top-40 right-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
         </div>
 
         <div className="container mx-auto px-4 py-8 max-w-4xl relative z-10">
           <Link
             href="/"
-            className="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors"
+            className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8 transition-colors"
           >
             <ChevronLeft className="mr-1 h-4 w-4" />
             Retour aux ressources
           </Link>
 
-          <article className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8 md:p-12">
+          <article className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8 md:p-12">
             {/* Header */}
             <header className="mb-10">
               {/* Icon decoration */}
@@ -136,7 +136,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
               </h1>
 
               {/* Price */}
-              <div className="text-2xl font-bold text-green-400 mb-4">
+              <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-4">
                 {metadata.price}
               </div>
             </header>
@@ -169,7 +169,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                   {metadata.gallery.map((image: string, index: number) => (
                     <div
                       key={index}
-                      className="relative h-48 rounded-xl overflow-hidden border border-[#333]"
+                      className="relative h-48 rounded-xl overflow-hidden border border-border"
                     >
                       <img
                         src={image}
@@ -187,7 +187,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
 
             {/* Download CTA */}
             <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-purple-600/10 border border-primary/20">
-              <p className="text-sm text-gray-300 mb-3">
+              <p className="text-sm text-soft mb-3">
                 💡 <strong>Cette ressource vous est utile ?</strong> Partagez-la avec vos collègues !
               </p>
               <Link
@@ -201,7 +201,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
             </div>
 
             {/* Overlay gradient for depth */}
-            <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
+            <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-0 dark:opacity-20"></div>
           </article>
 
           {/* Navigation */}
@@ -230,11 +230,11 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
     const isExternal = resource.downloadLink.startsWith('http');
 
     return (
-      <main className="min-h-screen bg-[#0a0a0a] text-white">
+      <main className="min-h-screen bg-background text-foreground">
         <div className="container mx-auto px-4 py-8 max-w-5xl">
           <Link
             href="/"
-            className="inline-flex items-center text-gray-400 hover:text-white mb-8"
+            className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8"
           >
             <ChevronLeft className="mr-1 h-4 w-4" />
             Retour à l'accueil
@@ -244,7 +244,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
             {/* Colonne principale */}
             <div className="lg:col-span-2 space-y-8">
               {/* En-tête de la ressource */}
-              <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-8">
+              <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8">
                 <div className="flex flex-col md:flex-row gap-6 items-start">
                   <div className="w-24 h-24 relative flex-shrink-0">
                     <Image
@@ -261,7 +261,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                         <Badge
                           key={tag}
                           variant="secondary"
-                          className="bg-[#222] border border-[#333] rounded-full text-xs px-3"
+                          className="bg-secondary border border-border rounded-full text-xs px-3"
                         >
                           {tag}
                         </Badge>
@@ -270,11 +270,11 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                     <h1 className="text-3xl md:text-4xl font-bold mb-4">
                       {resource.title}
                     </h1>
-                    <p className="text-xl text-gray-300 mb-6">
+                    <p className="text-xl text-soft mb-6">
                       {resource.description}
                     </p>
                     <div className="flex items-center gap-4">
-                      <span className="text-2xl font-bold text-green-400">
+                      <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                         {resource.price}
                       </span>
                       {isExternal && (
@@ -295,22 +295,22 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
               </div>
 
               {/* Description détaillée */}
-              <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+              <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
                 <h2 className="text-2xl font-bold mb-4">Description détaillée</h2>
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-soft leading-relaxed">
                   {resource.longDescription || resource.description}
                 </p>
               </div>
 
               {/* Galerie */}
               {resource.gallery && resource.gallery.length > 0 && (
-                <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+                <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
                   <h2 className="text-2xl font-bold mb-4">Aperçus</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {resource.gallery.map((image, index) => (
                       <div
                         key={index}
-                        className="relative h-48 rounded-xl overflow-hidden border border-[#333]"
+                        className="relative h-48 rounded-xl overflow-hidden border border-border"
                       >
                         <Image
                           src={image || "/placeholder.svg"}
@@ -328,23 +328,23 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
             {/* Sidebar */}
             <div className="space-y-8">
               {/* Informations */}
-              <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+              <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
                 <h3 className="text-xl font-bold mb-4">Informations</h3>
                 <div className="space-y-3">
                   <div>
-                    <span className="text-gray-400 text-sm">Prix :</span>
-                    <p className="text-white text-lg font-semibold">
+                    <span className="text-muted-foreground text-sm">Prix :</span>
+                    <p className="text-foreground text-lg font-semibold">
                       {resource.price}
                     </p>
                   </div>
                   <div>
-                    <span className="text-gray-400 text-sm">Catégories :</span>
+                    <span className="text-muted-foreground text-sm">Catégories :</span>
                     <div className="flex flex-wrap gap-1 mt-1">
                       {resource.tags.map((tag) => (
                         <Badge
                           key={tag}
                           variant="outline"
-                          className="text-xs border-[#333]"
+                          className="text-xs border-border"
                         >
                           {tag}
                         </Badge>
@@ -352,10 +352,10 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                     </div>
                   </div>
                   <div>
-                    <span className="text-gray-400 text-sm">
+                    <span className="text-muted-foreground text-sm">
                       Téléchargements :
                     </span>
-                    <p className="text-white">
+                    <p className="text-foreground">
                       {resource.metadata.downloadCount || 0}
                     </p>
                   </div>
@@ -364,9 +364,9 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
 
               {/* Action principale */}
               {isExternal && (
-                <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-purple-900/30 to-indigo-900/30 p-6">
+                <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-purple-900/30 to-indigo-900/30 p-6">
                   <h3 className="text-xl font-bold mb-4">Téléchargement</h3>
-                  <p className="text-gray-300 mb-4 text-sm">
+                  <p className="text-soft mb-4 text-sm">
                     Accédez immédiatement à cette ressource après téléchargement.
                   </p>
                   <Button
@@ -383,9 +383,9 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
               )}
 
               {/* Support */}
-              <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+              <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
                 <h3 className="text-xl font-bold mb-4">Besoin d'aide ?</h3>
-                <p className="text-gray-300 mb-4 text-sm">
+                <p className="text-soft mb-4 text-sm">
                   Une question sur cette ressource ? Je suis là pour vous aider !
                 </p>
                 <Button asChild variant="outline" className="w-full rounded-full">
@@ -403,7 +403,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
             <h2 className="text-2xl font-bold mb-4">
               Découvrir d'autres ressources
             </h2>
-            <p className="text-gray-400 mb-6">
+            <p className="text-muted-foreground mb-6">
               Explorez ma collection complète d'outils et de templates pour
               automatiser votre business.
             </p>

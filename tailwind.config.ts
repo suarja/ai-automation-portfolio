@@ -21,6 +21,8 @@ const config = {
     extend: {
       colors: {
         border: "hsl(var(--border))",
+        elevated: "hsl(var(--elevated))",
+        soft: "hsl(var(--soft))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -75,7 +77,7 @@ const config = {
       },
       boxShadow: {
         glow: "0 0 10px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.1)",
-        card: "0 10px 30px rgba(0, 0, 0, 0.3)",
+        card: "var(--shadow-card)",
         button: "0 4px 10px rgba(0, 0, 0, 0.5)",
       },
     },

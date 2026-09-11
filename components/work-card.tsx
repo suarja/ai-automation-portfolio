@@ -9,17 +9,17 @@ interface WorkCardProps {
 
 export default function WorkCard({ item }: WorkCardProps) {
   return (
-    <article className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111]">
+    <article className="card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card">
       <div className="p-6 md:p-8">
         <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-1">
           <h3 className="text-xl font-bold">{item.title}</h3>
-          <p className="text-sm text-gray-500">{item.period}</p>
+          <p className="text-sm text-muted-foreground">{item.period}</p>
         </div>
-        <p className="text-purple-300 font-medium mb-3">{item.role}</p>
+        <p className="text-primary font-medium mb-3">{item.role}</p>
 
-        <p className="text-gray-400 text-sm mb-4">{item.context}</p>
+        <p className="text-muted-foreground text-sm mb-4">{item.context}</p>
 
-        <ul className="list-disc list-inside text-gray-300 space-y-1.5 mb-4">
+        <ul className="list-disc list-inside text-soft space-y-1.5 mb-4">
           {item.highlights.map((highlight) => (
             <li key={highlight}>{highlight}</li>
           ))}
@@ -30,7 +30,7 @@ export default function WorkCard({ item }: WorkCardProps) {
             <Badge
               key={tech}
               variant="secondary"
-              className="bg-[#222] border border-[#333] rounded-full text-xs px-3"
+              className="bg-secondary border border-border rounded-full text-xs px-3"
             >
               {tech}
             </Badge>
@@ -45,7 +45,7 @@ export default function WorkCard({ item }: WorkCardProps) {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-purple-300"
+                className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80"
               >
                 {link.label} <ExternalLink className="ml-1 h-3.5 w-3.5" />
               </Link>
@@ -53,7 +53,7 @@ export default function WorkCard({ item }: WorkCardProps) {
           </div>
         )}
       </div>
-      <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
+      <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-0 dark:opacity-20"></div>
     </article>
   );
 }

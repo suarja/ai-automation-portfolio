@@ -1,40 +1,8 @@
+@import "../styles/theme.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer base {
-  :root {
-    --background: 0 0% 3%;
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 5%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 270 70% 60%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 0 0% 9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 0 0% 9%;
-    --muted-foreground: 0 0% 60%;
-
-    --accent: 270 70% 60%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 13%;
-    --input: 0 0% 13%;
-    --ring: 270 70% 60%;
-
-    --radius: 1rem;
-  }
-}
 
 @layer base {
   * {
@@ -48,9 +16,9 @@
 /* Effet de glassmorphism */
 .glass-card {
   backdrop-filter: blur(10px);
-  background: rgba(20, 20, 20, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  background: hsl(var(--card) / 0.6);
+  border: 1px solid hsl(var(--border));
+  box-shadow: var(--shadow-card);
 }
 
 /* Effet de néon subtil */
@@ -82,4 +50,109 @@
   @apply bg-clip-text text-transparent;
   background-size: 100%;
   background-position: 0%;
+}
+
+/* Cartes : au survol, un liseré coloré fait le tour de la carte (conic-gradient
+   animé sur un pseudo-élément masqué à la bordure) et la carte se soulève d'un rien. */
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.card-glow {
+  position: relative;
+  isolation: isolate;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0turn,
+    transparent 0.45turn,
+    hsl(var(--beam) / 0.4) 0.6turn,
+    hsl(var(--beam)) 0.72turn,
+    hsl(200 90% 70%) 0.8turn,
+    hsl(var(--beam) / 0.4) 0.9turn,
+    transparent 1turn
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.card-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px hsl(var(--glow) / 0.15), 0 14px 36px -18px hsl(var(--glow) / 0.35);
+}
+.card-glow:hover::after {
+  opacity: 1;
+  animation: beam-spin 2.2s linear infinite;
+}
+@keyframes beam-spin {
+  to { --beam-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-glow, .card-glow:hover { transition: none; transform: none; }
+  .card-glow:hover::after { animation: none; opacity: 0.8; }
+}
+
+/* Halo doux derrière la photo de profil */
+.halo {
+  position: relative;
+}
+.halo::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, hsl(var(--glow) / 0.35), transparent 70%);
+  filter: blur(6px);
+  z-index: -1;
+  animation: halo-breathe 6s ease-in-out infinite;
+}
+@keyframes halo-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+/* Apparition en fondu vers le haut */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.fade-up-1 { animation-delay: 0.03s; }
+.fade-up-2 { animation-delay: 0.08s; }
+.fade-up-3 { animation-delay: 0.13s; }
+.fade-up-4 { animation-delay: 0.18s; }
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { animation: none; }
+  .halo::before { animation: none; }
+}
+
+/* Fond : deux taches de couleur très diffuses, fixes */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 40% at 15% 0%, hsl(var(--glow) / 0.10), transparent 60%),
+    radial-gradient(50% 35% at 90% 20%, hsl(230 80% 60% / 0.08), transparent 60%);
+}
+
+/* Trame de points pour les blocs colorés (remplace une image qui n'existait pas) */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px);
+  background-size: 18px 18px;
 }

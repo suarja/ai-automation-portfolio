@@ -28,10 +28,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center">
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-white"></div>
-          <p className="mt-4 text-gray-400">Chargement du projet...</p>
+          <p className="mt-4 text-muted-foreground">Chargement du projet...</p>
         </div>
       </div>
     );
@@ -40,10 +40,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   // Error state or project not found
   if (error || !project) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center">
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-3xl font-bold mb-4">Projet non trouvé</h1>
-          <p className="text-gray-400 mb-4">
+          <p className="text-muted-foreground mb-4">
             {error || "Ce projet n'existe pas ou n'est plus disponible."}
           </p>
           <Link href="/" className="text-primary hover:underline">
@@ -55,18 +55,18 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
+    <main className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         <Link
           href="/"
-          className="inline-flex items-center text-gray-400 hover:text-white mb-8"
+          className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8"
         >
           <ChevronLeft className="mr-1 h-4 w-4" />
           Retour à l'accueil
         </Link>
 
         {/* En-tête du projet */}
-        <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] mb-8">
+        <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card mb-8">
           <div className="p-8 flex flex-col md:flex-row gap-8 items-center">
             <div className="w-32 h-32 relative flex-shrink-0">
               <Image
@@ -83,7 +83,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   <Badge
                     key={tag}
                     variant="secondary"
-                    className="bg-[#222] border border-[#333] rounded-full text-xs px-3"
+                    className="bg-secondary border border-border rounded-full text-xs px-3"
                   >
                     {tag}
                   </Badge>
@@ -92,7 +92,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               <h1 className="text-3xl md:text-4xl font-bold mb-2">
                 {project.title}
               </h1>
-              <p className="text-xl text-green-400 font-medium">
+              <p className="text-xl text-emerald-600 dark:text-emerald-400 font-medium">
                 {project.result}
               </p>
             </div>
@@ -101,7 +101,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Vidéo de présentation */}
         {project.solution.videoUrl && (
-          <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6 mb-8">
+          <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6 mb-8">
             <h2 className="text-2xl font-bold mb-4">Présentation du projet</h2>
             <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl mb-4 mx-auto">
               <iframe
@@ -133,32 +133,32 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           {/* Colonne principale */}
           <div className="lg:col-span-2 space-y-8">
             {/* Description du projet */}
-            <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+            <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
               <h2 className="text-2xl font-bold mb-4">Description du projet</h2>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-soft leading-relaxed">
                 {project.description}
               </p>
             </div>
 
             {/* Le défi */}
-            <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+            <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
               <h2 className="text-2xl font-bold mb-4">Le défi</h2>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-soft leading-relaxed">
                 {project.challenge}
               </p>
             </div>
 
             {/* La solution */}
-            <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+            <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
               <h2 className="text-2xl font-bold mb-4">La solution</h2>
-              <p className="text-gray-300 mb-6 leading-relaxed">
+              <p className="text-soft mb-6 leading-relaxed">
                 {project.solution.description}
               </p>
 
               <h3 className="text-lg font-semibold mb-3">
                 Fonctionnalités clés :
               </h3>
-              <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
+              <ul className="list-disc list-inside text-soft space-y-2 mb-6">
                 {project.solution.features.map((feature, index) => (
                   <li key={index}>{feature}</li>
                 ))}
@@ -170,7 +170,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   <Badge
                     key={tool}
                     variant="outline"
-                    className="border-[#333] rounded-full"
+                    className="border-border rounded-full"
                   >
                     {tool}
                   </Badge>
@@ -179,24 +179,24 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
 
             {/* Résultats */}
-            <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+            <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
               <h2 className="text-2xl font-bold mb-4">Résultats obtenus</h2>
               <ul className="space-y-3">
                 {project.results.map((result, index) => (
                   <li key={index} className="flex items-start">
-                    <span className="text-green-400 mr-3 mt-1">✓</span>
-                    <span className="text-gray-300">{result}</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 mr-3 mt-1">✓</span>
+                    <span className="text-soft">{result}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Insight */}
-            <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+            <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
               <h2 className="text-2xl font-bold mb-4">
                 {project.insight.title}
               </h2>
-              <p className="text-gray-300 leading-relaxed mb-4">
+              <p className="text-soft leading-relaxed mb-4">
                 {project.insight.text}
               </p>
               {project.insight.resourceLink && (
@@ -230,22 +230,22 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           {/* Sidebar */}
           <div className="space-y-8">
             {/* Client info */}
-            <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+            <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
               <h3 className="text-xl font-bold mb-4">Informations client</h3>
               <div className="space-y-3">
                 <div>
-                  <span className="text-gray-400 text-sm">
+                  <span className="text-muted-foreground text-sm">
                     Type de client :
                   </span>
-                  <p className="text-white">{project.client.type}</p>
+                  <p className="text-foreground">{project.client.type}</p>
                 </div>
                 <div>
-                  <span className="text-gray-400 text-sm">Taille :</span>
-                  <p className="text-white">{project.client.size}</p>
+                  <span className="text-muted-foreground text-sm">Taille :</span>
+                  <p className="text-foreground">{project.client.size}</p>
                 </div>
                 <div>
-                  <span className="text-gray-400 text-sm">Objectif :</span>
-                  <p className="text-white">{project.client.objective}</p>
+                  <span className="text-muted-foreground text-sm">Objectif :</span>
+                  <p className="text-foreground">{project.client.objective}</p>
                 </div>
               </div>
             </div>
@@ -253,13 +253,13 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             {/* Screenshots */}
             {project.solution.screenshots &&
               project.solution.screenshots.length > 0 && (
-                <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+                <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
                   <h3 className="text-xl font-bold mb-4">Aperçus</h3>
                   <div className="space-y-4">
                     {project.solution.screenshots.map((screenshot, index) => (
                       <div
                         key={index}
-                        className="relative h-48 rounded-xl overflow-hidden border border-[#333]"
+                        className="relative h-48 rounded-xl overflow-hidden border border-border"
                       >
                         <Image
                           src={screenshot || "/placeholder.svg"}
@@ -274,13 +274,13 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               )}
 
             {/* Témoignage */}
-            <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-6">
+            <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-6">
               <h3 className="text-xl font-bold mb-4">Témoignage client</h3>
-              <blockquote className="text-gray-300 italic mb-4">
+              <blockquote className="text-soft italic mb-4">
                 "{project.testimonial.text}"
               </blockquote>
               <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full bg-[#333] flex items-center justify-center mr-3">
+                <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center mr-3">
                   <Image
                     src={project.testimonial.avatar || "/placeholder.svg"}
                     alt={project.testimonial.author}
@@ -290,7 +290,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   />
                 </div>
                 <div>
-                  <p className="font-semibold text-white">
+                  <p className="font-semibold text-foreground">
                     {project.testimonial.author}
                   </p>
                 </div>
@@ -304,7 +304,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           <h2 className="text-2xl font-bold mb-4">
             Vous avez un projet similaire ?
           </h2>
-          <p className="text-gray-400 mb-6">
+          <p className="text-muted-foreground mb-6">
             Discutons de votre projet et voyons comment je peux vous aider à
             l'automatiser.
           </p>

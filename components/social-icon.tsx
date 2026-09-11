@@ -40,7 +40,7 @@ export default function SocialIcon({ icon, href, label }: SocialIconProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="w-10 h-10 rounded-full bg-[#151515] flex items-center justify-center hover:bg-[#222] transition-colors border border-[#222] shadow-[0_4px_10px_rgba(0,0,0,0.3)]"
+      className="w-10 h-10 rounded-full bg-card flex items-center justify-center hover:bg-secondary transition-colors border border-border shadow-sm card-glow"
       aria-label={label}
     >
       {renderIcon()}

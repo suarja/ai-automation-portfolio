@@ -25,7 +25,7 @@ export default function LinkCard({
   gradient,
   featureRequest,
 }: LinkCardProps) {
-  const bgGradient = gradient || "from-[#1a1a1a] to-[#1a1a1a]";
+  const bgGradient = gradient || "from-card to-card";
   const { openFeatureRequestModal } = useFeatureRequest();
 
   const handleFeatureRequest = useCallback(() => {
@@ -34,7 +34,7 @@ export default function LinkCard({
 
   return (
     <div
-      className={`relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm bg-gradient-to-br ${bgGradient}`}
+      className={`card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br ${bgGradient}`}
     >
       <div className="p-6">
         <div className="flex flex-col items-center text-center">
@@ -48,12 +48,12 @@ export default function LinkCard({
             />
           </div>
           <h3 className="text-xl font-bold mb-2">{title}</h3>
-          <p className="text-gray-400 mb-6">{description}</p>
+          <p className="text-muted-foreground mb-6">{description}</p>
           {featureRequest ? (
             <Button
               onClick={handleFeatureRequest}
               variant="outline"
-              className="rounded-full border-[#333] bg-[#111] hover:bg-[#222] shadow-md"
+              className="rounded-full border-border bg-card hover:bg-secondary shadow-md"
             >
               {buttonText}
             </Button>
@@ -61,14 +61,14 @@ export default function LinkCard({
             <Button
               asChild
               variant="outline"
-              className="rounded-full border-[#333] bg-[#111] hover:bg-[#222] shadow-md"
+              className="rounded-full border-border bg-card hover:bg-secondary shadow-md"
             >
               <Link href={buttonLink} target="_blank" rel="noopener noreferrer">{buttonText}</Link>
             </Button>
           )}
         </div>
       </div>
-      <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
+      <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-0 dark:opacity-20"></div>
     </div>
   );
 }

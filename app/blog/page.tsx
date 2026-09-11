@@ -12,7 +12,7 @@ export const metadata = {
     title: 'Blog - Jason Suarez',
     description: 'Articles techniques sur le développement web et l\'apprentissage du code',
     type: 'website',
-    url: 'https://media.jason-suarez.com/blog',
+    url: 'https://www.jason-suarez.com/blog',
   },
   twitter: {
     card: 'summary',
@@ -20,7 +20,7 @@ export const metadata = {
     description: 'Articles techniques sur le développement web',
   },
   alternates: {
-    canonical: 'https://media.jason-suarez.com/blog',
+    canonical: 'https://www.jason-suarez.com/blog',
   },
 };
 
@@ -28,11 +28,11 @@ export default async function BlogPage() {
   const posts = await getBlogPosts();
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
+    <main className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         <Link
           href="/"
-          className="inline-flex  z-20 items-center text-gray-400 hover:text-white mb-8 transition-colors"
+          className="inline-flex  z-20 items-center text-muted-foreground hover:text-foreground mb-8 transition-colors"
         >
           <ChevronLeft className="mr-1 h-4 w-4" />
           Retour à l'accueil
@@ -41,7 +41,7 @@ export default async function BlogPage() {
         {/* Hero Section with gradient */}
         <div className="mb-12 relative">
           <div className="absolute -top-20 -left-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute -top-10 -right-10 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute -top-10 -right-10 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-3 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-2xl border border-primary/30">
@@ -51,19 +51,19 @@ export default async function BlogPage() {
                 Blog
               </h1>
             </div>
-            <p className="text-xl text-gray-400">
+            <p className="text-xl text-muted-foreground">
               Articles techniques, réflexions et tutoriels sur l'automatisation et l'IA
             </p>
           </div>
         </div>
 
         {posts.length === 0 ? (
-          <div className="relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm bg-gradient-to-br from-[#151515] to-[#111] p-12 text-center">
-            <Sparkles className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-            <p className="text-gray-400 text-lg">
+          <div className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-12 text-center">
+            <Sparkles className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+            <p className="text-muted-foreground text-lg">
               Aucun article publié pour le moment.
             </p>
-            <p className="text-gray-500 text-sm mt-2">
+            <p className="text-muted-foreground text-sm mt-2">
               Revenez bientôt pour découvrir mes premiers articles !
             </p>
           </div>
@@ -73,13 +73,13 @@ export default async function BlogPage() {
               const isFirst = index === 0;
               const gradientClass = post.featured
                 ? 'from-purple-900/30 to-indigo-900/30'
-                : 'from-[#151515] to-[#111]';
+                : 'from-elevated to-card';
 
               return (
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className={`group relative overflow-hidden rounded-3xl border border-[#222] shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-sm bg-gradient-to-br ${gradientClass} p-6 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] ${
+                  className={`group relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br ${gradientClass} p-6 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] ${
                     isFirst ? 'md:col-span-2' : ''
                   }`}
                 >
@@ -103,11 +103,11 @@ export default async function BlogPage() {
                       }`}>
                         {post.title}
                       </h2>
-                      <p className="text-gray-400 text-sm mb-3 flex items-center gap-2">
+                      <p className="text-muted-foreground text-sm mb-3 flex items-center gap-2">
                         <span className="text-primary">●</span>
                         {formatDate(post.publishedAt)} • {post.author}
                       </p>
-                      <p className={`text-gray-300 leading-relaxed ${
+                      <p className={`text-soft leading-relaxed ${
                         isFirst ? 'text-base' : 'text-sm line-clamp-2'
                       }`}>
                         {post.description}
@@ -119,7 +119,7 @@ export default async function BlogPage() {
                         <Badge
                           key={tag}
                           variant="secondary"
-                          className="bg-[#222] border border-[#333] rounded-full text-xs hover:border-primary/50 transition-colors"
+                          className="bg-secondary border border-border rounded-full text-xs hover:border-primary/50 transition-colors"
                         >
                           {tag}
                         </Badge>
@@ -128,7 +128,7 @@ export default async function BlogPage() {
                   </div>
 
                   {/* Overlay gradient for depth */}
-                  <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-20"></div>
+                  <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-transparent to-black opacity-0 dark:opacity-20"></div>
 
                   {/* Hover glow effect */}
                   <div className="absolute inset-0 pointer-events-none rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-primary/5 to-purple-600/5"></div>

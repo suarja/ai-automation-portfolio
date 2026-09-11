@@ -1,4 +1,3 @@
-"use client";
 import ProfileHeader from "@/components/profile-header";
 import LinkCard from "@/components/link-card";
 import ResourceCard from "@/components/resource-card";
@@ -6,26 +5,54 @@ import ProjectCard from "@/components/project-card";
 import BlogCard from "@/components/blog-card";
 import CallToAction from "@/components/call-to-action";
 import SectionHeader from "@/components/section-header";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import SiteFooter from "@/components/site-footer";
 import WorkCard from "@/components/work-card";
 import AiPractices from "@/components/ai-practices";
 import { WORK_ITEMS } from "@/lib/data/work";
-import { CONSTANTS } from "@/lib/constants/constants";
-import { useProjects } from "@/hooks/use-projects";
-import { useResources } from "@/hooks/use-resources";
-import { useBlogPosts } from "@/hooks/use-blog-posts";
+import { ProjectService } from "@/lib/services/projectService";
+import { ResourceService } from "@/lib/services/resourceService";
+import { getBlogPosts } from "@/lib/blog";
+import { SITE_URL } from "@/lib/site";
 import Link from "next/link";
 
-export default function Home() {
-  const { projects, loading: projectsLoading } = useProjects();
-  const { resources, loading: resourcesLoading } = useResources();
-  const { posts, loading: postsLoading } = useBlogPosts();
+// Server component: the JSON and MDX are read at build time, no client fetch,
+// no skeletons, the first paint is the final page.
+export default async function Home() {
+  const [allProjects, allResources, posts] = await Promise.all([
+    ProjectService.listProjects(),
+    ResourceService.listResources(),
+    getBlogPosts(),
+  ]);
+  const projects = allProjects
+    .filter((p) => p.metadata?.status === "published")
+    .sort((a, b) => Number(b.metadata.featured) - Number(a.metadata.featured));
+  const resources = allResources.filter((r) => r.metadata?.status === "published");
+
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Jason Suárez",
+    url: SITE_URL,
+    image: `${SITE_URL}/images/profile.jpg`,
+    jobTitle: "Développeur full-stack TypeScript et Symfony",
+    worksFor: { "@type": "Organization", name: "C'CIN" },
+    sameAs: [
+      "https://www.linkedin.com/in/jason-suarez/",
+      "https://github.com/suarja",
+      "https://www.tiktok.com/@swarecito",
+      "https://youtube.com/@swarecito",
+    ],
+    knowsAbout: ["TypeScript", "React", "Next.js", "React Native", "Convex", "Symfony", "PHP", "PostgreSQL", "Docker"],
+  };
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
+    <main className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         {/* Header Section */}
         <ProfileHeader />
 
@@ -41,25 +68,25 @@ export default function Home() {
         </section>
 
         {/* À propos Section */}
-        <section className="mt-16">
+        <section className="mt-16 fade-up fade-up-2">
           <SectionHeader title="À propos" />
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-            <div className="lg:col-span-3 bg-[#111] p-8 rounded-3xl border border-[#222] backdrop-blur-sm shadow-xl">
-              <p className="text-gray-300 mb-4">
+            <div className="lg:col-span-3 card-glow bg-card p-8 rounded-3xl border border-border backdrop-blur-sm shadow-card">
+              <p className="text-soft mb-4">
                 Je suis développeur full-stack. Côté TypeScript : React, Next.js, React Native, NestJS et Convex.
                 Côté PHP : Symfony.
               </p>
 
-              <p className="text-gray-300 mb-4">
+              <p className="text-soft mb-4">
                 <strong>Mon parcours</strong> : professeur certifié d'espagnol de 2020 à 2024, reconverti dans le
                 développement en 2022, en parallèle du métier. Depuis, un an seul développeur front dans une startup
                 fitness, puis full-stack Symfony/React chez un opérateur télécom.
               </p>
 
               <div className="mb-6">
-                <p className="text-gray-300 mb-2"><strong>Actuellement</strong> :</p>
-                <ul className="list-disc list-inside text-gray-300 space-y-1 ml-4">
+                <p className="text-soft mb-2"><strong>Actuellement</strong> :</p>
+                <ul className="list-disc list-inside text-soft space-y-1 ml-4">
                   <li>Développeur full-stack @ C'CIN Chartres (Symfony / React)</li>
                   <li>Bandaa, application mobile publiée sur l'App Store et le Play Store en septembre 2026</li>
                   <li>Contenu tech sur TikTok et YouTube (@swarecito)</li>
@@ -69,7 +96,7 @@ export default function Home() {
               <h3 className="text-xl font-bold mt-6 mb-3">
                 Ce que je fais
               </h3>
-              <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
+              <ul className="list-disc list-inside text-soft space-y-2 mb-6">
                 <li>
                   <strong>Web et mobile</strong> : applications React / Next.js et React Native / Expo, APIs Symfony,
                   back-ends TypeScript
@@ -96,19 +123,11 @@ export default function Home() {
         </section>
 
         {/* Automatisations Section */}
-        <section className="mt-16">
+        <section className="mt-16 fade-up fade-up-3">
           <SectionHeader title="Automatisations pour indépendants" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projectsLoading
-              ? // Loading state - show skeletons
-                Array.from({ length: 4 }).map((_, index) => (
-                  <div key={index} className="animate-pulse">
-                    <div className="bg-[#151515] rounded-3xl h-48 border border-[#222]"></div>
-                  </div>
-                ))
-              : // Dynamic projects from API + feature requests
-                projects.map((project) => (
+            {projects.map((project) => (
                   <ProjectCard
                     key={project.id}
                     title={project.title}
@@ -116,26 +135,18 @@ export default function Home() {
                     tags={project.tags}
                     image={project.image}
                     link={`/projects/${project.id}`}
-                    featureRequest={project.featureRequest}
+                    featureRequest={false}
                   />
                 ))}
           </div>
         </section>
 
         {/* Blog Section */}
-        <section className="mt-16">
+        <section className="mt-16 fade-up fade-up-4">
           <SectionHeader title="Blog" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {postsLoading
-              ? // Loading state - show skeletons
-                Array.from({ length: 3 }).map((_, index) => (
-                  <div key={index} className="animate-pulse">
-                    <div className="bg-[#151515] rounded-3xl h-80 border border-[#222]"></div>
-                  </div>
-                ))
-              : // Dynamic blog posts from API
-                posts.slice(0, 3).map((post) => (
+            {posts.slice(0, 3).map((post) => (
                   <BlogCard
                     key={post.slug}
                     slug={post.slug}
@@ -150,9 +161,9 @@ export default function Home() {
                 ))}
           </div>
 
-          {posts.length === 0 && !postsLoading && (
+          {posts.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-400">
+              <p className="text-muted-foreground">
                 Aucun article publié pour le moment. Revenez bientôt !
               </p>
             </div>
@@ -160,48 +171,12 @@ export default function Home() {
         </section>
 
         {/* Templates & Ressources Section */}
-        <section className="mt-16">
+        <section className="mt-16 fade-up fade-up-4">
           <SectionHeader title="Mes Ressources" />
 
-          <Tabs defaultValue="tous" className="mb-6">
-            <TabsList className="bg-[#151515] rounded-full p-1 border border-[#222] w-auto inline-flex">
-              <TabsTrigger
-                value="tous"
-                className="rounded-full px-4 py-1.5 text-sm"
-              >
-                Tous
-              </TabsTrigger>
-              <TabsTrigger
-                value="ia"
-                className="rounded-full px-4 py-1.5 text-sm"
-              >
-                IA
-              </TabsTrigger>
-              <TabsTrigger
-                value="n8n"
-                className="rounded-full px-4 py-1.5 text-sm"
-              >
-                N8N
-              </TabsTrigger>
-              <TabsTrigger
-                value="freelance"
-                className="rounded-full px-4 py-1.5 text-sm"
-              >
-                Freelance
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {resourcesLoading
-              ? // Loading state - show skeletons
-                Array.from({ length: 6 }).map((_, index) => (
-                  <div key={index} className="animate-pulse">
-                    <div className="bg-[#151515] rounded-3xl h-80 border border-[#222]"></div>
-                  </div>
-                ))
-              : // Dynamic resources from API + feature requests
-                resources.map((resource) => (
+            {resources.map((resource) => (
                   <ResourceCard
                     key={resource.id}
                     title={resource.title}
@@ -209,26 +184,24 @@ export default function Home() {
                     image={resource.image}
                     tags={resource.tags}
                     buttonText={
-                      resource.featureRequest ? "Je les veux !" : "Télécharger"
+                      "Télécharger"
                     }
                     buttonLink={
-                      resource.featureRequest
-                        ? `/resources/${resource.id}`
-                        : resource.downloadLink
+                      resource.downloadLink
                     }
                     gradient={
                       resource.tags.includes("IA")
-                        ? "from-purple-900 to-indigo-800"
+                        ? "from-primary/15 to-card border-primary/30"
                         : undefined
                     }
-                    featureRequest={resource.featureRequest}
+                    featureRequest={false}
                   />
                 ))}
           </div>
         </section>
 
         {/* Mes Liens Section */}
-        <section className="mt-16">
+        <section className="mt-16 fade-up fade-up-4">
           <SectionHeader title="Mes Liens" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -246,7 +219,7 @@ export default function Home() {
               icon="/images/icons/star-badge.png"
               buttonText="Suivre"
               buttonLink="https://www.tiktok.com/@swarecito"
-              gradient="from-purple-900 to-indigo-800"
+              gradient="from-primary/15 to-card border-primary/30"
             />
 
             <LinkCard
