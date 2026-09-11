@@ -376,3 +376,23 @@ Currently none required (Redis variables can be ignored)
 - JSON files in `public/data/` are part of the build
 - Content changes require redeployment
 - For future: consider CMS integration if frequent updates needed
+
+## Theme and visual rules (2026-09)
+
+- `styles/theme.css` is the single source of colors, shadows and glow for both
+  themes (`:root` light, `.dark`). Components only use semantic Tailwind
+  classes (`bg-background`, `bg-card`, `bg-elevated`, `text-foreground`,
+  `text-soft`, `text-muted-foreground`, `border-border`, `text-primary`,
+  `bg-secondary`). No hex or `gray-*`/`purple-*` classes outside
+  `components/ui/`: `npm run lint:theme` enforces it.
+- Contrast targets: body text >= 7:1, secondary text >= 4.5:1, borders >= 3:1.
+- Light is the default theme; `components/theme-toggle.tsx` switches.
+- Card hover: `card-glow` (conic-gradient beam around the border + small lift),
+  defined in `app/globals.css`. Above-the-fold content is never animated
+  (LCP); later sections use `fade-up fade-up-N`.
+- Canonical domain is `https://www.jason-suarez.com` (`lib/site.ts`); other
+  hosts redirect there (`next.config.mjs`). Blog posts emit BlogPosting and
+  BreadcrumbList JSON-LD; OG image falls back to `/opengraph-image.png` when
+  the cover is an icon.
+- Home page is a server component: data comes from the services directly,
+  not from `/api` fetches.
