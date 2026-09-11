@@ -4,8 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useFeatureRequest } from "@/contexts/feature-requests-context";
 import { useRouter } from "next/navigation";
-import { sendFeatureRequestV1 } from "@/lib/feature-request";
-import { useFingerprint } from "@/hooks/use-fingerprint";
 
 interface ResourceCardProps {
   title: string;
@@ -30,8 +28,6 @@ export default function ResourceCard({
 }: ResourceCardProps) {
   const bgGradient = gradient || "from-elevated to-card";
   const { openFeatureRequestModal } = useFeatureRequest();
-  const { hasConsent, visitorId } = useFingerprint();
-
   const router = useRouter();
 
   const handleFeatureRequest = () => {
@@ -44,20 +40,10 @@ export default function ResourceCard({
       return;
     }
 
-    // Check if internal or external link
-    const isExternal = buttonLink.startsWith('http://') || buttonLink.startsWith('https://');
-
+    const isExternal = buttonLink.startsWith("http://") || buttonLink.startsWith("https://");
     if (isExternal) {
-      // External resource: Send tracking and open in new tab
-      await sendFeatureRequestV1({
-        title,
-        description,
-        hasConsent,
-        fingerprint: visitorId,
-      });
-      window.open(buttonLink, '_blank');
+      window.open(buttonLink, "_blank", "noopener,noreferrer");
     } else {
-      // Internal resource: Navigate to detail page
       router.push(buttonLink);
     }
   };

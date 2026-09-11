@@ -3,7 +3,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import ConsentBanner from "@/components/consent-banner";
 import { FeatureRequestProvider } from "@/contexts/feature-requests-context";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -113,7 +112,6 @@ export default function RootLayout({
           <FeatureRequestProvider>
             <div className="ambient" aria-hidden="true" />
             {children}
-            <ConsentBanner />
           </FeatureRequestProvider>
         </ThemeProvider>
       </body>

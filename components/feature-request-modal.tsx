@@ -7,7 +7,6 @@ import { X, Bell, BellOff, CheckCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { sendFeatureRequestV1 } from "@/lib/feature-request";
-import { useFingerprint } from "@/hooks/use-fingerprint";
 import { on } from "events";
 interface FeatureRequestModalProps {
   isOpen: boolean;
@@ -29,7 +28,8 @@ export default function FeatureRequestModal({
 
   // Animation states
   const [showAnimation, setShowAnimation] = useState(false);
-  const { visitorId, hasConsent } = useFingerprint();
+  const visitorId = null;
+  const hasConsent = null;
 
   useEffect(() => {
     setMounted(true);
