@@ -8,9 +8,9 @@ import { FeatureRequestProvider } from "@/contexts/feature-requests-context";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Jason Suarez | Développeur Fullstack",
+  title: "Jason Suarez | Développeur full-stack",
   description:
-    "Développeur fullstack spécialisé en React, TypeScript et Symfony. Création d'applications web modernes.",
+    "Développeur full-stack TypeScript (React, Next.js, React Native, Convex) et Symfony. Bandaa sur l'App Store et le Play Store, full-stack chez C'CIN Chartres.",
   metadataBase: new URL("https://media.jason-suarez.com"),
   authors: [{ name: "Jason Suarez" }],
   openGraph: {
@@ -18,15 +18,15 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://media.jason-suarez.com",
     siteName: "Jason Suarez",
-    title: "Jason Suarez | Développeur Fullstack",
+    title: "Jason Suarez | Développeur full-stack",
     description:
-      "Développeur fullstack - React, TypeScript, Symfony",
+      "Développeur full-stack TypeScript et Symfony",
     images: [
       {
         url: "/images/og-jason-suarez.png",
         width: 1200,
         height: 630,
-        alt: "Jason Suarez – Développeur Fullstack",
+        alt: "Jason Suarez, développeur full-stack",
       },
     ],
   },
@@ -37,19 +37,21 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@swarecito",
     creator: "@swarecito",
-    title: "Jason Suarez | Développeur Fullstack",
+    title: "Jason Suarez | Développeur full-stack",
     description:
-      "Développeur fullstack - React, TypeScript, Symfony",
+      "Développeur full-stack TypeScript et Symfony",
     images: ["/images/og-jason-suarez.png"],
   },
   keywords: [
-    "développeur fullstack",
+    "développeur full-stack",
     "react developer",
     "typescript",
     "symfony developer",
     "next.js",
-    "développeur freelance",
+    "nestjs",
+    "convex",
     "react native",
+    "expo",
     "Jason Suarez",
     "développement web",
     "applications web",
@@ -79,7 +81,7 @@ export const metadata: Metadata = {
     "github:creator": "suarja",
     "linkedin:creator": "https://www.linkedin.com/in/jason-suarez/",
     "og:image:alt":
-      "Automatisations IA, agents intelligents et workflows créatifs",
+      "Jason Suarez, développeur full-stack TypeScript et Symfony",
     "og:locale": "fr_FR",
     "format-detection": "telephone=no",
   },

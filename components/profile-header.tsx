@@ -17,11 +17,11 @@ export default function ProfileHeader() {
       <h1 className="mt-4 text-3xl font-bold">Jason Suarez</h1>
 
       <p className="mt-2 text-lg font-semibold text-white">
-        Développeur Fullstack
+        Développeur full-stack TypeScript · React / Next.js · Symfony
       </p>
 
       <p className="mt-2 text-gray-400 max-w-md">
-        React • TypeScript • Symfony • Next.js
+        2 ans d'expérience · en poste chez C'CIN (Chartres) · Île-de-France
       </p>
 
       <div className="flex gap-3 mt-4">
@@ -39,6 +39,11 @@ export default function ProfileHeader() {
           icon="linkedin"
           href="https://linkedin.com/in/jason-suarez"
           label="LinkedIn"
+        />
+        <SocialIcon
+          icon="github"
+          href="https://github.com/suarja"
+          label="GitHub"
         />
       </div>
     </header>

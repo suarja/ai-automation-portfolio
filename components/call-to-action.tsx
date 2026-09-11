@@ -17,10 +17,10 @@ export default function CallToAction() {
               className="object-contain drop-shadow-[0_5px_10px_rgba(255,255,255,0.25)] rounded-3xl"
             />
           </div>
-          <h2 className="text-2xl font-bold mb-2">Travaille avec moi</h2>
+          <h2 className="text-2xl font-bold mb-2">Discutons</h2>
           <p className="text-gray-200 mb-6 max-w-lg mx-auto">
-            Prêt à automatiser tes processus et gagner du temps ? Réserve un
-            appel découverte pour discuter de ton projet.
+            Un projet, une question, une opportunité ? Réserve un créneau ou
+            écris-moi sur LinkedIn.
           </p>
           <Button
             asChild
@@ -28,7 +28,7 @@ export default function CallToAction() {
             className="rounded-full bg-white text-purple-900 hover:bg-gray-200 shadow-[0_5px_20px_rgba(255,255,255,0.3)]"
           >
             <Link href="https://cal.com/jasonsuarez/booking" target="_blank" rel="noopener noreferrer">
-              Réserver un appel
+              Réserver un créneau
             </Link>
           </Button>
         </div>

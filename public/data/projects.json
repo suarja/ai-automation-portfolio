@@ -3,7 +3,11 @@
     "id": "rdv-artisan",
     "title": "Système de prise de RDV pour artisan",
     "result": "Gain de 5h/semaine sur la gestion des rendez-vous",
-    "tags": ["N8N", "Airtable", "Frontend"],
+    "tags": [
+      "N8N",
+      "Airtable",
+      "Frontend"
+    ],
     "image": "/images/icons/safebox.png",
     "client": {
       "type": "Artisan menuisier",
@@ -13,7 +17,12 @@
     "challenge": "Gestion manuelle des rendez-vous client qui prenait 5h par semaine, avec de nombreux oublis et annulations de dernière minute.",
     "solution": {
       "description": "Système automatisé de prise de rendez-vous avec synchronisation calendrier et notifications",
-      "tools": ["N8N", "Airtable", "React", "Twilio"],
+      "tools": [
+        "N8N",
+        "Airtable",
+        "React",
+        "Twilio"
+      ],
       "features": [
         "Formulaire de prise de RDV intégré au site web",
         "Synchronisation automatique avec Google Calendar",
@@ -58,7 +67,11 @@
     "id": "leads-coach",
     "title": "Automatisation de leads pour coach",
     "result": "Augmentation de 40% du taux de conversion",
-    "tags": ["IA", "N8N", "API"],
+    "tags": [
+      "IA",
+      "N8N",
+      "API"
+    ],
     "image": "/images/icons/star-badge.png",
     "client": {
       "type": "Coach en développement personnel",
@@ -68,7 +81,12 @@
     "challenge": "Difficulté à suivre et qualifier les leads entrants via différents canaux (site web, réseaux sociaux, webinaires). Temps considérable passé à envoyer des emails manuellement.",
     "solution": {
       "description": "Système centralisé de capture et qualification de leads avec suivi automatisé",
-      "tools": ["N8N", "OpenAI", "Make.com", "Google Sheets"],
+      "tools": [
+        "N8N",
+        "OpenAI",
+        "Make.com",
+        "Google Sheets"
+      ],
       "features": [
         "Centralisation des leads de toutes sources dans une base unique",
         "Qualification automatique par IA selon critères prédéfinis",
@@ -104,9 +122,9 @@
     },
     "metadata": {
       "createdAt": "2025-01-15T00:00:00.000Z",
-      "updatedAt": "2025-01-20T00:00:00.000Z",
-      "featured": true,
-      "status": "published"
+      "updatedAt": "2026-09-11T00:00:00.000Z",
+      "featured": false,
+      "status": "draft"
     }
   }
 ]
