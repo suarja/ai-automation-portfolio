@@ -3,7 +3,7 @@ import path from "path";
 import { getAllSlugs } from "@/lib/blog";
 
 export default async function sitemap() {
-  const baseUrl = "https://media.jason-suarez.com";
+  const baseUrl = "https://www.jason-suarez.com";
 
   // Fonction pour obtenir la date de dernière modification d'un fichier
   const getLastModified = (filePath: string): Date => {

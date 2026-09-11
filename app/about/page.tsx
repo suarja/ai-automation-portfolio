@@ -12,7 +12,7 @@ export const metadata = {
     title: 'À propos - Jason Suarez',
     description: 'Développeur full-stack TypeScript et Symfony',
     type: 'profile',
-    url: 'https://media.jason-suarez.com/about',
+    url: 'https://www.jason-suarez.com/about',
   },
   twitter: {
     card: 'summary',
@@ -20,7 +20,7 @@ export const metadata = {
     description: 'Développeur full-stack TypeScript et Symfony',
   },
   alternates: {
-    canonical: 'https://media.jason-suarez.com/about',
+    canonical: 'https://www.jason-suarez.com/about',
   },
 };
 

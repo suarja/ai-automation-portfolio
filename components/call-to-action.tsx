@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export default function CallToAction() {
   return (
     <div className="mt-16 relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-purple-900 to-indigo-900 text-white">
-      <div className="absolute inset-0 bg-[url('/images/grid.png')] opacity-10"></div>
+      <div className="absolute inset-0 dot-grid opacity-20"></div>
       <div className="relative z-10 p-8 text-center">
         <div className="flex flex-col items-center">
           <div className="w-20 h-20 relative mb-4 flex items-center justify-center">
@@ -25,7 +25,7 @@ export default function CallToAction() {
           <Button
             asChild
             size="lg"
-            className="rounded-full bg-white text-purple-900 hover:bg-gray-200 shadow-[0_5px_20px_rgba(255,255,255,0.3)]"
+            className="rounded-full bg-white text-indigo-950 hover:bg-white/90 shadow-lg"
           >
             <Link href="https://cal.com/jasonsuarez/booking" target="_blank" rel="noopener noreferrer">
               Réserver un créneau

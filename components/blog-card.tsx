@@ -27,7 +27,7 @@ export default function BlogCard({
 
   // Gradient for featured articles (purple theme like IA resources)
   const bgGradient = featured
-    ? "from-purple-900 to-indigo-800"
+    ? "from-primary/15 to-card border-primary/30"
     : "from-elevated to-card";
 
   return (

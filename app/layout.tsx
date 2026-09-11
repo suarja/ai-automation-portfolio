@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: "Jason Suarez | Développeur full-stack",
   description:
     "Développeur full-stack TypeScript (React, Next.js, React Native, Convex) et Symfony. Bandaa sur l'App Store et le Play Store, full-stack chez C'CIN Chartres.",
-  metadataBase: new URL("https://media.jason-suarez.com"),
+  metadataBase: new URL("https://www.jason-suarez.com"),
   authors: [{ name: "Jason Suarez" }],
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://media.jason-suarez.com",
+    url: "https://www.jason-suarez.com",
     siteName: "Jason Suarez",
     title: "Jason Suarez | Développeur full-stack",
     description:
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://media.jason-suarez.com",
+    canonical: "https://www.jason-suarez.com",
   },
   twitter: {
     card: "summary_large_image",

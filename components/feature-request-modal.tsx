@@ -99,7 +99,7 @@ export default function FeatureRequestModal({
         }`}
       >
         {/* Sparkle effects */}
-        <div className="absolute top-0 right-0 w-20 h-20 bg-purple-500/10 rounded-full blur-xl -mr-10 -mt-10"></div>
+        <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 rounded-full blur-xl -mr-10 -mt-10"></div>
         <div className="absolute bottom-0 left-0 w-20 h-20 bg-indigo-500/10 rounded-full blur-xl -ml-10 -mb-10"></div>
 
         {/* Close button */}
@@ -155,7 +155,7 @@ export default function FeatureRequestModal({
                   >
                     <div
                       className={`w-5 h-5 mr-2 rounded flex items-center justify-center ${
-                        isNotifyChecked ? "bg-purple-600" : "bg-muted"
+                        isNotifyChecked ? "bg-primary" : "bg-muted"
                       }`}
                     >
                       {isNotifyChecked ? (

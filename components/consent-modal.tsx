@@ -97,7 +97,7 @@ export default function ConsentModal({
             Refuser quand même
           </Button>
           <Button
-            className="flex-1 bg-purple-700 hover:bg-purple-600 text-foreground"
+            className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
             onClick={onAccept}
           >
             Accepter

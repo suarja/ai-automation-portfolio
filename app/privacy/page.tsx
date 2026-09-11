@@ -175,7 +175,7 @@ export default function PrivacyPage() {
             <h2 className="text-xl font-semibold mb-4">Pourquoi c'est utile</h2>
             <div className="space-y-3">
               <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-purple-900/30 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
                   <Check size={16} className="text-primary" />
                 </div>
                 <div>
@@ -188,7 +188,7 @@ export default function PrivacyPage() {
                 </div>
               </div>
               <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-purple-900/30 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
                   <Check size={16} className="text-primary" />
                 </div>
                 <div>
@@ -199,7 +199,7 @@ export default function PrivacyPage() {
                 </div>
               </div>
               <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-purple-900/30 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
                   <Check size={16} className="text-primary" />
                 </div>
                 <div>

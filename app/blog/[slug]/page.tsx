@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { getAllSlugs } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
 import { notFound } from 'next/navigation';
+import { SITE_URL, SITE_NAME } from '@/lib/site';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -25,36 +26,38 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     const mdxModule = await import(`@/content/blog/${slug}.mdx`);
     const metadata = mdxModule.metadata;
 
+    const canonicalUrl = `${SITE_URL}/blog/${slug}`;
+    // Une vraie couverture (1200x630) sert de carte sociale ; une icône de
+    // catégorie ne le peut pas, on retombe sur l'image du site.
+    const hasRealCover = metadata.coverImage && !metadata.coverImage.startsWith('/images/icons/');
+    const ogImage = hasRealCover ? `${SITE_URL}${metadata.coverImage}` : `${SITE_URL}/opengraph-image.png`;
+
     return {
-      title: `${metadata.title} | Jason Suarez`,
+      metadataBase: new URL(SITE_URL),
+      title: `${metadata.title} | ${SITE_NAME}`,
       description: metadata.description,
-      authors: [{ name: metadata.author }],
+      authors: [{ name: metadata.author || SITE_NAME, url: SITE_URL }],
+      keywords: metadata.tags,
+      alternates: { canonical: canonicalUrl },
       openGraph: {
+        type: 'article',
         title: metadata.title,
         description: metadata.description,
-        type: 'article',
+        url: canonicalUrl,
+        siteName: SITE_NAME,
+        locale: 'fr_FR',
         publishedTime: metadata.publishedAt,
         modifiedTime: metadata.updatedAt || metadata.publishedAt,
-        authors: [metadata.author],
+        authors: [metadata.author || SITE_NAME],
         tags: metadata.tags,
-        images: metadata.coverImage ? [
-          {
-            url: metadata.coverImage,
-            width: 1200,
-            height: 630,
-            alt: metadata.title,
-          }
-        ] : [],
+        images: [{ url: ogImage, width: 1200, height: 630, alt: metadata.title }],
       },
       twitter: {
         card: 'summary_large_image',
         title: metadata.title,
         description: metadata.description,
         creator: '@swarecito',
-        images: metadata.coverImage ? [metadata.coverImage] : [],
-      },
-      alternates: {
-        canonical: `https://media.jason-suarez.com/blog/${slug}`,
+        images: [ogImage],
       },
     };
   } catch (error) {
@@ -93,22 +96,55 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     author: {
       '@type': 'Person',
       name: metadata.author,
-      url: 'https://media.jason-suarez.com',
+      url: 'https://www.jason-suarez.com',
     },
     publisher: {
       '@type': 'Person',
       name: 'Jason Suarez',
-      url: 'https://media.jason-suarez.com',
+      url: 'https://www.jason-suarez.com',
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://media.jason-suarez.com/blog/${slug}`,
+      '@id': `https://www.jason-suarez.com/blog/${slug}`,
     },
     keywords: metadata.tags.join(', '),
   };
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: metadata.title,
+            description: metadata.description,
+            datePublished: metadata.publishedAt,
+            dateModified: metadata.updatedAt || metadata.publishedAt,
+            author: { '@type': 'Person', name: metadata.author || SITE_NAME, url: SITE_URL },
+            publisher: { '@type': 'Person', name: SITE_NAME, url: SITE_URL },
+            image: [metadata.coverImage && !metadata.coverImage.startsWith('/images/icons/') ? `${SITE_URL}${metadata.coverImage}` : `${SITE_URL}/opengraph-image.png`],
+            mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${slug}` },
+            keywords: (metadata.tags || []).join(', '),
+            inLanguage: 'fr-FR',
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+              { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+              { '@type': 'ListItem', position: 3, name: metadata.title, item: `${SITE_URL}/blog/${slug}` },
+            ],
+          }),
+        }}
+      />
       {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
@@ -118,7 +154,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Background gradients */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute top-40 right-1/4 w-72 h-72 bg-purple-600/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute top-40 right-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-4xl relative z-10">

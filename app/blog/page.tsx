@@ -12,7 +12,7 @@ export const metadata = {
     title: 'Blog - Jason Suarez',
     description: 'Articles techniques sur le développement web et l\'apprentissage du code',
     type: 'website',
-    url: 'https://media.jason-suarez.com/blog',
+    url: 'https://www.jason-suarez.com/blog',
   },
   twitter: {
     card: 'summary',
@@ -20,7 +20,7 @@ export const metadata = {
     description: 'Articles techniques sur le développement web',
   },
   alternates: {
-    canonical: 'https://media.jason-suarez.com/blog',
+    canonical: 'https://www.jason-suarez.com/blog',
   },
 };
 
@@ -41,7 +41,7 @@ export default async function BlogPage() {
         {/* Hero Section with gradient */}
         <div className="mb-12 relative">
           <div className="absolute -top-20 -left-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute -top-10 -right-10 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute -top-10 -right-10 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-3 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-2xl border border-primary/30">

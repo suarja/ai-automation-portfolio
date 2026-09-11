@@ -1,11 +1,9 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useFeatureRequest } from "@/contexts/feature-requests-context";
-import { useFingerprint } from "@/hooks/use-fingerprint";
-import { useRouter } from "next/router";
-import { sendFeatureRequestV1 } from "@/lib/feature-request";
 import { Button } from "./ui/button";
 
 interface ProjectCardProps {

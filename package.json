@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:theme": "bash scripts/check-theme.sh"
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^4.6.2",

@@ -21,15 +21,15 @@ export default function AuditAutomationPage() {
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         {/* Hero Section */}
         <section className="relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card mb-12">
-          <div className="absolute inset-0 bg-[url('/images/grid.png')] opacity-10"></div>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
+          <div className="absolute inset-0 dot-grid opacity-20"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-600/20 rounded-full blur-3xl -ml-32 -mb-32"></div>
 
           <div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row items-center">
             <div className="md:w-3/5 mb-8 md:mb-0 md:pr-8">
               <Badge
                 variant="outline"
-                className="mb-6 px-4 py-1 border-purple-500/50 bg-purple-500/10 text-primary rounded-full"
+                className="mb-6 px-4 py-1 border-primary/40 bg-primary/10 text-primary rounded-full"
               >
                 Offre limitée
               </Badge>
@@ -99,7 +99,7 @@ export default function AuditAutomationPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-card p-6 rounded-2xl border border-border">
                 <div className="flex items-start">
-                  <div className="w-12 h-12 rounded-full bg-purple-900/30 flex items-center justify-center mr-4 flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-primary/15 flex items-center justify-center mr-4 flex-shrink-0">
                     <Zap className="text-primary" size={24} />
                   </div>
                   <div>
@@ -206,7 +206,7 @@ export default function AuditAutomationPage() {
               <div className="md:w-1/3 flex justify-center">
                 <div className="relative w-48 h-48 overflow-hidden rounded-full border-2 border-purple-500/30 shadow-[0_0_30px_rgba(138,43,226,0.2)]">
                   <Image
-                    src="/images/profile.png"
+                    src="/images/profile.jpg"
                     alt="Jason"
                     fill
                     className="object-cover"
@@ -257,7 +257,7 @@ export default function AuditAutomationPage() {
             <Button
               asChild
               size="lg"
-              className="rounded-full bg-white text-purple-900 hover:bg-gray-200 shadow-[0_5px_20px_rgba(255,255,255,0.3)] text-lg px-8"
+              className="rounded-full bg-white text-indigo-950 hover:bg-white/90 shadow-lg text-lg px-8"
             >
               <Link
                 href="https://cal.com/jasonsuarez/audit-automatisation"

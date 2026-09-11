@@ -4,10 +4,10 @@ import ThemeToggle from "./theme-toggle";
 
 export default function ProfileHeader() {
   return (
-    <header className="flex flex-col items-center text-center fade-up">
+    <header className="flex flex-col items-center text-center">
       <div className="halo relative w-32 h-32 overflow-hidden rounded-full border-2 border-border shadow-card">
         <Image
-          src="/images/profile.png"
+          src="/images/profile.jpg"
           alt="Photo de profil"
           fill
           className="object-cover"

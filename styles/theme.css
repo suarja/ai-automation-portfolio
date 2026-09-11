@@ -1,0 +1,85 @@
+/*
+ * Thème du site : LA source unique des couleurs, ombres et lueurs.
+ * Tout composant utilise les classes Tailwind sémantiques mappées sur ces
+ * variables (bg-background, bg-card, text-foreground, text-soft,
+ * text-muted-foreground, border-border, text-primary, bg-secondary...).
+ * Aucune couleur en dur (#hex, gray-*) dans les composants : `npm run lint:theme`
+ * le vérifie.
+ *
+ * Contraste (WCAG 2.1) visé : texte courant >= 7:1 (AAA), texte secondaire
+ * >= 4.5:1 (AA), bordures visibles >= 3:1 sur le fond de carte.
+ */
+
+  :root {
+    /* Fond et texte. Clair : blanc bleuté, encre presque noire. */
+    --background: 222 24% 97%;        /* #F3F5FA */
+    --foreground: 228 32% 10%;        /* #11152A  16:1 sur carte */
+    --soft: 228 14% 27%;              /* #3B4054  9.6:1 sur carte */
+
+    --card: 0 0% 100%;
+    --card-foreground: 228 32% 10%;
+    --elevated: 224 30% 98%;          /* deuxième arrêt des dégradés de carte */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 228 32% 10%;
+
+    /* Accent : violet profond, lisible en texte sur blanc (6.9:1). */
+    --primary: 258 66% 46%;           /* #5530C4 */
+    --primary-foreground: 0 0% 100%;
+    --accent: 258 66% 46%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Surfaces secondaires : badges, boutons discrets. */
+    --secondary: 224 26% 93%;         /* #E7EAF3 */
+    --secondary-foreground: 228 32% 10%;
+    --muted: 224 26% 93%;
+    --muted-foreground: 226 11% 38%;  /* #575C6E  6.6:1 sur blanc, 5.8:1 sur secondary */
+
+    --destructive: 0 72% 46%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 224 18% 85%;            /* #D4D9E4  bordure visible */
+    --input: 224 18% 85%;
+    --ring: 258 66% 46%;
+
+    --radius: 1rem;
+
+    /* Ombres douces en clair, la couleur fait le relief, pas l'ombre. */
+    --shadow-card: 0 1px 2px rgba(17, 21, 42, 0.05), 0 10px 28px -14px rgba(17, 21, 42, 0.12);
+    --glow: 258 66% 52%;
+    --beam: 258 90% 66%;              /* couleur du liseré animé au survol */
+  }
+
+  .dark {
+    --background: 228 20% 5%;         /* #0B0D14 */
+    --foreground: 220 20% 96%;
+    --soft: 220 14% 78%;              /* 10:1 sur carte */
+
+    --card: 228 18% 8%;               /* #10121B */
+    --card-foreground: 220 20% 96%;
+    --elevated: 228 16% 11%;
+
+    --popover: 228 18% 8%;
+    --popover-foreground: 220 20% 96%;
+
+    --primary: 262 82% 70%;           /* #A78BFA  7:1 sur carte */
+    --primary-foreground: 228 32% 10%;
+    --accent: 262 82% 70%;
+    --accent-foreground: 228 32% 10%;
+
+    --secondary: 228 14% 15%;
+    --secondary-foreground: 220 20% 96%;
+    --muted: 228 12% 18%;
+    --muted-foreground: 222 12% 68%;  /* 7.4:1 sur carte */
+
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 228 12% 17%;            /* 3.2:1 contre la carte */
+    --input: 228 12% 17%;
+    --ring: 262 82% 70%;
+
+    --shadow-card: 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+    --glow: 262 82% 66%;
+    --beam: 262 90% 74%;
+  }
