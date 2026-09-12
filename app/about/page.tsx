@@ -80,7 +80,7 @@ export default function AboutPage() {
 
             <div className="space-y-2">
               <p><strong>2018</strong> : Master EMOS, Université de Strasbourg, puis personnel navigant (Ryanair, Iberia, Vueling)</p>
-              <p><strong>2020 à 2024</strong> : CAPES d'espagnol, professeur certifié dans le secondaire</p>
+              <p><strong>2020 à février 2025</strong> : CAPES d'espagnol, professeur certifié dans le secondaire</p>
               <p><strong>2022</strong> : reconversion dans le développement web, en parallèle du métier (freeCodeCamp, freelance Next.js en 2023)</p>
               <p><strong>2024 à 2025</strong> : développeur front-end React chez JustGains (startup fitness), seul dev front pendant un an</p>
               <p><strong>Avril 2025</strong> : lancement de TikTok et YouTube @swarecito</p>
