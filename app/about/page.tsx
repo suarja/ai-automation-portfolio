@@ -3,60 +3,70 @@ import { ChevronLeft, Code, Smartphone } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import AiPractices from '@/components/ai-practices';
+import ProfileHeader from '@/components/profile-header';
+import { getCandidateContent } from '@/lib/candidate-content';
 
 export const metadata = {
-  title: 'À propos - Jason Suarez | Développeur full-stack',
+  title: 'À propos de Jason Suárez | Développeur full-stack',
   description:
-    'Développeur full-stack TypeScript (React, Next.js, React Native, Convex) et Symfony. Parcours, stack, projets et façon de travailler avec l\'IA.',
+    'Développeur full-stack orienté produit : deux outils métier chez C\'CIN, des applications mobiles indépendantes, et un parcours entre la République dominicaine, la France et l\'Espagne.',
   openGraph: {
-    title: 'À propos - Jason Suarez',
-    description: 'Développeur full-stack TypeScript et Symfony',
+    title: 'À propos de Jason Suárez',
+    description: 'Parcours, produits, langues et vie en dehors du travail.',
     type: 'profile',
     url: 'https://www.jason-suarez.com/about',
   },
   twitter: {
     card: 'summary',
-    title: 'À propos - Jason Suarez',
-    description: 'Développeur full-stack TypeScript et Symfony',
+    title: 'À propos de Jason Suárez',
+    description: 'Parcours, produits, langues et vie en dehors du travail.',
   },
   alternates: {
     canonical: 'https://www.jason-suarez.com/about',
+    languages: {
+      fr: 'https://www.jason-suarez.com/about',
+      en: 'https://www.jason-suarez.com/en/about',
+      es: 'https://www.jason-suarez.com/es/about',
+    },
   },
 };
 
 const skills = {
   'Front-end': [
-    'React / Next.js',
+    'React',
     'TypeScript',
+    'Next.js',
     'React Native / Expo',
-    'Tailwind CSS',
   ],
   'Back-end': [
-    'Symfony (PHP 8) / Doctrine',
-    'NestJS / Node.js',
+    'Symfony 7 / PHP 8.3',
+    'Doctrine',
     'Convex',
-    'API REST / GraphQL',
+    'API REST',
+    'Architecture hexagonale',
   ],
   'Données et livraison': [
     'PostgreSQL / MySQL',
-    'Docker / Docker Compose',
-    'GitLab CI/CD, Linux/SSH',
+    'Docker Compose / FrankenPHP',
+    'GitLab CI/CD, Linux / SSH',
   ],
   'Qualité et outils': [
     'PHPUnit, Jest, Vitest',
     'Git, pull requests, revues de code',
-    'Cursor, Claude Code',
-    'n8n (automatisation)',
+    'Codex, Claude Code',
   ],
 };
 
 export default function AboutPage() {
+  const copy = getCandidateContent('fr');
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-4 py-8 max-w-5xl">
+        <ProfileHeader locale="fr" titleLevel="h2" />
         <Link
           href="/"
-          className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8"
+          className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8 mt-12"
         >
           <ChevronLeft className="mr-1 h-4 w-4" />
           Retour à l'accueil
@@ -66,7 +76,7 @@ export default function AboutPage() {
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">À propos</h1>
           <p className="text-xl text-muted-foreground">
-            Développeur full-stack TypeScript · React / Next.js · Symfony
+            {copy.profile.promise}
           </p>
         </div>
 
@@ -74,21 +84,36 @@ export default function AboutPage() {
         <div className="card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8 mb-8">
           <h2 className="text-2xl font-bold mb-4">Parcours</h2>
           <div className="space-y-3 text-soft">
-            <p>
-              Je suis né en République Dominicaine, arrivé en France à 10 ans.
-            </p>
+            <p>{copy.about.intro}</p>
+            <p>{copy.about.backgroundText}</p>
 
             <div className="space-y-2">
-              <p><strong>2018</strong> : Master EMOS, Université de Strasbourg, puis personnel navigant (Ryanair, Iberia, Vueling)</p>
-              <p><strong>2020 à février 2025</strong> : CAPES d'espagnol, professeur certifié dans le secondaire</p>
-              <p><strong>2022</strong> : reconversion dans le développement web, en parallèle du métier (freeCodeCamp, freelance Next.js en 2023)</p>
-              <p><strong>2024 à 2025</strong> : développeur front-end React chez JustGains (startup fitness), seul dev front pendant un an</p>
-              <p><strong>Avril 2025</strong> : lancement de TikTok et YouTube @swarecito</p>
-              <p><strong>Septembre 2025</strong> : développeur full-stack Symfony / React chez C'CIN Chartres</p>
-              <p><strong>Septembre 2026</strong> : publication de Bandaa sur l'App Store et le Play Store</p>
+              {copy.about.career.map((step) => <p key={step}>{step}</p>)}
             </div>
           </div>
         </div>
+
+        {/* Produits internes */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">{copy.about.productTitle}</h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <article className="card-glow rounded-3xl border border-border bg-card p-8 shadow-card">
+              <h3 className="mb-3 text-xl font-bold">Dashboard de remontée de fiches</h3>
+              <p className="text-soft">
+                Repris en cours de route, le dashboard agrège les informations clients, les e-mails, les tickets et
+                les interventions provenant de plusieurs outils métier. J'y ai ajouté des modules, renforcé la
+                sécurité et mené l'évolution jusqu'à la mise en production.
+              </p>
+            </article>
+            <article className="card-glow rounded-3xl border border-border bg-card p-8 shadow-card">
+              <h3 className="mb-3 text-xl font-bold">Gestion du parc</h3>
+              <p className="text-soft">
+                J'ai développé l'essentiel de cet outil d'inventaire et j'en assure la maintenance. Il suit chaque
+                équipement au fil de son cycle de vie, de son acquisition à sa mise au rebut.
+              </p>
+            </article>
+          </div>
+        </section>
 
         {/* Stack Technique */}
         <div className="mb-12">
@@ -134,9 +159,34 @@ export default function AboutPage() {
           </div>
         </div>
 
+        <section className="card-glow mb-8 rounded-3xl border border-border bg-gradient-to-br from-primary/10 to-card p-8 shadow-card">
+          <h2 className="mb-3 text-2xl font-bold">{copy.about.personalTitle}</h2>
+          <p className="max-w-3xl leading-relaxed text-soft">{copy.about.personalText}</p>
+        </section>
+
         {/* Projets */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold mb-6">Projets</h2>
+          <p className="mb-6 text-muted-foreground">
+            Les trois applications mobiles partagent la même stack : React Native, Expo, TypeScript et Convex.
+          </p>
+
+          {/* Presi */}
+          <div className="card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8 mb-6">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="p-3 rounded-full bg-primary/10 border border-primary/20">
+                <Smartphone className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-2">Presi</h3>
+                <p className="text-muted-foreground text-sm">Lancement prévu début octobre 2026</p>
+              </div>
+            </div>
+            <p className="text-soft">
+              Un fil vidéo vertical inspiré de TikTok, où l'IA aide à décoder les discours politiques et à se faire
+              un avis éclairé.
+            </p>
+          </div>
 
           {/* Bandaa */}
           <div className="card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8 mb-6">
@@ -151,16 +201,9 @@ export default function AboutPage() {
             </div>
 
             <p className="text-soft mb-4">
-              Application mobile de missions photo pour événements : l'organisateur assigne des missions aux
-              invités, l'app compile un album partagé dans l'ordre de l'événement. FR / EN / ES, achat intégré.
+              Centralise les photos des invités, anime l'événement avec des missions personnalisées et rassemble
+              les contributions dans un album commun.
             </p>
-
-            <ul className="list-disc list-inside text-soft space-y-2 mb-4">
-              <li>Expo / React Native, expo-router, TypeScript</li>
-              <li>Back-end TypeScript sur Convex, stockage R2, paiements RevenueCat</li>
-              <li>Tests Jest et convex-test, décisions d'architecture documentées en ADR</li>
-            </ul>
-
             <div className="flex flex-wrap gap-4">
               <a
                 href="https://apps.apple.com/us/app/bandaa-event-photo-missions/id6798290227"
@@ -179,6 +222,23 @@ export default function AboutPage() {
                 Play Store
               </a>
             </div>
+          </div>
+
+          {/* Be Viral AI */}
+          <div className="card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8 mb-6">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="p-3 rounded-full bg-primary/10 border border-primary/20">
+                <Smartphone className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-2">Be Viral AI</h3>
+                <p className="text-muted-foreground text-sm">App Store · août 2025</p>
+              </div>
+            </div>
+            <p className="text-soft">
+              Aide les créateurs TikTok à comprendre les performances et les ressorts de leurs contenus, puis à
+              écrire des scripts qui leur ressemblent.
+            </p>
           </div>
 
           {/* SWE Wannabe */}

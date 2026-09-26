@@ -19,11 +19,13 @@ export default function WorkCard({ item }: WorkCardProps) {
 
         <p className="text-muted-foreground text-sm mb-4">{item.context}</p>
 
-        <ul className="list-disc list-inside text-soft space-y-1.5 mb-4">
-          {item.highlights.map((highlight) => (
-            <li key={highlight}>{highlight}</li>
-          ))}
-        </ul>
+        {item.highlights.length > 0 && (
+          <ul className="list-disc list-inside text-soft space-y-1.5 mb-4">
+            {item.highlights.map((highlight) => (
+              <li key={highlight}>{highlight}</li>
+            ))}
+          </ul>
+        )}
 
         <div className="flex flex-wrap gap-2 mb-1">
           {item.stack.map((tech) => (

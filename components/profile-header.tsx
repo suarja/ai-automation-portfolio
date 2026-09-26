@@ -1,28 +1,46 @@
 import Image from "next/image";
 import SocialIcon from "./social-icon";
 import ThemeToggle from "./theme-toggle";
+import LanguageSwitcher from "./language-switcher";
+import { getCandidateContent, type CandidateLocale } from "@/lib/candidate-content";
 
-export default function ProfileHeader() {
+export default function ProfileHeader({
+  locale = "fr",
+  titleLevel = "h1",
+}: {
+  locale?: CandidateLocale;
+  titleLevel?: "h1" | "h2";
+}) {
+  const copy = getCandidateContent(locale);
+  const NameHeading = titleLevel;
+
   return (
     <header className="flex flex-col items-center text-center">
+      <div className="mb-4 flex justify-center">
+        <LanguageSwitcher locale={locale} />
+      </div>
       <div className="halo relative w-32 h-32 overflow-hidden rounded-full border-2 border-border shadow-card">
         <Image
           src="/images/profile.jpg"
-          alt="Photo de profil"
+          alt={copy.profile.avatarAlt}
           fill
           className="object-cover"
           priority
         />
       </div>
 
-      <h1 className="mt-4 text-3xl font-bold">Jason Suarez</h1>
+      <NameHeading className="mt-4 text-3xl font-bold">Jason Suárez</NameHeading>
 
       <p className="mt-2 text-lg font-semibold text-foreground">
-        Développeur full-stack TypeScript · React / Next.js · Symfony
+        {copy.profile.headline}
       </p>
 
-      <p className="mt-2 text-muted-foreground max-w-md">
-        2 ans d'expérience · en poste chez C'CIN (Chartres) · Île-de-France
+      <p className="mt-2 max-w-md text-muted-foreground">
+        {copy.profile.promise}
+      </p>
+
+      <p className="mt-1 max-w-md text-sm text-muted-foreground">
+        {copy.profile.details}
       </p>
 
       <div className="flex gap-3 mt-4">
@@ -46,7 +64,7 @@ export default function ProfileHeader() {
           href="https://github.com/suarja"
           label="GitHub"
         />
-        <ThemeToggle />
+        <ThemeToggle locale={locale} />
       </div>
     </header>
   );

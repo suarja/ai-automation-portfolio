@@ -1,5 +1,6 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -7,9 +8,9 @@ import { FeatureRequestProvider } from "@/contexts/feature-requests-context";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Jason Suarez | Développeur full-stack",
+  title: "Jason Suárez | Développeur full-stack",
   description:
-    "Développeur full-stack TypeScript (React, Next.js, React Native, Convex) et Symfony. Bandaa sur l'App Store et le Play Store, full-stack chez C'CIN Chartres.",
+    "Développeur full-stack chez C'CIN et créateur d'applications mobiles. Je prends des produits en charge du besoin à leur mise en production.",
   metadataBase: new URL("https://www.jason-suarez.com"),
   authors: [{ name: "Jason Suarez" }],
   openGraph: {
@@ -17,28 +18,33 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://www.jason-suarez.com",
     siteName: "Jason Suarez",
-    title: "Jason Suarez | Développeur full-stack",
+    title: "Jason Suárez | Développeur full-stack",
     description:
-      "Développeur full-stack TypeScript et Symfony",
+      "Développeur full-stack chez C'CIN et créateur d'applications mobiles.",
     images: [
       {
         url: "/images/og-jason-suarez.png",
         width: 1200,
         height: 630,
-        alt: "Jason Suarez, développeur full-stack",
+        alt: "Jason Suárez, développeur full-stack",
       },
     ],
   },
   alternates: {
     canonical: "https://www.jason-suarez.com",
+    languages: {
+      fr: "https://www.jason-suarez.com/",
+      en: "https://www.jason-suarez.com/en",
+      es: "https://www.jason-suarez.com/es",
+    },
   },
   twitter: {
     card: "summary_large_image",
     site: "@swarecito",
     creator: "@swarecito",
-    title: "Jason Suarez | Développeur full-stack",
+    title: "Jason Suárez | Développeur full-stack",
     description:
-      "Développeur full-stack TypeScript et Symfony",
+      "Développeur full-stack chez C'CIN et créateur d'applications mobiles.",
     images: ["/images/og-jason-suarez.png"],
   },
   keywords: [
@@ -80,7 +86,7 @@ export const metadata: Metadata = {
     "github:creator": "suarja",
     "linkedin:creator": "https://www.linkedin.com/in/jason-suarez/",
     "og:image:alt":
-      "Jason Suarez, développeur full-stack TypeScript et Symfony",
+      "Jason Suárez, développeur full-stack",
     "og:locale": "fr_FR",
     "format-detection": "telephone=no",
   },
@@ -95,13 +101,16 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const requestHeaders = await headers();
+  const locale = requestHeaders.get("x-portfolio-locale") ?? "fr";
+
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

@@ -10,6 +10,7 @@ import SiteFooter from "@/components/site-footer";
 import WorkCard from "@/components/work-card";
 import AiPractices from "@/components/ai-practices";
 import { WORK_ITEMS } from "@/lib/data/work";
+import { getCandidateContent } from "@/lib/candidate-content";
 import { ProjectService } from "@/lib/services/projectService";
 import { ResourceService } from "@/lib/services/resourceService";
 import { getBlogPosts } from "@/lib/blog";
@@ -19,6 +20,7 @@ import Link from "next/link";
 // Server component: the JSON and MDX are read at build time, no client fetch,
 // no skeletons, the first paint is the final page.
 export default async function Home() {
+  const copy = getCandidateContent("fr");
   const [allProjects, allResources, posts] = await Promise.all([
     ProjectService.listProjects(),
     ResourceService.listResources(),
@@ -35,7 +37,8 @@ export default async function Home() {
     name: "Jason Suárez",
     url: SITE_URL,
     image: `${SITE_URL}/images/profile.jpg`,
-    jobTitle: "Développeur full-stack TypeScript et Symfony",
+    jobTitle: "Développeur full-stack",
+    knowsLanguage: ["French", "Spanish", "English"],
     worksFor: { "@type": "Organization", name: "C'CIN" },
     sameAs: [
       "https://www.linkedin.com/in/jason-suarez/",
@@ -56,9 +59,10 @@ export default async function Home() {
         {/* Header Section */}
         <ProfileHeader />
 
-        {/* Ce que j'ai construit */}
+        {/* Produits et responsabilités */}
         <section className="mt-16">
-          <SectionHeader title="Ce que j'ai construit" />
+          <SectionHeader title={copy.home.workTitle} />
+          <p className="mb-8 max-w-3xl text-muted-foreground">{copy.home.workIntro}</p>
 
           <div className="grid grid-cols-1 gap-6">
             {WORK_ITEMS.map((item) => (
@@ -73,45 +77,12 @@ export default async function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
             <div className="lg:col-span-3 card-glow bg-card p-8 rounded-3xl border border-border backdrop-blur-sm shadow-card">
-              <p className="text-soft mb-4">
-                Je suis développeur full-stack. Côté TypeScript : React, Next.js, React Native, NestJS et Convex.
-                Côté PHP : Symfony.
-              </p>
-
-              <p className="text-soft mb-4">
-                <strong>Mon parcours</strong> : professeur certifié d'espagnol de 2020 à 2024, reconverti dans le
-                développement en 2022, en parallèle du métier. Depuis, un an seul développeur front dans une startup
-                fitness, puis full-stack Symfony/React chez un opérateur télécom.
-              </p>
-
-              <div className="mb-6">
-                <p className="text-soft mb-2"><strong>Actuellement</strong> :</p>
-                <ul className="list-disc list-inside text-soft space-y-1 ml-4">
-                  <li>Développeur full-stack @ C'CIN Chartres (Symfony / React)</li>
-                  <li>Bandaa, application mobile publiée sur l'App Store et le Play Store en septembre 2026</li>
-                  <li>Contenu tech sur TikTok et YouTube (@swarecito)</li>
-                </ul>
-              </div>
-
-              <h3 className="text-xl font-bold mt-6 mb-3">
-                Ce que je fais
-              </h3>
-              <ul className="list-disc list-inside text-soft space-y-2 mb-6">
-                <li>
-                  <strong>Web et mobile</strong> : applications React / Next.js et React Native / Expo, APIs Symfony,
-                  back-ends TypeScript
-                </li>
-                <li>
-                  <strong>Contenu</strong> : TikTok / YouTube sur l'apprentissage du code et l'IA comme outil
-                </li>
-                <li>
-                  <strong>Automatisation</strong> : n8n et intégrations IA pour indépendants (cas plus bas)
-                </li>
-              </ul>
+              <p className="text-soft mb-4">{copy.about.intro}</p>
+              <p className="text-soft mb-6">{copy.about.backgroundText}</p>
 
               <div className="flex justify-center">
                 <Button asChild variant="outline" size="lg" className="rounded-full">
-                  <Link href="/about">En savoir plus →</Link>
+                  <Link href="/about">{copy.home.aboutLink} →</Link>
                 </Button>
               </div>
             </div>
