@@ -2,12 +2,12 @@ import Image from "next/image";
 import type { CandidateLocale, MobileApp } from "@/lib/apps";
 
 const SCREENSHOT_DIMENSIONS: Record<string, { width: number; height: number }> = {
-  "/apps/presi/political-video.png": { width: 720, height: 1566 },
-  "/apps/presi/analysis-card.png": { width: 720, height: 1566 },
-  "/apps/bandaa/guest-feed.png": { width: 1206, height: 2622 },
-  "/apps/bandaa/shared-album.png": { width: 1206, height: 2622 },
-  "/apps/be-viral-ai/performance-coach.png": { width: 1179, height: 2556 },
-  "/apps/be-viral-ai/script-editor.png": { width: 1179, height: 2556 },
+  "/apps/presi/political-video.webp": { width: 720, height: 1566 },
+  "/apps/presi/analysis-card.webp": { width: 720, height: 1566 },
+  "/apps/bandaa/guest-feed.webp": { width: 720, height: 1566 },
+  "/apps/bandaa/shared-album.webp": { width: 720, height: 1566 },
+  "/apps/be-viral-ai/performance-coach.webp": { width: 720, height: 1561 },
+  "/apps/be-viral-ai/script-editor.webp": { width: 720, height: 1561 },
 };
 
 const GALLERY_TITLES: Record<CandidateLocale, string> = {

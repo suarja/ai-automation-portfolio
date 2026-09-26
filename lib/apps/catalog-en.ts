@@ -9,8 +9,8 @@ const catalogEn: AppCatalog = {
     role: "I lead the product and build the app, from shaping its use cases to its mobile journeys.",
     releaseNote: "Planned for early October 2026.",
     screenshots: [
-      { src: "/apps/presi/political-video.png", alt: "A political speech clip in Presi’s vertical video feed.", caption: "A political clip in Presi’s video feed." },
-      { src: "/apps/presi/analysis-card.png", alt: "A Presi card shows a political quote with a contextual note.", caption: "An analysis card adds context to a speech clip." },
+      { src: "/apps/presi/political-video.webp", alt: "A political speech clip in Presi’s vertical video feed.", caption: "A political clip in Presi’s video feed." },
+      { src: "/apps/presi/analysis-card.webp", alt: "A Presi card shows a political quote with a contextual note.", caption: "An analysis card adds context to a speech clip." },
     ],
   },
   bandaa: {
@@ -21,8 +21,8 @@ const catalogEn: AppCatalog = {
     role: "I shape and build the product, then publish and evolve it on iOS and Android.",
     releaseNote: "Published in September 2026.",
     screenshots: [
-      { src: "/apps/bandaa/guest-feed.png", alt: "Bandaa’s feed shows photos added by event guests.", caption: "Guests’ photos appear in a shared feed." },
-      { src: "/apps/bandaa/shared-album.png", alt: "A Bandaa album brings together photos from several guests.", caption: "Guest contributions come together in one album." },
+      { src: "/apps/bandaa/guest-feed.webp", alt: "Bandaa’s feed shows photos added by event guests.", caption: "Guests’ photos appear in a shared feed." },
+      { src: "/apps/bandaa/shared-album.webp", alt: "A Bandaa album brings together photos from several guests.", caption: "Guest contributions come together in one album." },
     ],
   },
   "be-viral-ai": {
@@ -33,8 +33,8 @@ const catalogEn: AppCatalog = {
     role: "I design and build the app, from video analysis journeys to writing tools.",
     releaseNote: "Available on the App Store since August 2025.",
     screenshots: [
-      { src: "/apps/be-viral-ai/performance-coach.png", alt: "Be Viral AI shows a TikTok video analysis with creator coaching.", caption: "The coach connects performance observations to practical next steps." },
-      { src: "/apps/be-viral-ai/script-editor.png", alt: "Be Viral AI’s editor organizes a TikTok script into a hook and body.", caption: "A script is laid out as a hook followed by its main points." },
+      { src: "/apps/be-viral-ai/performance-coach.webp", alt: "Be Viral AI shows a TikTok video analysis with creator coaching.", caption: "The coach connects performance observations to practical next steps." },
+      { src: "/apps/be-viral-ai/script-editor.webp", alt: "Be Viral AI’s editor organizes a TikTok script into a hook and body.", caption: "A script is laid out as a hook followed by its main points." },
     ],
   },
 };

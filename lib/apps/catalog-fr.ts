@@ -9,8 +9,8 @@ const catalogFr: AppCatalog = {
     role: "Je porte le produit et développe l’application, du cadrage des usages aux parcours mobiles.",
     releaseNote: "Lancement prévu début octobre 2026.",
     screenshots: [
-      { src: "/apps/presi/political-video.png", alt: "Un extrait de discours politique dans le fil vidéo vertical de Presi.", caption: "Un extrait politique dans le fil vidéo de Presi." },
-      { src: "/apps/presi/analysis-card.png", alt: "Une carte Presi présente une citation politique et un repère de contexte.", caption: "Une carte d’analyse accompagne l’extrait d’un repère de contexte." },
+      { src: "/apps/presi/political-video.webp", alt: "Un extrait de discours politique dans le fil vidéo vertical de Presi.", caption: "Un extrait politique dans le fil vidéo de Presi." },
+      { src: "/apps/presi/analysis-card.webp", alt: "Une carte Presi présente une citation politique et un repère de contexte.", caption: "Une carte d’analyse accompagne l’extrait d’un repère de contexte." },
     ],
   },
   bandaa: {
@@ -21,8 +21,8 @@ const catalogFr: AppCatalog = {
     role: "Je conçois et développe le produit, puis je le publie et le fais évoluer sur iOS et Android.",
     releaseNote: "Publiée en septembre 2026.",
     screenshots: [
-      { src: "/apps/bandaa/guest-feed.png", alt: "Le fil Bandaa affiche les photos ajoutées par les invités d’un événement.", caption: "Les photos des invités défilent dans un fil partagé." },
-      { src: "/apps/bandaa/shared-album.png", alt: "Un album Bandaa rassemble des photos prises par plusieurs invités.", caption: "Les contributions prennent place dans un album commun." },
+      { src: "/apps/bandaa/guest-feed.webp", alt: "Le fil Bandaa affiche les photos ajoutées par les invités d’un événement.", caption: "Les photos des invités défilent dans un fil partagé." },
+      { src: "/apps/bandaa/shared-album.webp", alt: "Un album Bandaa rassemble des photos prises par plusieurs invités.", caption: "Les contributions prennent place dans un album commun." },
     ],
   },
   "be-viral-ai": {
@@ -33,8 +33,8 @@ const catalogFr: AppCatalog = {
     role: "Je conçois et développe l’application, du parcours d’analyse aux outils d’écriture.",
     releaseNote: "Publiée sur l’App Store en août 2025.",
     screenshots: [
-      { src: "/apps/be-viral-ai/performance-coach.png", alt: "L’écran Be Viral AI présente une analyse de vidéo TikTok et des conseils de coaching.", caption: "Le coach relie des observations de performance à des pistes concrètes." },
-      { src: "/apps/be-viral-ai/script-editor.png", alt: "L’éditeur Be Viral AI organise un script TikTok en accroche et en développement.", caption: "Un script est structuré en accroche et en développement." },
+      { src: "/apps/be-viral-ai/performance-coach.webp", alt: "L’écran Be Viral AI présente une analyse de vidéo TikTok et des conseils de coaching.", caption: "Le coach relie des observations de performance à des pistes concrètes." },
+      { src: "/apps/be-viral-ai/script-editor.webp", alt: "L’éditeur Be Viral AI organise un script TikTok en accroche et en développement.", caption: "Un script est structuré en accroche et en développement." },
     ],
   },
 };

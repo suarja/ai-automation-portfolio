@@ -1,18 +1,20 @@
 # Mobile app showcase assets
 
-Assets are copied into `public/apps` so the portfolio does not depend on the source repositories at runtime. Screenshots were opened and checked against their named products before selection.
+Assets are copied into `public/apps` so the portfolio does not depend on the source repositories at runtime. Screenshots were opened and checked against their named products before selection. Because `next.config.mjs` serves `next/image` sources without optimization, screenshots use pre-encoded WebP derivatives capped at 720 pixels wide, preserving the source aspect ratio.
+
+Screenshot conversion: `cwebp -preset text -q 90 -alpha_q 100 -m 6 -sharp_yuv -resize_mode down_only -resize 720 0 -metadata none`. The six resulting images are 720×1566 px (Presi and Bandaa) or 720×1561 px (Be Viral AI). Product icons retain their existing formats and dimensions.
 
 | Portfolio file | Source | Selection rationale |
 | --- | --- | --- |
 | `public/apps/presi/icon.png` | `/Users/mata/App/26k/levels/docs/assets/presi/app-store-generator/public/app-icon.png` | Presi's current cream icon with its three-color ribbon mark. |
-| `public/apps/presi/political-video.png` | `/Users/mata/App/26k/levels/docs/captures/t-n-le-nom/geste-presi-3-video.png` | Shows a political speech in Presi's vertical video experience. |
-| `public/apps/presi/analysis-card.png` | `/Users/mata/App/26k/levels/docs/captures/t-n-le-nom/geste-presi-5-carte.png` | Shows a political quote with Presi's contextual analysis card. |
+| `public/apps/presi/political-video.webp` | `/Users/mata/App/26k/levels/docs/captures/t-n-le-nom/geste-presi-3-video.png` | Shows a political speech in Presi's vertical video experience. |
+| `public/apps/presi/analysis-card.webp` | `/Users/mata/App/26k/levels/docs/captures/t-n-le-nom/geste-presi-5-carte.png` | Shows a political quote with Presi's contextual analysis card. |
 | `public/apps/bandaa/icon.png` | `/Users/mata/App/26k/panoptik/docs/assets/bandaa-mobile/app-store-generator/public/app-icon.png` | Current Bandaa camera mark. |
-| `public/apps/bandaa/guest-feed.png` | `/Users/mata/App/26k/panoptik/docs/assets/bandaa-mobile/app-store-generator/public/screenshots/apple/iphone/en/vertical-feed.png` | Real guest photo feed from the Bandaa iPhone app. |
-| `public/apps/bandaa/shared-album.png` | `/Users/mata/App/26k/panoptik/docs/assets/bandaa-mobile/app-store-generator/public/screenshots/apple/iphone/en/book-moments.png` | Real Bandaa shared album view showing contributions from guests. |
+| `public/apps/bandaa/guest-feed.webp` | `/Users/mata/App/26k/panoptik/docs/assets/bandaa-mobile/app-store-generator/public/screenshots/apple/iphone/en/vertical-feed.png` | Real guest photo feed from the Bandaa iPhone app. |
+| `public/apps/bandaa/shared-album.webp` | `/Users/mata/App/26k/panoptik/docs/assets/bandaa-mobile/app-store-generator/public/screenshots/apple/iphone/en/book-moments.png` | Real Bandaa shared album view showing contributions from guests. |
 | `public/apps/be-viral-ai/icon.jpg` | `/Users/mata/App/26k/editia/mobile/assets/icons/ios-light.png` | Configured light iOS icon; `mobile/app.json` selects it for the light appearance and `ios-dark.png` for dark appearance. Exported as JPEG for the portfolio filename. |
-| `public/apps/be-viral-ai/performance-coach.png` | `/Users/mata/App/26k/editia/docs/assets/be-viral-mobile/app-store-generator/public/screenshots/fr/coach-score.png` | Real Be Viral AI video performance and coaching screen. |
-| `public/apps/be-viral-ai/script-editor.png` | `/Users/mata/App/26k/editia/docs/assets/be-viral-mobile/app-store-generator/public/screenshots/fr/script.png` | Real Be Viral AI script editor with hook and body sections. |
+| `public/apps/be-viral-ai/performance-coach.webp` | `/Users/mata/App/26k/editia/docs/assets/be-viral-mobile/app-store-generator/public/screenshots/fr/coach-score.png` | Real Be Viral AI video performance and coaching screen. |
+| `public/apps/be-viral-ai/script-editor.webp` | `/Users/mata/App/26k/editia/docs/assets/be-viral-mobile/app-store-generator/public/screenshots/fr/script.png` | Real Be Viral AI script editor with hook and body sections. |
 
 ## Language shown in screenshots
 
