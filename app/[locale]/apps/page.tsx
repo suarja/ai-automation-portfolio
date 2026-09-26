@@ -31,7 +31,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `/${locale}/apps`,
       languages: { fr: "/apps", en: "/en/apps", es: "/es/apps" },
     },
-    openGraph: { title: copy.title, description: copy.description, locale: locale === "en" ? "en_US" : "es_ES", type: "website" },
+    openGraph: {
+      title: copy.title,
+      description: copy.description,
+      locale: locale === "en" ? "en_US" : "es_ES",
+      type: "website",
+      images: [{ url: "/images/og-jason-suarez.png", width: 1200, height: 630, alt: "Jason Suárez, développeur full-stack" }],
+    },
   };
 }
 

@@ -10,11 +10,11 @@ export const MOBILE_APP_STACK = ["React Native", "Expo", "TypeScript", "Convex"]
 
 type AppMetadata = Omit<MobileApp, keyof LocalizedAppContent>;
 const APP_METADATA: AppMetadata[] = [
-  { slug: "presi", name: "Presi", icon: "/apps/presi/icon.png", status: "upcoming", storeLinks: [] },
+  { slug: "presi", name: "Presi", icon: "/apps/presi/icon.webp", status: "upcoming", storeLinks: [] },
   {
     slug: "bandaa",
     name: "Bandaa",
-    icon: "/apps/bandaa/icon.png",
+    icon: "/apps/bandaa/icon.webp",
     status: "published",
     storeLinks: [
       { platform: "apple", href: "https://apps.apple.com/us/app/bandaa-event-photo-missions/id6798290227" },
@@ -24,7 +24,7 @@ const APP_METADATA: AppMetadata[] = [
   {
     slug: "be-viral-ai",
     name: "Be Viral AI",
-    icon: "/apps/be-viral-ai/icon.jpg",
+    icon: "/apps/be-viral-ai/icon.webp",
     status: "published",
     storeLinks: [{ platform: "apple", href: "https://apps.apple.com/fr/app/be-viral-ai-analyse-contenu/id6746679101" }],
   },

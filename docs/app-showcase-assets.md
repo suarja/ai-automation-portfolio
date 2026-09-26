@@ -1,18 +1,18 @@
 # Mobile app showcase assets
 
-Assets are copied into `public/apps` so the portfolio does not depend on the source repositories at runtime. Screenshots were opened and checked against their named products before selection. Because `next.config.mjs` serves `next/image` sources without optimization, screenshots use pre-encoded WebP derivatives capped at 720 pixels wide, preserving the source aspect ratio.
+Assets are copied into `public/apps` so the portfolio does not depend on the source repositories at runtime. Screenshots and icons were opened and checked against their named products before selection. Because `next.config.mjs` serves `next/image` sources without optimization, screenshots use pre-encoded WebP derivatives capped at 720 pixels wide, preserving the source aspect ratio. The 1024×1024 source icons are reduced to 256×256, then encoded losslessly as WebP; they render at 64–80 CSS pixels.
 
-Screenshot conversion: `cwebp -preset text -q 90 -alpha_q 100 -m 6 -sharp_yuv -resize_mode down_only -resize 720 0 -metadata none`. The six resulting images are 720×1566 px (Presi and Bandaa) or 720×1561 px (Be Viral AI). Product icons retain their existing formats and dimensions.
+Screenshot conversion: `cwebp -preset text -q 90 -alpha_q 100 -m 6 -sharp_yuv -resize_mode down_only -resize 720 0 -metadata none`. The six resulting images are 720×1566 px (Presi and Bandaa) or 720×1561 px (Be Viral AI). Icon conversion: `cwebp -preset icon -lossless -exact -m 6 -resize 256 256 -metadata none`. The three resulting icons are 256×256 WebP, retaining the source transparency and artwork while reducing the served dimensions.
 
 | Portfolio file | Source | Selection rationale |
 | --- | --- | --- |
-| `public/apps/presi/icon.png` | `/Users/mata/App/26k/levels/docs/assets/presi/app-store-generator/public/app-icon.png` | Presi's current cream icon with its three-color ribbon mark. |
+| `public/apps/presi/icon.webp` | `/Users/mata/App/26k/levels/docs/assets/presi/app-store-generator/public/app-icon.png` | Presi's current cream icon with its three-color ribbon mark, reduced to 256×256, then encoded losslessly as WebP. |
 | `public/apps/presi/political-video.webp` | `/Users/mata/App/26k/levels/docs/captures/t-n-le-nom/geste-presi-3-video.png` | Shows a political speech in Presi's vertical video experience. |
 | `public/apps/presi/analysis-card.webp` | `/Users/mata/App/26k/levels/docs/captures/t-n-le-nom/geste-presi-5-carte.png` | Shows a political quote with Presi's contextual analysis card. |
-| `public/apps/bandaa/icon.png` | `/Users/mata/App/26k/panoptik/docs/assets/bandaa-mobile/app-store-generator/public/app-icon.png` | Current Bandaa camera mark. |
+| `public/apps/bandaa/icon.webp` | `/Users/mata/App/26k/panoptik/docs/assets/bandaa-mobile/app-store-generator/public/app-icon.png` | Current Bandaa camera mark, reduced to 256×256, then encoded losslessly as WebP. |
 | `public/apps/bandaa/guest-feed.webp` | `/Users/mata/App/26k/panoptik/docs/assets/bandaa-mobile/app-store-generator/public/screenshots/apple/iphone/en/vertical-feed.png` | Real guest photo feed from the Bandaa iPhone app. |
 | `public/apps/bandaa/shared-album.webp` | `/Users/mata/App/26k/panoptik/docs/assets/bandaa-mobile/app-store-generator/public/screenshots/apple/iphone/en/book-moments.png` | Real Bandaa shared album view showing contributions from guests. |
-| `public/apps/be-viral-ai/icon.jpg` | `/Users/mata/App/26k/editia/mobile/assets/icons/ios-light.png` | Configured light iOS icon; `mobile/app.json` selects it for the light appearance and `ios-dark.png` for dark appearance. Exported as JPEG for the portfolio filename. |
+| `public/apps/be-viral-ai/icon.webp` | `/Users/mata/App/26k/editia/mobile/assets/icons/ios-light.png` | Configured light iOS icon; `mobile/app.json` selects it for the light appearance and `ios-dark.png` for dark appearance. Reduced to 256×256, then encoded losslessly as WebP from this PNG source. |
 | `public/apps/be-viral-ai/performance-coach.webp` | `/Users/mata/App/26k/editia/docs/assets/be-viral-mobile/app-store-generator/public/screenshots/fr/coach-score.png` | Real Be Viral AI video performance and coaching screen. |
 | `public/apps/be-viral-ai/script-editor.webp` | `/Users/mata/App/26k/editia/docs/assets/be-viral-mobile/app-store-generator/public/screenshots/fr/script.png` | Real Be Viral AI script editor with hook and body sections. |
 
@@ -28,6 +28,6 @@ The Presi captures show a French interface, the Bandaa captures show an English 
 
 ## Rejected files
 
-- The source generator's `public/app-icon.png` is not used as the icon source. The configured light iOS icon is used; the [Apple artwork URL supplied in the plan](https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/9f/03/3b/9f033be7-3d8e-67d9-2476-cec52c01b29a/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg) currently resolves to the same mark, so the app configuration is the provenance source for the selected export.
+- The source generator's `public/app-icon.png` and the alternative Apple artwork export are not used as the Be Viral AI portfolio icon. The source is the configured light iOS icon at `mobile/assets/icons/ios-light.png`; `mobile/app.json` selects it for the light appearance and `ios-dark.png` for dark appearance.
 - The Bandaa “Creator Coach” capture is mislabeled and was not copied.
 - Presi's `video-rail.png` is stale and shows a cooking app, so it was not copied.

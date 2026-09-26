@@ -18,20 +18,20 @@
 - Create: `lib/apps/catalog-en.ts`
 - Create: `lib/apps/catalog-es.ts`
 - Create: `lib/apps/index.ts`
-- Create: `public/apps/presi/icon.png`
+- Create: `public/apps/presi/icon.webp`
 - Create: `public/apps/presi/political-video.webp`
 - Create: `public/apps/presi/analysis-card.webp`
-- Create: `public/apps/bandaa/icon.png`
+- Create: `public/apps/bandaa/icon.webp`
 - Create: `public/apps/bandaa/guest-feed.webp`
 - Create: `public/apps/bandaa/shared-album.webp`
-- Create: `public/apps/be-viral-ai/icon.jpg`
+- Create: `public/apps/be-viral-ai/icon.webp`
 - Create: `public/apps/be-viral-ai/performance-coach.webp`
 - Create: `public/apps/be-viral-ai/script-editor.webp`
 - Create: `docs/app-showcase-assets.md`
 
 - [ ] Define `CandidateLocale`, `AppStatus`, `AppScreenshot`, `AppStoreLink`, `LocalizedAppContent`, and `MobileApp` in `lib/apps/types.ts`. The catalog must carry one common stack (`React Native`, `Expo`, `TypeScript`, `Convex`), per-app status/store links/icon, and localized tagline, description, problem, product response, role, and screenshot alt/caption text.
 - [ ] Add the three apps in newest-first order: Presi (upcoming, planned early October 2026, no store links), Bandaa (published, Apple and Google Play links already present in `lib/candidate-content.ts`), and Be Viral AI (published, French App Store link `https://apps.apple.com/fr/app/be-viral-ai-analyse-contenu/id6746679101`). Do not invent a Google Play link or product metrics.
-- [ ] Copy only visually verified source images into `public/apps`: preserve the selected icons in their existing formats, then encode the six source screenshots as WebP derivatives capped at 720 pixels wide. Use Presi’s icon from `/Users/mata/App/26k/levels/docs/assets/presi/app-store-generator/public/app-icon.png` and its political app screens from `/Users/mata/App/26k/levels/docs/captures/t-n-le-nom/geste-presi-3-video.png` and `geste-presi-5-carte.png`; Bandaa’s icon from `/Users/mata/App/26k/panoptik/docs/assets/bandaa-mobile/app-store-generator/public/app-icon.png` and two actual app screens from its `public/screenshots/apple/iphone/en/{vertical-feed,book-moments}.png`; Be Viral AI’s icon from Apple’s official artwork URL `https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/9f/03/3b/9f033be7-3d8e-67d9-2476-cec52c01b29a/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg` and actual French interface screens from `/Users/mata/App/26k/editia/docs/assets/be-viral-mobile/app-store-generator/public/screenshots/fr/{coach-score,script}.png`.
+- [ ] Copy only visually verified source images into `public/apps`: reduce the selected 1024×1024 app icons to 256×256, then encode them losslessly as WebP; encode the six source screenshots as WebP derivatives capped at 720 pixels wide. Use Presi’s icon from `/Users/mata/App/26k/levels/docs/assets/presi/app-store-generator/public/app-icon.png` and its political app screens from `/Users/mata/App/26k/levels/docs/captures/t-n-le-nom/geste-presi-3-video.png` and `geste-presi-5-carte.png`; Bandaa’s icon from `/Users/mata/App/26k/panoptik/docs/assets/bandaa-mobile/app-store-generator/public/app-icon.png` and two actual app screens from its `public/screenshots/apple/iphone/en/{vertical-feed,book-moments}.png`; Be Viral AI’s configured light iOS icon from `/Users/mata/App/26k/editia/mobile/assets/icons/ios-light.png` and actual French interface screens from `/Users/mata/App/26k/editia/docs/assets/be-viral-mobile/app-store-generator/public/screenshots/fr/{coach-score,script}.png`.
 - [ ] Do not copy the known wrong Be Viral AI sliders icon, the mislabelled Bandaa “Creator Coach” capture, or the stale Presi `video-rail.png` capture that shows a cooking app. Record the source paths, selection, screen-language caveat, and store-link status in `docs/app-showcase-assets.md`.
 - [ ] Export `getMobileApps(locale)` and `getMobileApp(slug, locale)` from `lib/apps/index.ts`; unknown slugs return `undefined`. Keep catalog files focused and under the project’s 150-line guideline.
 
