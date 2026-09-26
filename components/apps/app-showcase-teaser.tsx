@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import type { CandidateLocale } from "@/lib/apps";
 
 const COPY: Record<CandidateLocale, { title: string; body: string; link: string }> = {
@@ -25,17 +25,21 @@ export function AppShowcaseTeaser({ locale }: { locale: CandidateLocale }) {
   const href = locale === "fr" ? "/apps" : `/${locale}/apps`;
 
   return (
-    <section aria-labelledby="app-showcase-teaser-heading" className="card-glow rounded-3xl border border-border bg-gradient-to-br from-elevated to-card p-6 shadow-card md:p-8">
+    <Link
+      href={href}
+      aria-labelledby="app-showcase-teaser-heading"
+      className="group card-glow block rounded-3xl border border-border bg-gradient-to-br from-elevated to-card p-6 shadow-card transition duration-300 hover:-translate-y-1 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 focus-visible:ring-offset-4 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:transform-none md:p-8"
+    >
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div>
           <h2 id="app-showcase-teaser-heading" className="text-2xl font-bold">{copy.title}</h2>
           <p className="mt-3 max-w-2xl leading-relaxed text-soft">{copy.body}</p>
         </div>
-        <Link href={href} className="inline-flex shrink-0 items-center gap-2 rounded-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+        <span className="inline-flex shrink-0 items-center gap-3 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-all group-hover:gap-4 group-hover:shadow-md">
           {copy.link}
           <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-        </Link>
+        </span>
       </div>
-    </section>
+    </Link>
   );
 }

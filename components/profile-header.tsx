@@ -15,10 +15,14 @@ export default function ProfileHeader({
   const NameHeading = titleLevel;
 
   return (
-    <header className="flex flex-col items-center text-center">
-      <div className="mb-4 flex justify-center">
+    <header className="relative flex flex-col items-center pt-14 text-center sm:pt-12">
+      <nav
+        aria-label={locale === "fr" ? "Préférences d’affichage" : locale === "es" ? "Preferencias de visualización" : "Display preferences"}
+        className="absolute right-0 top-0 flex items-center gap-2"
+      >
         <LanguageSwitcher locale={locale} />
-      </div>
+        <ThemeToggle locale={locale} />
+      </nav>
       <div className="halo relative w-32 h-32 overflow-hidden rounded-full border-2 border-border shadow-card">
         <Image
           src="/images/profile.jpg"
@@ -64,7 +68,6 @@ export default function ProfileHeader({
           href="https://github.com/suarja"
           label="GitHub"
         />
-        <ThemeToggle locale={locale} />
       </div>
     </header>
   );

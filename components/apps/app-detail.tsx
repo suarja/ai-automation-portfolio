@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import ProfileHeader from "@/components/profile-header";
+import { SiteHeader } from "@/components/site-header";
 import { AppScreenshotGallery } from "@/components/apps/app-screenshot-gallery";
 import type { CandidateLocale, MobileApp } from "@/lib/apps";
 
@@ -60,7 +60,7 @@ export function AppDetail({ app, locale }: { app: MobileApp; locale: CandidateLo
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto max-w-5xl px-4 py-8">
-        <ProfileHeader locale={locale} titleLevel="h2" />
+        <SiteHeader locale={locale} />
         <Link
           href={homeHref}
           className="mt-10 inline-flex items-center rounded-sm text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
