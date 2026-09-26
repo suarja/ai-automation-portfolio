@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ProfileHeader from "@/components/profile-header";
+import { AppShowcaseTeaser } from "@/components/apps/app-showcase-teaser";
 import {
   getCandidateContent,
   getCandidateHomePath,
@@ -72,6 +73,10 @@ export default function CandidateAbout({
               </div>
             </article>
           </section>
+
+          <div className="mb-8">
+            <AppShowcaseTeaser locale={locale} />
+          </div>
 
           <section className="card-glow rounded-3xl border border-border bg-gradient-to-br from-primary/10 to-card p-8 shadow-card">
             <h2 className="mb-4 text-2xl font-bold">{copy.about.aiTitle}</h2>

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import SiteFooter from "@/components/site-footer";
 import WorkCard from "@/components/work-card";
 import AiPractices from "@/components/ai-practices";
+import { AppShowcaseTeaser } from "@/components/apps/app-showcase-teaser";
 import { WORK_ITEMS } from "@/lib/data/work";
 import { getCandidateContent } from "@/lib/candidate-content";
 import { ProjectService } from "@/lib/services/projectService";
@@ -70,6 +71,10 @@ export default async function Home() {
             ))}
           </div>
         </section>
+
+        <div className="mt-16">
+          <AppShowcaseTeaser locale="fr" />
+        </div>
 
         {/* À propos Section */}
         <section className="mt-16 fade-up fade-up-2">

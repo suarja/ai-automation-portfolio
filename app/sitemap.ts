@@ -1,6 +1,14 @@
 import fs from "fs";
 import path from "path";
 import { getAllSlugs } from "@/lib/blog";
+import { getMobileApps, type CandidateLocale } from "@/lib/apps";
+
+const APP_LOCALES: CandidateLocale[] = ["fr", "en", "es"];
+
+function getLocalizedAppPath(locale: CandidateLocale, slug?: string) {
+  const prefix = locale === "fr" ? "" : `/${locale}`;
+  return `${prefix}/apps${slug ? `/${slug}` : ""}`;
+}
 
 export default async function sitemap() {
   const baseUrl = "https://www.jason-suarez.com";
@@ -52,5 +60,38 @@ export default async function sitemap() {
     };
   });
 
-  return [...staticPages, ...blogPages];
+  const appPages = APP_LOCALES.flatMap((locale) => {
+    const overviewAlternates = Object.fromEntries(
+      APP_LOCALES.map((language) => [language, `${baseUrl}${getLocalizedAppPath(language)}`]),
+    );
+    const overviewPage = {
+      url: `${baseUrl}${getLocalizedAppPath(locale)}`,
+      lastModified: getLastModified(
+        path.join(pagesDir, ...(locale === "fr" ? ["apps", "page.tsx"] : ["[locale]", "apps", "page.tsx"])),
+      ),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+      alternates: { languages: overviewAlternates },
+    };
+
+    const detailPages = getMobileApps(locale).map(({ slug }) => {
+      return {
+        url: `${baseUrl}${getLocalizedAppPath(locale, slug)}`,
+        lastModified: getLastModified(
+          path.join(pagesDir, ...(locale === "fr" ? ["apps", "[slug]", "page.tsx"] : ["[locale]", "apps", "[slug]", "page.tsx"])),
+        ),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+        alternates: {
+          languages: Object.fromEntries(
+            APP_LOCALES.map((language) => [language, `${baseUrl}${getLocalizedAppPath(language, slug)}`]),
+          ),
+        },
+      };
+    });
+
+    return [overviewPage, ...detailPages];
+  });
+
+  return [...staticPages, ...blogPages, ...appPages];
 }

@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { ChevronLeft, Code, Smartphone } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { ChevronLeft, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import AiPractices from '@/components/ai-practices';
 import ProfileHeader from '@/components/profile-header';
 import { getCandidateContent } from '@/lib/candidate-content';
+import { AppShowcaseTeaser } from '@/components/apps/app-showcase-teaser';
 
 export const metadata = {
   title: 'À propos de Jason Suárez | Développeur full-stack',
@@ -166,80 +166,9 @@ export default function AboutPage() {
 
         {/* Projets */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">Projets</h2>
-          <p className="mb-6 text-muted-foreground">
-            Les trois applications mobiles partagent la même stack : React Native, Expo, TypeScript et Convex.
-          </p>
+          <AppShowcaseTeaser locale="fr" />
 
-          {/* Presi */}
-          <div className="card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8 mb-6">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 rounded-full bg-primary/10 border border-primary/20">
-                <Smartphone className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Presi</h3>
-                <p className="text-muted-foreground text-sm">Lancement prévu début octobre 2026</p>
-              </div>
-            </div>
-            <p className="text-soft">
-              Un fil vidéo vertical inspiré de TikTok, où l'IA aide à décoder les discours politiques et à se faire
-              un avis éclairé.
-            </p>
-          </div>
-
-          {/* Bandaa */}
-          <div className="card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8 mb-6">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 rounded-full bg-primary/10 border border-primary/20">
-                <Smartphone className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Bandaa</h3>
-                <p className="text-muted-foreground text-sm">En production depuis septembre 2026</p>
-              </div>
-            </div>
-
-            <p className="text-soft mb-4">
-              Centralise les photos des invités, anime l'événement avec des missions personnalisées et rassemble
-              les contributions dans un album commun.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="https://apps.apple.com/us/app/bandaa-event-photo-missions/id6798290227"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline"
-              >
-                App Store
-              </a>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.swarecito.bandaa"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline"
-              >
-                Play Store
-              </a>
-            </div>
-          </div>
-
-          {/* Be Viral AI */}
-          <div className="card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8 mb-6">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 rounded-full bg-primary/10 border border-primary/20">
-                <Smartphone className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Be Viral AI</h3>
-                <p className="text-muted-foreground text-sm">App Store · août 2025</p>
-              </div>
-            </div>
-            <p className="text-soft">
-              Aide les créateurs TikTok à comprendre les performances et les ressorts de leurs contenus, puis à
-              écrire des scripts qui leur ressemblent.
-            </p>
-          </div>
+          <h2 className="mb-6 mt-10 text-3xl font-bold">Autres projets</h2>
 
           {/* SWE Wannabe */}
           <div className="card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card p-8 mb-6">

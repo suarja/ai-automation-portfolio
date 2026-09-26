@@ -41,17 +41,31 @@ export default function WorkCard({ item }: WorkCardProps) {
 
         {item.links && item.links.length > 0 && (
           <div className="flex flex-wrap gap-4 mt-4">
-            {item.links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80"
-              >
-                {link.label} <ExternalLink className="ml-1 h-3.5 w-3.5" />
-              </Link>
-            ))}
+            {item.links.map((link) => {
+              const linkClassName = "inline-flex items-center text-sm font-medium text-primary hover:text-primary/80";
+              const content = (
+                <>
+                  {link.label}
+                  {!link.href.startsWith("/") && <ExternalLink aria-hidden="true" className="ml-1 h-3.5 w-3.5" />}
+                </>
+              );
+
+              return link.href.startsWith("/") ? (
+                <Link key={link.href} href={link.href} className={linkClassName}>
+                  {content}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClassName}
+                >
+                  {content}
+                </a>
+              );
+            })}
           </div>
         )}
       </div>

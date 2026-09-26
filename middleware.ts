@@ -15,5 +15,15 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/about", "/en", "/en/about", "/es", "/es/about"],
+  matcher: [
+    "/",
+    "/about",
+    "/en",
+    "/en/about",
+    "/es",
+    "/es/about",
+    "/apps/:path*",
+    "/en/apps/:path*",
+    "/es/apps/:path*",
+  ],
 };

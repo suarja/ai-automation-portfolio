@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ProfileHeader from "@/components/profile-header";
 import WorkCard from "@/components/work-card";
+import { AppShowcaseTeaser } from "@/components/apps/app-showcase-teaser";
 import { getCandidateContent, getCandidateAboutPath, type CandidateLocale } from "@/lib/candidate-content";
 
 export default function CandidateHome({
@@ -27,6 +28,10 @@ export default function CandidateHome({
             ))}
           </div>
         </section>
+
+        <div className="mt-16">
+          <AppShowcaseTeaser locale={locale} />
+        </div>
 
         <section className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-5">
           <article className="card-glow rounded-3xl border border-border bg-card p-8 shadow-card backdrop-blur-sm lg:col-span-3">

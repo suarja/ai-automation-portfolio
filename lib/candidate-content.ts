@@ -41,17 +41,6 @@ export interface CandidateContent {
   work: WorkItem[];
 }
 
-const bandaaLinks = [
-  {
-    label: "App Store",
-    href: "https://apps.apple.com/us/app/bandaa-event-photo-missions/id6798290227",
-  },
-  {
-    label: "Google Play",
-    href: "https://play.google.com/store/apps/details?id=com.swarecito.bandaa",
-  },
-];
-
 export const CANDIDATE_CONTENT: Record<CandidateLocale, CandidateContent> = {
   fr: {
     profile: {
@@ -156,7 +145,7 @@ export const CANDIDATE_CONTENT: Record<CandidateLocale, CandidateContent> = {
           "Be Viral AI aide les créateurs TikTok à comprendre les performances de leurs contenus et à écrire des scripts qui leur ressemblent. App Store, août 2025.",
         ],
         stack: ["React Native", "Expo", "TypeScript", "Convex"],
-        links: bandaaLinks,
+        links: [{ label: "Découvrir les applications", href: "/apps" }],
       },
       {
         id: "justgains",
@@ -291,7 +280,7 @@ export const CANDIDATE_CONTENT: Record<CandidateLocale, CandidateContent> = {
           "Be Viral AI helps TikTok creators understand how their content performs and write scripts that sound like them. App Store, August 2025.",
         ],
         stack: ["React Native", "Expo", "TypeScript", "Convex"],
-        links: bandaaLinks,
+        links: [{ label: "Explore the apps", href: "/en/apps" }],
       },
       {
         id: "justgains",
@@ -426,7 +415,7 @@ export const CANDIDATE_CONTENT: Record<CandidateLocale, CandidateContent> = {
           "Be Viral AI ayuda a creadores de TikTok a entender el rendimiento de sus contenidos y escribir guiones que suenen a ellos. App Store, agosto de 2025.",
         ],
         stack: ["React Native", "Expo", "TypeScript", "Convex"],
-        links: bandaaLinks,
+        links: [{ label: "Descubrir las aplicaciones", href: "/es/apps" }],
       },
       {
         id: "justgains",
