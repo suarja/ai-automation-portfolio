@@ -458,7 +458,7 @@ export default function SitesWebIAPage() {
               <Button
                 asChild
                 size="lg"
-                className="w-full rounded-full bg-secondary hover:bg-muted text-foreground"
+                className="w-full rounded-full bg-secondary text-secondary-foreground hover:bg-muted"
               >
                 <a
                   href={CONSTANTS.STRIPE_WEBSITE_CLE_MAIN_URL}

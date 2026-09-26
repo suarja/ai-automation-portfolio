@@ -24,7 +24,7 @@ export default function CandidateHome({
           </p>
           <div className="grid grid-cols-1 gap-6">
             {copy.work.map((item) => (
-              <WorkCard key={item.id} item={item} />
+              <WorkCard key={item.id} item={item} locale={locale} />
             ))}
           </div>
         </section>

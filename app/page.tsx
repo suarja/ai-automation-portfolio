@@ -67,7 +67,7 @@ export default async function Home() {
 
           <div className="grid grid-cols-1 gap-6">
             {WORK_ITEMS.map((item) => (
-              <WorkCard key={item.id} item={item} />
+              <WorkCard key={item.id} item={item} locale="fr" />
             ))}
           </div>
         </section>

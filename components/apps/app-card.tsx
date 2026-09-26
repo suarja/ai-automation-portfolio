@@ -18,7 +18,7 @@ export function AppCard({ app, locale, index }: { app: MobileApp; locale: Candid
     <Link
       href={href}
       aria-label={`${app.name} — ${app.tagline} — ${copy.action}`}
-      className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-card transition duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_20px_50px_-24px_hsl(var(--glow)/0.42)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 focus-visible:ring-offset-4 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:transform-none"
+      className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-card transition duration-300 hover:-translate-y-px hover:border-primary/20 hover:shadow-[0_14px_34px_-24px_hsl(var(--glow)/0.22)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 focus-visible:ring-offset-4 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:transform-none"
     >
       <div className="relative flex h-72 items-center justify-center overflow-hidden bg-gradient-to-br from-primary/10 via-elevated to-secondary/70">
         <Image
@@ -48,11 +48,11 @@ export function AppCard({ app, locale, index }: { app: MobileApp; locale: Candid
         <div aria-hidden="true" className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-transparent to-black/20" />
       </div>
 
-      <div className="flex flex-1 flex-col p-6 sm:p-7">
+      <div className="flex flex-1 flex-col items-center p-6 text-center sm:p-7 md:items-start md:text-left">
         {app.releaseNote && (
           <p className="text-xs font-medium leading-5 text-muted-foreground">{app.releaseNote}</p>
         )}
-        <div className="mt-3 flex items-center gap-3">
+        <div className="mt-3 flex items-center justify-center gap-3 md:justify-start">
           <Image
             src={app.icon}
             alt=""

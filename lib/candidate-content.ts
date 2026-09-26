@@ -139,10 +139,11 @@ export const CANDIDATE_CONTENT: Record<CandidateLocale, CandidateContent> = {
         period: "Depuis août 2025",
         context:
           "Je construis et publie ces apps moi-même. Elles répondent à des besoins différents et utilisent la même stack mobile.",
-        highlights: [
-          "Presi est un fil vidéo vertical où l'IA aide à décoder les discours politiques et à se faire un avis éclairé. Lancement prévu début octobre 2026.",
-          "Bandaa centralise les photos des invités, anime l'événement avec des missions personnalisées et rassemble les contributions dans un album commun. Publiée en septembre 2026.",
-          "Be Viral AI aide les créateurs TikTok à comprendre les performances de leurs contenus et à écrire des scripts qui leur ressemblent. App Store, août 2025.",
+        highlights: [],
+        appMentions: [
+          { slug: "presi", summary: "Un fil vidéo vertical où l’IA aide à décoder les discours politiques et à se faire un avis éclairé." },
+          { slug: "bandaa", summary: "Centralise les photos des invités, anime l’événement avec des missions et rassemble les contributions dans un album." },
+          { slug: "be-viral-ai", summary: "Aide les créateurs TikTok à comprendre leurs performances et à écrire des scripts qui leur ressemblent." },
         ],
         stack: ["React Native", "Expo", "TypeScript", "Convex"],
         links: [{ label: "Découvrir les applications", href: "/apps" }],
@@ -274,10 +275,11 @@ export const CANDIDATE_CONTENT: Record<CandidateLocale, CandidateContent> = {
         period: "Since August 2025",
         context:
           "I build and ship these apps myself. They address different needs and share one mobile stack.",
-        highlights: [
-          "Presi is a vertical video feed that uses AI to help people decode political speeches and form an informed view. Launch planned for early October 2026.",
-          "Bandaa brings guests' photos together, adds personalized missions to an event and turns their contributions into a shared album. Published in September 2026.",
-          "Be Viral AI helps TikTok creators understand how their content performs and write scripts that sound like them. App Store, August 2025.",
+        highlights: [],
+        appMentions: [
+          { slug: "presi", summary: "A vertical video feed that uses AI to help people decode political speeches and form an informed view." },
+          { slug: "bandaa", summary: "Brings guests’ photos together, adds personalized missions to an event and turns their contributions into a shared album." },
+          { slug: "be-viral-ai", summary: "Helps TikTok creators understand how their content performs and write scripts that sound like them." },
         ],
         stack: ["React Native", "Expo", "TypeScript", "Convex"],
         links: [{ label: "Explore the apps", href: "/en/apps" }],
@@ -409,10 +411,11 @@ export const CANDIDATE_CONTENT: Record<CandidateLocale, CandidateContent> = {
         period: "Desde agosto de 2025",
         context:
           "Construyo y publico estas apps yo mismo. Responden a necesidades distintas y comparten la misma tecnología móvil.",
-        highlights: [
-          "Presi es un feed vertical de vídeos donde la IA ayuda a descifrar los discursos políticos y formarse una opinión informada. Lanzamiento previsto para principios de octubre de 2026.",
-          "Bandaa reúne las fotos de los invitados, anima el evento con misiones personalizadas y convierte sus aportaciones en un álbum compartido. Publicada en septiembre de 2026.",
-          "Be Viral AI ayuda a creadores de TikTok a entender el rendimiento de sus contenidos y escribir guiones que suenen a ellos. App Store, agosto de 2025.",
+        highlights: [],
+        appMentions: [
+          { slug: "presi", summary: "Un feed vertical de vídeos donde la IA ayuda a descifrar los discursos políticos y formarse una opinión informada." },
+          { slug: "bandaa", summary: "Reúne las fotos de los invitados, anima el evento con misiones personalizadas y crea un álbum compartido." },
+          { slug: "be-viral-ai", summary: "Ayuda a creadores de TikTok a entender el rendimiento de sus vídeos y escribir guiones que suenen a ellos." },
         ],
         stack: ["React Native", "Expo", "TypeScript", "Convex"],
         links: [{ label: "Descubrir las aplicaciones", href: "/es/apps" }],

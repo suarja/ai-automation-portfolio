@@ -79,7 +79,7 @@ export default async function BlogPage() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className={`group relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br ${gradientClass} p-6 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] ${
+                  className={`group relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br ${gradientClass} p-6 transition-all duration-300 hover:-translate-y-px hover:border-primary/20 ${
                     isFirst ? 'md:col-span-2' : ''
                   }`}
                 >

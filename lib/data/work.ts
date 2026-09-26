@@ -1,4 +1,5 @@
 import { CANDIDATE_CONTENT } from "@/lib/candidate-content";
+import type { AppSlug } from "@/lib/apps";
 
 export interface WorkLink {
   label: string;
@@ -12,6 +13,7 @@ export interface WorkItem {
   period: string;
   context: string;
   highlights: string[];
+  appMentions?: Array<{ slug: AppSlug; summary: string }>;
   stack: string[];
   links?: WorkLink[];
 }

@@ -28,10 +28,10 @@ export function AppShowcaseTeaser({ locale }: { locale: CandidateLocale }) {
     <Link
       href={href}
       aria-labelledby="app-showcase-teaser-heading"
-      className="group card-glow block rounded-3xl border border-border bg-gradient-to-br from-elevated to-card p-6 shadow-card transition duration-300 hover:-translate-y-1 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 focus-visible:ring-offset-4 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:transform-none md:p-8"
+      className="group card-glow block rounded-3xl border border-border bg-gradient-to-br from-elevated to-card p-6 text-center shadow-card transition duration-300 hover:-translate-y-px hover:border-primary/20 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 focus-visible:ring-offset-4 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:transform-none md:p-8 md:text-left"
     >
-      <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-        <div>
+      <div className="flex flex-col items-center justify-between gap-5 sm:flex-row sm:items-end sm:text-left">
+        <div className="flex flex-col items-center sm:items-start">
           <h2 id="app-showcase-teaser-heading" className="text-2xl font-bold">{copy.title}</h2>
           <p className="mt-3 max-w-2xl leading-relaxed text-soft">{copy.body}</p>
         </div>

@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { AppDemoVideo } from "@/components/apps/app-demo-video";
 import { AppScreenshotGallery } from "@/components/apps/app-screenshot-gallery";
+import { Button } from "@/components/ui/button";
 import type { CandidateLocale, MobileApp } from "@/lib/apps";
 
 const COPY: Record<CandidateLocale, {
@@ -57,15 +58,7 @@ export function AppDetail({ app, locale }: { app: MobileApp; locale: CandidateLo
     <main className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto max-w-5xl px-4 py-6 md:py-8">
         <SiteHeader locale={locale} />
-        <Link
-          href={appsHref}
-          className="group mt-4 inline-flex items-center gap-2 rounded-sm text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-        >
-          <ArrowLeft aria-hidden="true" className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-          {copy.appsLink}
-        </Link>
-
-        <header className="mb-8 mt-5">
+        <header className="mb-8 mt-5 text-center sm:text-left">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
             <Image
               src={app.icon}
@@ -73,10 +66,10 @@ export function AppDetail({ app, locale }: { app: MobileApp; locale: CandidateLo
               width={80}
               height={80}
               sizes="80px"
-              className="h-20 w-20 rounded-3xl border border-border object-cover shadow-card"
+              className="mx-auto h-20 w-20 rounded-3xl border border-border object-cover shadow-card sm:mx-0"
             />
-            <div>
-              <div className="mb-2 flex flex-wrap items-center gap-3">
+            <div className="flex flex-col items-center sm:items-start">
+              <div className="mb-2 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
                 <span className={app.status === "upcoming"
                   ? "rounded-full border border-border bg-secondary px-3 py-1 text-sm font-semibold"
                   : "rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary"}>
@@ -131,10 +124,13 @@ export function AppDetail({ app, locale }: { app: MobileApp; locale: CandidateLo
           </section>
         )}
 
-        <footer className="mt-12 border-t border-border pt-6">
-          <Link href={appsHref} className="rounded-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
-            {copy.appsLink}
-          </Link>
+        <footer className="mt-12 flex justify-center border-t border-border pt-8">
+          <Button asChild variant="secondary" size="lg" className="rounded-full">
+            <Link href={appsHref}>
+              {copy.appsLink}
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          </Button>
         </footer>
       </div>
     </main>

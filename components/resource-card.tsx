@@ -79,10 +79,10 @@ export default function ResourceCard({
         <p className="text-muted-foreground mb-6">{description}</p>
         <Button
           onClick={handleClick}
-          variant={featureRequest ? "outline" : "default"}
+          variant={featureRequest ? "outline" : "secondary"}
           className={featureRequest
             ? "rounded-full border-border bg-card hover:bg-secondary shadow-md"
-            : "w-full rounded-full bg-secondary hover:bg-muted shadow-md"
+            : "w-full rounded-full shadow-md"
           }
         >
           {buttonText}

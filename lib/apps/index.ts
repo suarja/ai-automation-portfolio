@@ -3,7 +3,7 @@ import catalogEs from "./catalog-es";
 import catalogFr from "./catalog-fr";
 import type { AppCatalog, CandidateLocale, LocalizedAppContent, MobileApp } from "./types";
 
-export type { CandidateLocale, LocalizedMobileApp, MobileApp } from "./types";
+export type { AppSlug, CandidateLocale, LocalizedMobileApp, MobileApp } from "./types";
 export { type AppScreenshot, type AppStatus, type AppStoreLink, type AppStorePlatform } from "./types";
 
 export const MOBILE_APP_STACK = ["React Native", "Expo", "TypeScript", "Convex"] as const;

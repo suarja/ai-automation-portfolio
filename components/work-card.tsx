@@ -1,13 +1,16 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { MobileAppMention } from "@/components/apps/mobile-app-mention";
 import type { WorkItem } from "@/lib/data/work";
+import type { CandidateLocale } from "@/lib/apps";
 
 interface WorkCardProps {
   item: WorkItem;
+  locale: CandidateLocale;
 }
 
-export default function WorkCard({ item }: WorkCardProps) {
+export default function WorkCard({ item, locale }: WorkCardProps) {
   return (
     <article className="card-glow relative overflow-hidden rounded-3xl border border-border shadow-card backdrop-blur-sm bg-gradient-to-br from-elevated to-card">
       <div className="p-6 md:p-8">
@@ -27,6 +30,16 @@ export default function WorkCard({ item }: WorkCardProps) {
           </ul>
         )}
 
+        {item.appMentions && item.appMentions.length > 0 && (
+          <ul className="mb-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" aria-label={item.title}>
+            {item.appMentions.map((app) => (
+              <li key={app.slug}>
+                <MobileAppMention app={app} locale={locale} />
+              </li>
+            ))}
+          </ul>
+        )}
+
         <div className="flex flex-wrap gap-2 mb-1">
           {item.stack.map((tech) => (
             <Badge
@@ -42,15 +55,20 @@ export default function WorkCard({ item }: WorkCardProps) {
         {item.links && item.links.length > 0 && (
           <div className="flex flex-wrap gap-4 mt-4">
             {item.links.map((link) => {
-              const linkClassName = "inline-flex items-center text-sm font-medium text-primary hover:text-primary/80";
+              const isInternal = link.href.startsWith("/");
+              const linkClassName = isInternal
+                ? "mx-auto inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:mx-0"
+                : "inline-flex items-center text-sm font-medium text-primary hover:text-primary/80";
               const content = (
                 <>
                   {link.label}
-                  {!link.href.startsWith("/") && <ExternalLink aria-hidden="true" className="ml-1 h-3.5 w-3.5" />}
+                  {isInternal
+                    ? <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                    : <ExternalLink aria-hidden="true" className="ml-1 h-3.5 w-3.5" />}
                 </>
               );
 
-              return link.href.startsWith("/") ? (
+              return isInternal ? (
                 <Link key={link.href} href={link.href} className={linkClassName}>
                   {content}
                 </Link>

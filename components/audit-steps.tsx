@@ -89,7 +89,7 @@ export default function AuditSteps() {
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 ${
                     activeStep === index
-                      ? "bg-gradient-to-br from-purple-600 to-indigo-600 text-foreground"
+                      ? "bg-gradient-to-br from-purple-600 to-indigo-600 text-white"
                       : "bg-secondary text-muted-foreground"
                   }`}
                 >
