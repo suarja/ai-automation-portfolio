@@ -22,16 +22,14 @@ export function AppCard({ app, locale, index }: { app: MobileApp; locale: Candid
     >
       <div className="relative flex h-72 items-center justify-center overflow-hidden bg-gradient-to-br from-primary/10 via-elevated to-secondary/70">
         <Image
-          src={app.screenshots[0].src}
+          src={app.cardImage.src}
           alt=""
           fill
           sizes="100vw"
-          className="scale-110 object-cover opacity-20 blur-2xl"
+          className="scale-110 object-cover opacity-25 blur-2xl"
           aria-hidden="true"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-background/20 via-transparent to-background/55" />
-        <div aria-hidden="true" className="absolute -left-8 top-8 h-36 w-36 rounded-full bg-primary/20 blur-3xl" />
-        <div aria-hidden="true" className="absolute -right-8 bottom-0 h-32 w-32 rounded-full bg-accent/15 blur-3xl" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-background/35 via-transparent to-background/55" />
         <span className="absolute left-5 top-5 z-20 rounded-full border border-border/70 bg-background/90 px-3 py-1.5 text-xs font-semibold text-foreground shadow-sm backdrop-blur">
           {status === "upcoming" ? copy.upcoming : copy.published}
         </span>
@@ -39,30 +37,34 @@ export function AppCard({ app, locale, index }: { app: MobileApp; locale: Candid
           {String(index + 1).padStart(2, "0")}
         </span>
         <Image
-          src={app.screenshots[0].src}
+          src={app.cardImage.src}
           alt=""
           fill
           sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 100vw"
-          className="z-10 object-contain p-2 drop-shadow-2xl transition-transform duration-500 group-hover:scale-[1.035] motion-reduce:transition-none motion-reduce:group-hover:transform-none"
+          style={{ objectPosition: app.cardImage.objectPosition }}
+          className="z-10 object-cover transition-transform duration-500 group-hover:scale-[1.035] motion-reduce:transition-none motion-reduce:group-hover:transform-none"
           priority={index === 0}
         />
-        <Image
-          src={app.icon}
-          alt=""
-          width={48}
-          height={48}
-          sizes="48px"
-          className="absolute bottom-4 left-5 z-20 h-12 w-12 rounded-2xl border border-white/60 object-cover shadow-lg"
-        />
+        <div aria-hidden="true" className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-transparent to-black/20" />
       </div>
 
       <div className="flex flex-1 flex-col p-6 sm:p-7">
         {app.releaseNote && (
           <p className="text-xs font-medium leading-5 text-muted-foreground">{app.releaseNote}</p>
         )}
-        <h3 className="mt-3 text-2xl font-bold tracking-tight transition-colors group-hover:text-primary">
-          {app.name}
-        </h3>
+        <div className="mt-3 flex items-center gap-3">
+          <Image
+            src={app.icon}
+            alt=""
+            width={44}
+            height={44}
+            sizes="44px"
+            className="h-11 w-11 rounded-2xl border border-border object-cover shadow-sm"
+          />
+          <h3 className="text-2xl font-bold tracking-tight transition-colors group-hover:text-primary">
+            {app.name}
+          </h3>
+        </div>
         <p className="mt-3 flex-1 text-base leading-7 text-soft">{app.tagline}</p>
         <span className="mt-7 inline-flex w-fit items-center gap-3 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-all group-hover:gap-4 group-hover:shadow-md motion-reduce:transition-none">
           {copy.action}

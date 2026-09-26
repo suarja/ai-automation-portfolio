@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
+import { AppDemoVideo } from "@/components/apps/app-demo-video";
 import { AppScreenshotGallery } from "@/components/apps/app-screenshot-gallery";
 import type { CandidateLocale, MobileApp } from "@/lib/apps";
 
 const COPY: Record<CandidateLocale, {
-  backHome: string;
   problem: string;
   response: string;
   role: string;
@@ -16,7 +16,6 @@ const COPY: Record<CandidateLocale, {
   appsLink: string;
 }> = {
   fr: {
-    backHome: "Retour à l’accueil",
     problem: "Le problème utilisateur",
     response: "La réponse du produit",
     role: "Mon rôle",
@@ -26,7 +25,6 @@ const COPY: Record<CandidateLocale, {
     appsLink: "Voir toutes les applications",
   },
   en: {
-    backHome: "Back to the homepage",
     problem: "The user problem",
     response: "The product response",
     role: "My role",
@@ -36,7 +34,6 @@ const COPY: Record<CandidateLocale, {
     appsLink: "See all apps",
   },
   es: {
-    backHome: "Volver al inicio",
     problem: "El problema del usuario",
     response: "La respuesta del producto",
     role: "Mi papel",
@@ -53,23 +50,22 @@ function storeLabel(platform: "apple" | "googlePlay") {
 
 export function AppDetail({ app, locale }: { app: MobileApp; locale: CandidateLocale }) {
   const copy = COPY[locale];
-  const homeHref = locale === "fr" ? "/" : `/${locale}`;
   const appsHref = locale === "fr" ? "/apps" : `/${locale}/apps`;
   const statusLabel = app.status === "upcoming" ? copy.upcoming : copy.available;
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <div className="container mx-auto max-w-5xl px-4 py-8">
+      <div className="container mx-auto max-w-5xl px-4 py-6 md:py-8">
         <SiteHeader locale={locale} />
         <Link
-          href={homeHref}
-          className="mt-10 inline-flex items-center rounded-sm text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          href={appsHref}
+          className="group mt-4 inline-flex items-center gap-2 rounded-sm text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
-          <ChevronLeft aria-hidden="true" className="mr-1 h-4 w-4" />
-          {copy.backHome}
+          <ArrowLeft aria-hidden="true" className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+          {copy.appsLink}
         </Link>
 
-        <header className="mb-10 mt-8">
+        <header className="mb-8 mt-5">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
             <Image
               src={app.icon}
@@ -94,6 +90,8 @@ export function AppDetail({ app, locale }: { app: MobileApp; locale: CandidateLo
           </div>
           <p className="mt-6 max-w-3xl leading-relaxed text-muted-foreground">{app.description}</p>
         </header>
+
+        <AppDemoVideo app={app} locale={locale} />
 
         <div className="grid gap-6 md:grid-cols-2">
           <section aria-labelledby="app-problem-heading" className="card-glow rounded-3xl border border-border bg-card p-6 shadow-card">

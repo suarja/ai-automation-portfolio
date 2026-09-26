@@ -2,8 +2,8 @@ import Image from "next/image";
 import type { CandidateLocale, MobileApp } from "@/lib/apps";
 
 const SCREENSHOT_DIMENSIONS: Record<string, { width: number; height: number }> = {
-  "/apps/presi/political-video.webp": { width: 720, height: 1566 },
-  "/apps/presi/analysis-card.webp": { width: 720, height: 1566 },
+  "/apps/presi/feed-card.webp": { width: 1320, height: 2868 },
+  "/apps/presi/video-rail.webp": { width: 1320, height: 2868 },
   "/apps/bandaa/guest-feed.webp": { width: 720, height: 1566 },
   "/apps/bandaa/shared-album.webp": { width: 720, height: 1566 },
   "/apps/be-viral-ai/performance-coach.webp": { width: 720, height: 1561 },

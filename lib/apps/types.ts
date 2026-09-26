@@ -7,6 +7,15 @@ export interface AppScreenshot {
   src: string;
   alt: string;
   caption: string;
+  objectPosition?: string;
+}
+
+export interface AppDemoVideo {
+  src: string;
+  poster: string;
+  alt: string;
+  title: string;
+  caption: string;
 }
 
 export interface AppStoreLink {
@@ -21,6 +30,8 @@ export interface LocalizedAppContent {
   solution: string;
   role: string;
   releaseNote?: string;
+  cardImage: AppScreenshot;
+  demoVideo?: AppDemoVideo;
   screenshots: [AppScreenshot, AppScreenshot];
 }
 
