@@ -1,0 +1,61 @@
+{
+  "title": "Pages de détail — en-tête commun et ressources lisibles",
+  "intent": "Établir des repères visuels cohérents sur les détails d'article et de ressource, tout en rendant les commandes adaptées au tactile.",
+  "reference": {
+    "name": "SiteHeader existant du portfolio",
+    "record": "reference.json",
+    "source": "components/site-header.tsx and http://127.0.0.1:3012/apps",
+    "provenance": "Composant et page locaux appartenant au projet, inspectés le 2026-09-27."
+  },
+  "target": {
+    "desktop": { "width": 1440, "height": 999, "deviceScaleFactor": 1 },
+    "mobile": { "width": 390, "height": 844, "deviceScaleFactor": 1 }
+  },
+  "renderer": "Pages locales contrôlées dans le navigateur Codex en bureau et à 390 × 844. Les captures n'ont pas été persistées comme fichiers.",
+  "assets": [],
+  "tokens": {
+    "light": {
+      "background": "#F3F5FA",
+      "foreground": "#11152A",
+      "surface": "#FFFFFF",
+      "muted": "#575C6E",
+      "border": "#D4D9E4",
+      "primary": "#5530C4"
+    },
+    "dark": {
+      "background": "#0B0D14",
+      "foreground": "#F4F5F8",
+      "surface": "#10121B",
+      "muted": "#AEB3C0",
+      "border": "#292C38",
+      "primary": "#B5A0FF"
+    }
+  },
+  "screenshots": [],
+  "states": [
+    "article detail",
+    "resource detail with long code",
+    "open language menu",
+    "dark theme",
+    "narrow mobile viewport"
+  ],
+  "assumptions": [
+    "Blog and resource detail pages are currently French-only.",
+    "Until translated counterparts exist, EN/ES selection falls back to the matching localized homepage.",
+    "The code-copy action remains visible on touch-capable screens; horizontal overflow stays inside the code panel."
+  ],
+  "exclusions": [
+    "No content translation in this slice.",
+    "No change to existing app detail header.",
+    "No production deployment."
+  ],
+  "preview": "canvas.html",
+  "gate": "gate.md",
+  "verification": {
+    "status": "verified",
+    "pages": ["/blog/agents-ia-claude", "/resources/prompts-claude-dev"],
+    "themes": ["light", "dark"],
+    "viewport": "390x844 plus navigateur desktop",
+    "notes": "Locale fallback, mobile code overflow/copy affordance, and interactive text contrast verified; see gate.md for details."
+  }
+}

@@ -6,6 +6,7 @@ import { getAllSlugs } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
 import { notFound } from 'next/navigation';
 import { SITE_URL, SITE_NAME } from '@/lib/site';
+import { SiteHeader } from '@/components/site-header';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -159,6 +160,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-4xl relative z-10">
+        <SiteHeader locale="fr" languageFallbackToHome compact />
         <Link
           href="/blog"
           className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8 transition-colors"

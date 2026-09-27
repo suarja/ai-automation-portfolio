@@ -1,0 +1,44 @@
+{
+  "screenType": "portfolio-detail-page",
+  "visualMass": "Centered editorial content card below a compact site header.",
+  "palette": "Cool off-white or near-black background, ink text, subtle borders, violet accent.",
+  "axis": "Centered content container; brand left and display controls right.",
+  "visibleComponents": [
+    "site brand link",
+    "language-code button",
+    "theme button",
+    "secondary return link",
+    "content card",
+    "copy-code control"
+  ],
+  "orderedElements": [
+    "site brand and display controls",
+    "return-to-section link",
+    "detail title and metadata",
+    "article or resource body",
+    "copy action in a code block where relevant"
+  ],
+  "visibleCopy": [
+    "Jason Suárez",
+    "FR",
+    "Retour au blog",
+    "Créer des agents IA avec Claude",
+    "Copier"
+  ],
+  "searchableMotifs": [
+    "portfolio detail page",
+    "shared site header",
+    "light dark controls",
+    "mobile code block",
+    "editorial content card"
+  ],
+  "lesson": "Reuse the site's own header and semantic palette so detail routes keep the same identity as the homepage and app pages. Keep return navigation secondary and make touch actions visible without hover.",
+  "quality": "Project-owned internal reference, inspected in the local site. No third-party screenshot retained.",
+  "platform": "web",
+  "app": "MediaPortfolio",
+  "studio": "Jason Suárez",
+  "source": "components/site-header.tsx and http://127.0.0.1:3012/apps",
+  "date": "2026-09-27",
+  "authorProvider": "Codex visual inspection",
+  "bankStatus": "Manual record: no deterministic design-bank module or ranker exists in this checkout."
+}

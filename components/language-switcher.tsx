@@ -11,17 +11,28 @@ const LANGUAGES: Array<{ code: CandidateLocale; name: string }> = [
   { code: "es", name: "Español" },
 ];
 
-function pathForLocale(pathname: string, locale: CandidateLocale): string {
+function pathForLocale(
+  pathname: string,
+  targetLocale: CandidateLocale,
+  currentLocale: CandidateLocale,
+  fallbackToLocaleHome: boolean,
+): string {
+  if (fallbackToLocaleHome && targetLocale !== currentLocale) {
+    return targetLocale === "fr" ? "/" : "/" + targetLocale;
+  }
+
   const segments = pathname.split("/").filter(Boolean);
   if (segments[0] === "en" || segments[0] === "es") segments.shift();
   const pagePath = segments.length > 0 ? "/" + segments.join("/") : "";
-  return locale === "fr" ? pagePath || "/" : "/" + locale + pagePath;
+  return targetLocale === "fr" ? pagePath || "/" : "/" + targetLocale + pagePath;
 }
 
 export default function LanguageSwitcher({
   locale,
+  fallbackToLocaleHome = false,
 }: {
   locale: CandidateLocale;
+  fallbackToLocaleHome?: boolean;
 }) {
   const pathname = usePathname() || "/";
   const [open, setOpen] = useState(false);
@@ -61,7 +72,7 @@ export default function LanguageSwitcher({
           {LANGUAGES.map((language) => (
             <Link
               key={language.code}
-              href={pathForLocale(pathname, language.code)}
+              href={pathForLocale(pathname, language.code, locale, fallbackToLocaleHome)}
               role="menuitem"
               aria-label={language.name}
               aria-current={locale === language.code ? "page" : undefined}

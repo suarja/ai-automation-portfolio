@@ -156,3 +156,30 @@
   background-image: radial-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px);
   background-size: 18px 18px;
 }
+
+/* Keep code actions discoverable on touch screens and expose long-line scrolling. */
+.code-block-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground)) transparent;
+}
+.code-block-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+.code-block-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: hsl(var(--muted-foreground));
+}
+.code-block-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.group:focus-within .code-block-copy {
+  opacity: 1;
+}
+@media (hover: none), (max-width: 700px) {
+  .code-block-copy {
+    opacity: 1;
+  }
+  .code-block-scrollbar {
+    padding-top: 3rem;
+  }
+}

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { getAllResourceSlugs, hasResourceMdxContent } from '@/lib/resourceMarkdown';
 import { ResourceService } from '@/lib/services/resourceService';
 import { notFound } from 'next/navigation';
+import { SiteHeader } from '@/components/site-header';
 
 interface ResourcePageProps {
   params: Promise<{
@@ -101,6 +102,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
         </div>
 
         <div className="container mx-auto px-4 py-8 max-w-4xl relative z-10">
+          <SiteHeader locale="fr" languageFallbackToHome compact />
           <Link
             href="/"
             className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8 transition-colors"
@@ -232,6 +234,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
     return (
       <main className="min-h-screen bg-background text-foreground">
         <div className="container mx-auto px-4 py-8 max-w-5xl">
+          <SiteHeader locale="fr" languageFallbackToHome compact />
           <Link
             href="/"
             className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8"

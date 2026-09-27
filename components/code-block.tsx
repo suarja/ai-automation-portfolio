@@ -37,14 +37,14 @@ export function CodeBlock({ children, className }: CodeBlockProps) {
 
   return (
     <div className="relative group">
-      <pre className={`bg-card p-4 rounded-lg overflow-x-auto mb-4 border border-border ${className || ''}`}>
+      <pre className={`code-block-scrollbar bg-card p-4 rounded-lg overflow-x-auto mb-4 border border-border ${className || ''}`}>
         {children}
       </pre>
       <Button
         onClick={handleCopy}
         size="sm"
         variant="ghost"
-        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-muted hover:bg-muted border border-border"
+        className="code-block-copy absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-muted hover:bg-muted border border-border"
       >
         {copied ? (
           <>
