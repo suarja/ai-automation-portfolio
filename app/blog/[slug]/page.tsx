@@ -7,6 +7,7 @@ import { formatDate } from '@/lib/utils';
 import { notFound } from 'next/navigation';
 import { SITE_URL, SITE_NAME } from '@/lib/site';
 import { SiteHeader } from '@/components/site-header';
+import { EditorialBlogPost } from '@/components/omni/editorial-blog-post';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -52,7 +53,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
         modifiedTime: metadata.updatedAt || metadata.publishedAt,
         authors: [metadata.author || SITE_NAME],
         tags: metadata.tags,
-        images: [{ url: ogImage, width: 1200, height: 630, alt: metadata.title }],
+        images: [{ url: ogImage, width: metadata.coverWidth || 1200, height: metadata.coverHeight || 630, alt: metadata.title }],
       },
       twitter: {
         card: 'summary_large_image',
@@ -84,6 +85,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   } catch (error) {
     console.error(`Blog post not found: ${slug}`, error);
     notFound();
+  }
+
+  if (metadata.layout === 'editorial') {
+    return <EditorialBlogPost metadata={metadata} slug={slug}><Post /></EditorialBlogPost>;
   }
 
   // JSON-LD structured data for SEO

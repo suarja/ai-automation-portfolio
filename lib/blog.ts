@@ -12,6 +12,10 @@ export interface BlogPostMetadata {
   tags: string[];
   featured: boolean;
   coverImage?: string;
+  coverWidth?: number;
+  coverHeight?: number;
+  layout?: "editorial";
+  projectHref?: string;
 }
 
 export interface BlogPost extends BlogPostMetadata {

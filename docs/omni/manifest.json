@@ -1,0 +1,49 @@
+{
+  "status": "integrated-awaiting-final-owner-review",
+  "baseCommit": "e9cbf554a11f908e4cb19bd74f339b3dba19def2",
+  "branch": "codex/omni-portfolio",
+  "approvedProposal": "/Users/mata/Downloads/CV 26k/applications/ovhcloud-frontend-data-ai/omni-showcase",
+  "projectPath": "/projects/omni-desktop",
+  "articlePath": "/blog/omni-interface-skills",
+  "localPreview": "http://127.0.0.1:8770",
+  "nativeCaptures": {
+    "app": "/Users/mata/Applications/Omni Desktop.app",
+    "version": "0.1.1-rc.15",
+    "build": "0.1.1-rc.15",
+    "date": "2026-10-15",
+    "project": "OmniProject",
+    "method": "CUA native application screenshots; navigation only",
+    "files": [
+      {
+        "path": "assets/omni-project.png",
+        "sha256": "bcf4a7e2fdcd12bb585eb9047c6306bcf93774e0925202f425f904e65178385e",
+        "edited": false
+      },
+      {
+        "path": "assets/omni-reader.png",
+        "sha256": "8bcc5dc7311d95f80809dbf1516dcda581e367f86492debd667f53ba668ede38",
+        "edited": false
+      },
+      {
+        "path": "assets/omni-skills.png",
+        "sha256": "15c6d6ecd68cdb1d1cf1a40849f753b490b2e20337bc619bac7a499a70e720e4",
+        "edited": false
+      }
+    ]
+  },
+  "evidence": "review/",
+  "build": "PASS with isolated dummy local Redis environment",
+  "typecheck": "24 inherited errors, 0 new, baseline/current compared; typecheck.json",
+  "independentReview": {
+    "disposition": "ship",
+    "scope": "Owner presentation only",
+    "materialFindings": [],
+    "limits": [
+      "manual; no Impeccable detector",
+      "no Safari or screen-reader reception",
+      "no production reception"
+    ]
+  },
+  "publication": "NOT RUN",
+  "push": "NOT RUN"
+}

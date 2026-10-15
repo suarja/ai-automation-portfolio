@@ -1,0 +1,48 @@
+import { OmniCapture } from "@/components/omni/omni-capture";
+import styles from "@/components/omni/omni.module.css";
+
+export const metadata = {
+  "title": "Omni : chercher l’interface qui rend les skills lisibles",
+  "description": "Mes agents travaillent dans plusieurs projets. Je veux voir les instructions qu’ils utilisent, leur provenance et ce qu’une modification va changer.",
+  "publishedAt": "2026-10-15",
+  "author": "Jason Suárez",
+  "tags": [
+    "Omni",
+    "Conception d’interface",
+    "Agents de codage"
+  ],
+  "featured": false,
+  "coverImage": "/images/omni/omni-project.png",
+  "coverWidth": 2880,
+  "coverHeight": 1800,
+  "layout": "editorial",
+  "projectHref": "/projects/omni-desktop"
+};
+
+<p className={styles.lead}>Avec plusieurs projets et plusieurs agents, je veux pouvoir répondre à une question simple : qui utilise quoi ? C’est pour ça que je construis Omni.</p>
+<p>J’ai accumulé des fichiers Markdown, des spécifications et des consignes pour aider mes agents. À force d’en ajouter, je dois aussi faire le tri dans ce contexte. Je préfère maintenant garder mes méthodes répétitives dans des skills : des recettes que l’agent peut découvrir grâce à leur description, puis consulter quand il en a besoin.</p>
+<p>Mais dès que chaque agent peut créer sa recette, il faut organiser ce qui se passe autour. Est-ce qu’elle existe déjà ? Suit-elle les bonnes conventions ? Une version externe a-t-elle changé ? Et si j’améliore une copie dans un projet, que doivent devenir les autres ?</p>
+<h2>Retrouver ce que mes agents utilisent</h2>
+<p>Sans vue d’ensemble, je finis par travailler à l’aveugle. Une même skill peut être installée pour Claude Code et Codex, à l’échelle de l’utilisateur ou d’un projet. Deux fichiers portant le même nom peuvent aussi contenir des instructions différentes.</p>
+<p>J’ai longtemps cherché comment rendre ces relations compréhensibles. Dans Omni, le projet est devenu le point de départ. Ses ressources sont regroupées selon leur provenance : ma marketplace, les sources externes ou le projet lui-même. Avant même d’ouvrir une skill, je retrouve un contexte.</p>
+<OmniCapture image="project">Le projet est le point de départ. Ses ressources restent regroupées selon leur provenance.</OmniCapture>
+<h2>Le canevas devait servir la navigation</h2>
+<p>J’ai essayé plusieurs manières de répartir ces informations. L’une des difficultés était de garder une interface cohérente lorsque la navigation passait d’un écran à un autre. Le canevas pouvait donner une bonne vue d’ensemble, puis disparaître au moment d’agir ou de lire.</p>
+<p>J’ai donc choisi de garder le canevas comme espace de travail et d’ouvrir les détails dans des fiches latérales. Le lecteur voit le contenu sans perdre complètement les ressources qui l’entourent. Le chemin en haut de la fenêtre permet de remonter vers le projet.</p>
+<p>Le déplacement et le zoom répondent à une autre contrainte : tous les projets n’ont pas la même quantité de ressources. Une disposition claire avec quelques nœuds doit aussi rester navigable quand le contenu se densifie.</p>
+<h2>Une skill devait rester une skill</h2>
+<p>Une première représentation pouvait montrer deux fois une même skill, une fois pour chaque agent. Elle reflétait les copies présentes sur le disque, mais elle compliquait la lecture. Deux nœuds portant le même nom n’expliquaient pas immédiatement s’il s’agissait du même outil ou de deux outils différents.</p>
+<blockquote>J’ai gardé un seul nœud par skill, avec des pastilles pour indiquer les agents qui l’utilisent.</blockquote>
+<p>Le nom permet de reconnaître la ressource. Les pastilles donnent l’information d’installation. Et les états particuliers, comme une mise à jour disponible, apparaissent au même endroit. Chaque élément a ainsi un rôle distinct dans la lecture.</p>
+<OmniCapture image="skills">Le nombre de copies ne dicte plus le nombre de nœuds affichés.</OmniCapture>
+<h2>Le détail devait répondre à des questions précises</h2>
+<p>Quand j’ouvre une skill, je veux savoir ce qu’elle fait, d’où elle vient et où elle est utilisée. C’est l’ordre retenu dans la fiche. Le contenu arrive ensuite, dans le même panneau.</p>
+<p>Ce travail a aussi porté sur les mots. Une action comme désactiver une skill n’a pas le même sens que la supprimer. Les noms des actions et les explications doivent permettre de comprendre cette différence avant de cliquer.</p>
+<OmniCapture image="reader">La fiche rassemble les réponses utiles à côté du canevas. Les captures de cet article viennent de l’application installée le 15 octobre 2026.</OmniCapture>
+<h2>Garder la main quand les skills évoluent</h2>
+<p>Retrouver une skill ne règle pas tout. Avant d’en créer une, je veux vérifier les doublons, les règles de sécurité et les conventions d’écriture, dont l’anglais. Quand elle vient d’ailleurs, je veux garder sa provenance et suivre ses mises à jour. Et lorsqu’une copie change dans un projet, je veux comprendre ce qui peut revenir à la source commune, en conservant les adaptations qui ont une raison d’exister.</p>
+<p>C’est ce cycle que je cherche à rendre lisible dans Omni. Le canevas doit aider à explorer, les fiches à comprendre, et l’aperçu d’un changement à décider. Une propagation entre projets ne doit pas devenir une nouvelle opération qu’on lance à l’aveugle.</p>
+<h2>Une interface qu’on a envie d’explorer</h2>
+<p>J’ai beaucoup itéré sur ces parcours parce que je voulais aussi prendre plaisir à les utiliser. Se déplacer dans le canevas, ouvrir une fiche, revenir au projet : ces gestes doivent aider à comprendre les liens. Le côté presque ludique m’intéresse quand il rend cette exploration plus facile.</p>
+<p>J’utilise des agents pour développer Omni, mais ces choix restent mon travail. Une implémentation peut être correcte et produire un écran difficile à comprendre. Faire tourner l’application, essayer les parcours et reprendre la représentation font partie de la conception.</p>
+<p>Omni est encore en développement. Ces captures montrent le parcours de lecture actuel ; les parcours complets de mise à jour des copies restent en cours de travail. Je continue d’éprouver les décisions d’interface sur mes projets, avec une question simple : est-ce que je comprends ce que je m’apprête à changer ?</p>

@@ -1,0 +1,32 @@
+{
+  "base": "e9cbf55",
+  "inheritedErrors": 24,
+  "newErrors": 0,
+  "comparison": "TypeScript baseline vs current; same file/code sequence",
+  "errors": [
+    "app/api/_legacy/mcp/route.ts: TS2353",
+    "components/code-block.tsx: TS18046",
+    "lib/redis/feature-flags.ts: TS2322",
+    "lib/services/redis/auditRedisService.ts: TS2551",
+    "lib/services/redis/auditRedisService.ts: TS2551",
+    "lib/services/redis/auditRedisService.ts: TS18047",
+    "lib/services/redis/auditRedisService.ts: TS2345",
+    "lib/services/redis/auditRedisService.ts: TS18047",
+    "lib/services/redis/auditRedisService.ts: TS2345",
+    "lib/services/redis/auditRedisService.ts: TS18047",
+    "lib/services/redis/auditRedisService.ts: TS2345",
+    "lib/services/redis/auditRedisService.ts: TS2551",
+    "lib/services/redis/resourceRedisService.ts: TS2339",
+    "lib/services/redis/resourceRedisService.ts: TS2367",
+    "lib/services/redis/resourceRedisService.ts: TS2365",
+    "lib/services/redis/resourceRedisService.ts: TS2339",
+    "lib/services/redis/resourceRedisService.ts: TS2339",
+    "scripts/migrate-to-redis.ts: TS18046",
+    "scripts/migrate-to-redis.ts: TS18046",
+    "scripts/migrate-to-redis.ts: TS2345",
+    "scripts/migrate-to-redis.ts: TS2445",
+    "scripts/migrate-to-redis.ts: TS2445",
+    "scripts/migrate-to-redis.ts: TS1205",
+    "scripts/migrate-to-redis.ts: TS1205"
+  ]
+}

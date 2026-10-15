@@ -93,5 +93,12 @@ export default async function sitemap() {
     return [overviewPage, ...detailPages];
   });
 
-  return [...staticPages, ...blogPages, ...appPages];
+  const omniPage = {
+    url: `${baseUrl}/projects/omni-desktop`,
+    lastModified: getLastModified(path.join(pagesDir, "projects", "omni-desktop", "page.tsx")),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  };
+
+  return [...staticPages, omniPage, ...blogPages, ...appPages];
 }

@@ -149,6 +149,18 @@ export const CANDIDATE_CONTENT: Record<CandidateLocale, CandidateContent> = {
         links: [{ label: "Découvrir les applications", href: "/apps" }],
       },
       {
+        id: "omni-desktop",
+        title: "Omni Desktop",
+        role: "Conception et développement",
+        period: "Projet en développement",
+        context: "Rendre visible ce que les agents utilisent, d’un projet à l’autre.",
+        highlights: [
+          "J’ai conçu les parcours, développé l’application et beaucoup itéré sur la manière de représenter les liens entre marketplaces, skills, projets et agents.",
+        ],
+        stack: ["React", "TypeScript", "Electron", "Vitest", "MCP"],
+        links: [{ label: "Explorer Omni", href: "/projects/omni-desktop" }],
+      },
+      {
         id: "justgains",
         title: "JustGains, Paris",
         role: "Développeur front-end React / Next.js",

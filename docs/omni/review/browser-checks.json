@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-15",
+  "server": "Next.js production build, local port 8770",
+  "checks": [
+    {
+      "canonical": "https://www.jason-suarez.com/projects/omni-desktop",
+      "excludedText": false,
+      "h1": 1,
+      "images": true,
+      "overflow": false,
+      "page": "project",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "canonical": "https://www.jason-suarez.com/blog/omni-interface-skills",
+      "excludedText": false,
+      "h1": 1,
+      "images": true,
+      "overflow": false,
+      "page": "article",
+      "structuredData": [
+        "BlogPosting",
+        "BreadcrumbList"
+      ],
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "excludedText": false,
+      "images": true,
+      "overflow": false,
+      "page": "article",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "excludedText": false,
+      "images": true,
+      "overflow": false,
+      "page": "project",
+      "theme": "light",
+      "width": 390
+    }
+  ],
+  "interactions": [
+    "project to article",
+    "article to project",
+    "home to project",
+    "article to blog list",
+    "blog list to article",
+    "light and dark themes",
+    "keyboard focus and image enlargement links"
+  ],
+  "deployment": "not run"
+}
